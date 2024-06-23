@@ -1,0 +1,22 @@
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-23 11:50:47"}
+{"level":"info","message":"User randomUser99999 Successful login","timestamp":"2024-06-23 11:50:47"}
+{"level":"info","message":"User retrieved: randomUser99999","timestamp":"2024-06-23 11:50:48"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-23 11:50:48"}
+{"details":"No additional details provided.","level":"error","message":"Error verifying permissions: Unauthorized access","path":"undefined_path","stack":"Error: Unauthorized access\n    at C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\middlewares\\rbacMiddleware.js:27:19\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":403,"timestamp":"2024-06-23 11:50:48"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-06-23 11:50:48"}
+{"level":"info","message":"User retrieved: randomUser99999","timestamp":"2024-06-23 11:50:48"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-23 11:50:48"}
+{"level":"info","message":"User retrieved: randomUser99999","timestamp":"2024-06-23 11:56:07"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-23 11:56:07"}
+{"level":"info","message":"User retrieved: randomUser99999","timestamp":"2024-06-23 11:56:07"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-23 11:56:07"}
+{"level":"info","message":"User retrieved: randomUser99999","timestamp":"2024-06-23 11:56:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-23 11:56:19"}
+{"level":"info","message":"User retrieved: randomUser99999","timestamp":"2024-06-23 11:56:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-23 11:56:19"}
+{"level":"info","message":"User retrieved: randomUser99999","timestamp":"2024-06-23 11:58:12"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-23 11:58:12"}
+{"level":"info","message":"User retrieved: randomUser99999","timestamp":"2024-06-23 11:58:13"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-23 11:58:13"}
+{"level":"error","message":"Google authentication error: Validation error: \"sender\" must be a string, \"recipients[0]\" must be a string, \"recipients\" does not contain 1 required value(s)","stack":"Error: Validation error: \"sender\" must be a string, \"recipients[0]\" must be a string, \"recipients\" does not contain 1 required value(s)\n    at createSelfAlert (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\helpers\\alertHelper.js:24:19)\n    at authenticateWithGoogle (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\AuthControllers.js:202:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-06-23 11:58:16"}
+{"level":"error","message":"auth/google error: Validation error: \"sender\" must be a string, \"recipients[0]\" must be a string, \"recipients\" does not contain 1 required value(s)","method":"POST","path":"auth/google","stack":"Contact support.","status":500,"timestamp":"2024-06-23 11:58:16"}

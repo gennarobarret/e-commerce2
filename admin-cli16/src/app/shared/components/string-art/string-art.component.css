@@ -1,0 +1,11 @@
+/* string-art.component.css */
+canvas {
+    width: 100vw;
+    /* Ancho de 100% del ancho de la ventana del navegador */
+    height: 100vh;
+    /* Alto de 100% del alto de la ventana del navegador */
+    display: block;
+    /* Evita márgenes adicionales */
+    background-color: #fff;
+    /* Fondo blanco, puedes cambiarlo si deseas */
+}

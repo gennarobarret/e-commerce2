@@ -1,0 +1,170 @@
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-fluid px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                            Users List
+                        </h1>
+                    </div>
+                    <div class="col-12 col-xl-auto mb-3">
+                        <a class="btn btn-sm btn-light text-primary me-2" [routerLink]="['/people/groups-list']">
+                            <i class="me-1" data-feather="users"></i>
+                            Manage Groups
+                        </a>
+                        <a class="btn btn-sm btn-light text-primary" [routerLink]="['/people/add-user']">
+                            <i class="me-1" data-feather="user-plus"></i>
+                            Add New User
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main page content-->
+    <div class="container-fluid px-4">
+        <div class="card  box-shadow-sm">
+            <div class="card-header">
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 d-grid gap-2 d-md-flex align-items-center justify-content-md-end">
+                                <div class="input-group">
+                                    <div class="datatable-top">
+                                        <div class="datatable-dropdown">
+                                            <label>
+                                                <select class="form-select">
+                                                    <option value="5">5</option>
+                                                    <option value="10" selected="">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="20">20</option>
+                                                    <option value="25">25</option>
+                                                </select> entries per page
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-grid gap-2 d-md-flex align-items-center justify-content-md-end ">
+                                <div class="font-size-sm font-weight-medium pl-md-4">
+                                    <div class="input-group mb-3">
+                                        <select class="form-select" [(ngModel)]="selectedFilterKey"
+                                            aria-label="Filter selection with button addon">
+                                            <option *ngFor="let key of filterKeys" [value]="key">{{key}}</option>
+                                        </select>
+                                        <input type="text" class="form-control" [(ngModel)]="searchText"
+                                            placeholder="Search...">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                            (click)="search()">Search</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="datatablesSimple">
+
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Groups</th>
+                                <th>Joined Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tfoot>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Groups</th>
+                                <th>Joined Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot>
+
+                        <tbody *ngIf="load_data">
+                            <tr>
+                                <td class="text-center" colspan="7">
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <tbody *ngIf="!load_data && users.length === 0">
+                            <div class="row text-center">
+                                <div class="col-3 mx-auto">
+                                    <h3>No record found</h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="#ff4242"
+                                        class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                        <path
+                                            d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                                        <path
+                                            d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </tbody>
+
+                        <ng-container *ngIf="users.length > 0">
+                            <tbody
+                                *ngFor="let item of users | slice: (page - 1) * pageSize:(page - 1) * pageSize +  pageSize; let indice= index">
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar me-2">
+                                                <img *ngIf="item && item.profileImage; else defaultImage" class="avatar-img img-fluid"
+                                                    [src]="getImageUrl(item.profileImage)" alt="Profile Image">
+                                                    <ng-template #defaultImage>
+                                                        <img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-0.png"
+                                                            alt="Profile Image" />
+                                                    </ng-template>
+                                            </div>
+                                            {{ item.firstName }} {{ item.lastName }}
+                                        </div>
+                                    </td>
+                                    <td>{{ item.emailAddress }}</td>
+                                    <td>{{ item.role }}</td>
+                                    <td>
+                                        <span *ngFor="let group of item.groups" class="badge"
+                                            [ngClass]="getBadgeClass(group)">
+                                            {{ group }}
+                                        </span>
+                                    </td>
+                                    <td>{{ item.createdAt | date: 'shortDate' }}</td>
+                                    <td>
+                                        <div>
+                                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                                [routerLink]="['/people/edit-user',item._id]">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </ng-container>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="users.length"
+                    ARIA="Default pagination"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+</main>

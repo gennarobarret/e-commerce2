@@ -1,0 +1,42 @@
+svg {
+    display: block;
+    margin: auto;
+    background-color: transparent;
+    /* Ajusta según necesites */
+    animation: rotate 2s linear infinite;
+    /* Hace que gire continuamente */
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+circle {
+    animation: changeColor 10s ease-in-out infinite;
+    /* Ajusta la duración según lo deseado */
+}
+
+@keyframes changeColor {
+
+    0%,
+    100% {
+        fill: red;
+    }
+
+    25% {
+        fill: blue;
+    }
+
+    50% {
+        fill: green;
+    }
+
+    75% {
+        fill: yellow;
+    }
+}

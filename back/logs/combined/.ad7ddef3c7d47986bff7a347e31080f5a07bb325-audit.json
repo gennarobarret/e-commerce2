@@ -1,0 +1,60 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\.ad7ddef3c7d47986bff7a347e31080f5a07bb325-audit.json",
+    "files": [
+        {
+            "date": 1717960434133,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-09.log",
+            "hash": "943a3ab49305d19f57121985809840dda56b8a1fa0a9db3b71a7c0f45098c095"
+        },
+        {
+            "date": 1718012396696,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-10.log",
+            "hash": "9661c68d893edc654c99332afd56ed0cd0679deb2690fe84c2a9e83dcc444350"
+        },
+        {
+            "date": 1718181730048,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-12.log",
+            "hash": "ac6667f3362305fd5194cec247a7b1734789dc107565be77a80aaf8bd484455c"
+        },
+        {
+            "date": 1718270601786,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-13.log",
+            "hash": "99f5f6b2fa7189c6b0b99a363c1cd001f8b8a0c5bd3c77c4c8b199dd4bcd1f92"
+        },
+        {
+            "date": 1718481538799,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-15.log",
+            "hash": "29cf2839d2de01b61859bbf5fee806895ff801869576b4ec02582ec79d0af8dc"
+        },
+        {
+            "date": 1718535785382,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-16.log",
+            "hash": "9fa3e0df5f28d610548be51b1d6a8b587ae1df8a2f16064537698d8bf0491e32"
+        },
+        {
+            "date": 1718808483885,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-19.log",
+            "hash": "06cf09bcd4ed044cb0c64c91162e8fc2ec6b41b5affda4935fdf026a029d9555"
+        },
+        {
+            "date": 1718899160177,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-20.log",
+            "hash": "53c1c726adcf56b24d3a2e3a65294f524465260bb33b86e65aea9b8d1bb13487"
+        },
+        {
+            "date": 1718961045639,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-21.log",
+            "hash": "705631040f9ccbb19c5559891a94d7ae1035f3a79cd120f67d00bb1f0ff10c9e"
+        },
+        {
+            "date": 1719136248231,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\combined\\warn-2024-06-23.log",
+            "hash": "e3c8872439855f81b41362df4637f9dfed7d900ba93e2098b9954b0157bcc4ba"
+        }
+    ],
+    "hashType": "sha256"
+}

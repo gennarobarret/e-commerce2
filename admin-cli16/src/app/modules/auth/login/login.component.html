@@ -1,0 +1,62 @@
+<div class="container-xl px-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
+    <app-spinner *ngIf="isLoading$ | async" [loadingText]="'Almost ready... Accessing your account now.'"></app-spinner>
+            <!-- Social login form-->
+            <div class="card my-5">
+                <div class="card-body p-5 text-center">
+                    <div class="h3 fw-light mb-3">LOGIN</div>
+                    <div class="small text-muted mb-2">login using...</div>
+                    <!-- Social login links -->
+                    <!-- <a class="btn btn-icon btn-facebook mx-1" href="#!"><i
+                            class="fab fa-facebook-f fa-fw fa-sm"></i></a>
+                    <a class="btn btn-icon btn-github mx-1" href="#!"><i class="fab fa-github fa-fw fa-sm"></i></a>
+                    <a class="btn btn-icon btn-google mx-1" (click)="initGoogleSignIn()"><i
+                            class="fab fa-google fa-fw fa-sm"></i></a>
+                    <a class="btn btn-icon btn-twitter mx-1" href="#!"><i
+                            class="fab fa-twitter fa-fw fa-sm text-white"></i></a> -->
+                    <app-google-signin></app-google-signin>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body p-5">
+                    <div class="text-center small text-muted mb-4">...or enter your credentials below.</div>
+                    <!-- Login form-->
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <!-- Form Group (userName)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="userName">UserName</label>
+                            <input class="form-control" id="userName" type="text" placeholder="Enter your userName"
+                                formControlName="userName" autocomplete="username"
+                                [ngClass]="{'is-invalid': loginForm.get('userName')?.invalid && (loginForm.get('userName')?.dirty || loginForm.get('userName')?.touched)}" />
+                            <div *ngIf="loginForm.get('userName')?.invalid && (loginForm.get('userName')?.dirty || loginForm.get('userName')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="loginForm.get('userName')?.errors?.['required']">
+                                    UserName is required.
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Form Group (password)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="password">Password</label>
+                            <input class="form-control" id="password" type="password" placeholder="Enter your password"
+                                formControlName="password" autocomplete="current-password"
+                                [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)}" />
+                            <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="loginForm.get('password')?.errors?.['required']">
+                                    Password is required.
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Form Group (login box)-->
+                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <a class="small" [routerLink]="['/auth/forgot-password']">Forgot Password?</a>
+                            <!-- <a class="btn btn-primary" href="dashboard-1.html">Login</a> -->
+                            <button type="submit" class="btn btn-outline-secondary btn-block">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

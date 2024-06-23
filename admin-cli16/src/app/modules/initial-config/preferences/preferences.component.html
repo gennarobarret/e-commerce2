@@ -1,0 +1,43 @@
+<!-- Wizard tab pane item 3-->
+<div class="py-5 py-xl-10">
+    <div class="row justify-content-center">
+        <div class="col-xxl-6 col-xl-8">
+            <h3 class="text-primary">Step 3</h3>
+            <h5 class="card-title mb-4">Choose when you want to receive email notifications</h5>
+            <form [formGroup]="preferencesForm" (ngSubmit)="goToNextStep()">
+                <div class="form-check mb-2">
+                    <input class="form-check-input" id="checkAccountChanges" type="checkbox" formControlName="accountChanges"/>
+                    <label class="form-check-label" for="checkAccountChanges">Changes made to your account</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" id="checkAccountGroups" type="checkbox" formControlName="groupChanges"/>
+                    <label class="form-check-label" for="checkAccountGroups">Changes are made to groups you're part
+                        of</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" id="checkProductUpdates" type="checkbox" formControlName="productUpdates"/>
+                    <label class="form-check-label" for="checkProductUpdates">Product updates for products you've
+                        purchased or starred</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" id="checkProductNew" type="checkbox" formControlName="newProducts"/>
+                    <label class="form-check-label" for="checkProductNew">Information on new products and
+                        services</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" id="checkPromotional" type="checkbox" formControlName="marketingOffers"/>
+                    <label class="form-check-label" for="checkPromotional">Marketing and promotional offers</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="checkSecurity" type="checkbox"  formControlName="securityAlerts"/>
+                    <label class="form-check-label" for="checkSecurity">Security alerts</label>
+                </div>
+                <hr class="my-4" />
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-light" type="button" (click)="goToPreviousStep()">Previous</button>
+                    <button class="btn btn-primary" type="button" (click)="goToNextStep()">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

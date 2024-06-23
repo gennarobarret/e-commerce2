@@ -1,0 +1,24 @@
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-15 21:23:20"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-15 21:23:20"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-15 21:23:20"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-15 21:23:20"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-15 21:23:20"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-15 21:23:20"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-15 21:24:56"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-15 21:24:56"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-15 21:24:56"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-15 21:24:56"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-06-15 22:23:31"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-06-15 22:25:21"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-15 22:26:01"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-15 22:26:01"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-15 22:26:02"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-15 22:26:02"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-06-15 22:26:27"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-15 22:26:38"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-15 22:26:38"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-15 22:26:39"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-15 22:26:39"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-15 22:26:39"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-15 22:26:39"}
+{"level":"info","message":"API Success: alerts/getAllAlerts","method":"GET","path":"alerts/getAllAlerts","status":200,"timestamp":"2024-06-15 22:26:48"}

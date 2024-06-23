@@ -1,0 +1,205 @@
+<div class="container-xl px-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-9">
+            <!-- Social registration form-->
+            <div class="card my-5">
+                <div class="card-body p-5 text-center">
+                    <div class="h3 fw-light mb-3">Create an Account</div>
+                    <div class="small text-muted mb-2">Sign in using...</div>
+                    <!-- Social registration links-->
+                    <app-google-signin></app-google-signin>
+                    <!-- <a class="btn btn-icon btn-facebook mx-1" href="#!"><i
+                                        class="fab fa-facebook-f fa-fw fa-sm"></i></a>
+                                <a class="btn btn-icon btn-github mx-1" href="#!"><i
+                                        class="fab fa-github fa-fw fa-sm"></i></a>
+                                <a class="btn btn-icon btn-google mx-1" (click)="onGoogleSignIn()"><i
+                                        class="fab fa-google fa-fw fa-sm"></i></a>
+                                <a class="btn btn-icon btn-twitter mx-1" href="#!"><i
+                                        class="fab fa-twitter fa-fw fa-sm text-white"></i></a> -->
+                </div>
+                <hr class="my-0" />
+                <div class="card-body p-5">
+                    <div class="text-center small text-muted mb-4">...or enter your information below.</div>
+                    <!-- Login form-->
+                    <form [formGroup]="createMasterAdminForm" (ngSubmit)="onSubmit()">
+                        <!-- Form Group (user name)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUserName">
+                                Username (how your name will appear to other users on the site)
+                            </label>
+                            <input class="form-control" id="inputUserName" type="text" placeholder="Enter your UserName"
+                                formControlName="inputUserName"
+                                [ngClass]="{'is-invalid': createMasterAdminForm.get('inputUserName')?.invalid && (createMasterAdminForm.get('inputUserName')?.dirty || createMasterAdminForm.get('inputUserName')?.touched)}" />
+                            <div *ngIf="createMasterAdminForm.get('inputUserName')?.invalid && (createMasterAdminForm.get('inputUserName')?.dirty || createMasterAdminForm.get('inputUserName')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="createMasterAdminForm.get('inputUserName')?.errors?.['required']">
+                                    User name is required.
+                                </span>
+                                <span *ngIf="createMasterAdminForm.get('inputUserName')?.errors?.['minlength']">
+                                    User name must be at least 5 character long.
+                                </span>
+                                <span *ngIf="createMasterAdminForm.get('inputUserName')?.errors?.['maxlength']">
+                                    User name must be no more than 20 characters long.
+                                </span>
+                                <span *ngIf="createMasterAdminForm.get('inputUserName')?.errors?.['pattern']">
+                                    Only letters and numbers are allowed.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row gx-3">
+                            <div class="col-md-6">
+                                <!-- Form Group (first name)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputFirstName">First name</label>
+                                    <input class="form-control" id="inputFirstName" type="text"
+                                        placeholder="Enter your first name" formControlName="inputFirstName"
+                                        [ngClass]="{'is-invalid': createMasterAdminForm.get('inputFirstName')?.invalid && (createMasterAdminForm.get('inputFirstName')?.dirty || createMasterAdminForm.get('inputFirstName')?.touched)}" />
+                                    <div *ngIf="createMasterAdminForm.get('inputFirstName')?.invalid && (createMasterAdminForm.get('inputFirstName')?.dirty || createMasterAdminForm.get('inputFirstName')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="createMasterAdminForm.get('inputFirstName')?.errors?.['required']">
+                                            First name is required.
+                                        </span>
+                                        <span
+                                            *ngIf="createMasterAdminForm.get('inputFirstName')?.errors?.['minlength']">
+                                            First name must be at least 3 character long.
+                                        </span>
+                                        <span
+                                            *ngIf="createMasterAdminForm.get('inputFirstName')?.errors?.['maxlength']">
+                                            First name must be no more than 25 characters long.
+                                        </span>
+                                        <span *ngIf="createMasterAdminForm.get('inputFirstName')?.errors?.['pattern']">
+                                            Only letters, numbers, spaces, "ñ" and "ñ" are allowed.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Form Group (last name)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputLastName">Last name</label>
+                                    <input class="form-control" id="inputLastName" type="text"
+                                        placeholder="Enter your last name" formControlName="inputLastName"
+                                        [ngClass]="{'is-invalid': createMasterAdminForm.get('inputLastName')?.invalid && (createMasterAdminForm.get('inputLastName')?.dirty || createMasterAdminForm.get('inputLastName')?.touched)}" />
+                                    <div *ngIf="createMasterAdminForm.get('inputLastName')?.invalid && (createMasterAdminForm.get('inputLastName')?.dirty || createMasterAdminForm.get('inputLastName')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="createMasterAdminForm.get('inputLastName')?.errors?.['required']">
+                                            Last name is required.
+                                        </span>
+                                        <span *ngIf="createMasterAdminForm.get('inputLastName')?.errors?.['minlength']">
+                                            Last name must be at least 3 character long.
+                                        </span>
+                                        <span *ngIf="createMasterAdminForm.get('inputLastName')?.errors?.['maxlength']">
+                                            Last name must be no more than 25 characters long.
+                                        </span>
+                                        <span *ngIf="createMasterAdminForm.get('inputLastName')?.errors?.['pattern']">
+                                            Only letters, numbers, spaces, "ñ" and "ñ" are allowed.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                            <input class="form-control" id="inputEmailAddress" type="email" autocomplete="email"
+                                placeholder="Enter your email address" formControlName="inputEmailAddress"
+                                [ngClass]="{'is-invalid': createMasterAdminForm.get('inputEmailAddress')?.invalid && (createMasterAdminForm.get('inputEmailAddress')?.dirty || createMasterAdminForm.get('inputEmailAddress')?.touched)}" />
+                            <div *ngIf="createMasterAdminForm.get('inputEmailAddress')?.invalid && (createMasterAdminForm.get('inputEmailAddress')?.dirty || createMasterAdminForm.get('inputEmailAddress')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="createMasterAdminForm.get('inputEmailAddress')?.errors?.['required']">
+                                    Email address is required.
+                                </span>
+                                <span *ngIf="createMasterAdminForm.get('inputEmailAddress')?.errors?.['email']">
+                                    Must be a valid email address.
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3">
+                            <div class="col-md-6">
+                                <!-- Form Group (choose password)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputPassword">Password</label>
+                                    <input class="form-control" id="inputPassword" type="password"
+                                        placeholder="Enter password" formControlName="inputPassword"
+                                        autocomplete="new-password"
+                                        [ngClass]="{'is-invalid': createMasterAdminForm.get('inputPassword')?.invalid && (createMasterAdminForm.get('inputPassword')?.dirty || createMasterAdminForm.get('inputPassword')?.touched)}" />
+                                    <div *ngIf="createMasterAdminForm.get('inputPassword')?.invalid && (createMasterAdminForm.get('inputPassword')?.dirty || createMasterAdminForm.get('inputPassword')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="createMasterAdminForm.get('inputPassword')?.errors?.['required']">
+                                            Password is required.
+                                        </span>
+                                        <span *ngIf="createMasterAdminForm.get('inputPassword')?.errors?.['minlength']">
+                                            Password must be at least 3 character long.
+                                        </span>
+                                        <span *ngIf="createMasterAdminForm.get('inputPassword')?.errors?.['maxlength']">
+                                            Password must be no more than 25 characters long.
+                                        </span>
+                                        <span *ngIf="createMasterAdminForm.get('inputPassword')?.errors?.['mustMatch']">
+                                            Passwords must match
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Form Group (confirm password)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputConfirmPassword">Confirm
+                                        password</label>
+                                    <input class="form-control" id="inputConfirmPassword" type="password"
+                                        autocomplete="new-password" placeholder="Confirm password"
+                                        formControlName="inputConfirmPassword"
+                                        [ngClass]="{'is-invalid': createMasterAdminForm.get('inputConfirmPassword')?.invalid && (createMasterAdminForm.get('inputConfirmPassword')?.dirty || createMasterAdminForm.get('inputConfirmPassword')?.touched)}" />
+                                    <div *ngIf="createMasterAdminForm.get('inputConfirmPassword')?.invalid && (createMasterAdminForm.get('inputConfirmPassword')?.dirty || createMasterAdminForm.get('inputConfirmPassword')?.touched)"
+                                        class="text-danger">
+                                        <span
+                                            *ngIf="createMasterAdminForm.get('inputConfirmPassword')?.errors?.['required']">
+                                            Confirm Password is required.
+                                        </span>
+                                        <span
+                                            *ngIf="createMasterAdminForm.get('inputConfirmPassword')?.errors?.['minlength']">
+                                            Confirm Password must be at least 3 character long.
+                                        </span>
+                                        <span
+                                            *ngIf="createMasterAdminForm.get('inputConfirmPassword')?.errors?.['maxlength']">
+                                            Confirm Password must be no more than 25 characters long.
+                                        </span>
+                                        <span
+                                            *ngIf="createMasterAdminForm.get('inputConfirmPassword')?.errors?.['mustMatch']">
+                                            Passwords must match.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form Group (form submission)-->
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="form-check">
+                                <input class="form-check-input" id="checkTerms" type="checkbox" value="" />
+                                <label class="form-check-label" for="checkTerms">
+                                    I accept the
+                                    <a href="#!">terms &amp; conditions</a>
+                                    .
+                                </label>
+                            </div>
+                            <!-- <a class="btn btn-primary" href="auth-login-social.html">Create Account</a> -->
+                            <a *ngIf="!load_btn" class="btn btn-primary" type="a" (click)="onSubmit()">Create
+                                Account</a>
+                            <a *ngIf="load_btn" class="btn btn-primary" type="a" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Creating...
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body px-5 py-4">
+                    <div class="small text-center">
+                        Have an account?
+                        <a href="auth-login-social.html">Sign in!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

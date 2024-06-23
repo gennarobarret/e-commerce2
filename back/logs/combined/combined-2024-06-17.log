@@ -1,0 +1,5 @@
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-17 15:05:36"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-17 15:05:36"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-17 15:05:36"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-17 15:05:36"}
+{"level":"info","message":"API Success: alerts/getAllAlerts?page=1&limit=10","method":"GET","path":"alerts/getAllAlerts?page=1&limit=10","status":200,"timestamp":"2024-06-17 15:05:37"}

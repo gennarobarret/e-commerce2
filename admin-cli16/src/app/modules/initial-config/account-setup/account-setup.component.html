@@ -1,0 +1,311 @@
+<!-- Wizard tab pane item 1 -->
+<div class="py-5 py-xl-10">
+    <div class="row justify-content-center">
+        <div class="col-xxl-6 col-xl-8">
+            <h3 class="text-primary">Step 1</h3>
+            <h5 class="card-title mb-4">Enter your account information</h5>
+            <ng-container *ngIf="load_data">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!load_data">
+                <form [formGroup]="accountSetupForm" (ngSubmit)="goToNextStep()">
+                    <!-- Form Group (username) -->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputUserName">
+                            Username (how your name will appear to other users on the site)
+                        </label>
+                        <input class="form-control" id="inputUserName" type="text" placeholder="Enter your UserName"
+                            formControlName="inputUserName"
+                            [ngClass]="{'is-invalid': accountSetupForm.get('inputUserName')?.invalid && (accountSetupForm.get('inputUserName')?.dirty || accountSetupForm.get('inputUserName')?.touched)}" />
+                        <div *ngIf="accountSetupForm.get('inputUserName')?.invalid && (accountSetupForm.get('inputUserName')?.dirty || accountSetupForm.get('inputUserName')?.touched)"
+                            class="text-danger">
+                            <span *ngIf="accountSetupForm.get('inputUserName')?.errors?.['required']">
+                                User name is required.
+                            </span>
+                            <span *ngIf="accountSetupForm.get('inputUserName')?.errors?.['minlength']">
+                                User name must be at least 5 character long.
+                            </span>
+                            <span *ngIf="accountSetupForm.get('inputUserName')?.errors?.['maxlength']">
+                                User name must be no more than 20 characters long.
+                            </span>
+                            <span *ngIf="accountSetupForm.get('inputUserName')?.errors?.['pattern']">
+                                Only letters and numbers are allowed.
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Form Row -->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (first name)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputFirstName">First name</label>
+                            <input class="form-control" id="inputFirstName" type="text"
+                                placeholder="Enter your first name" formControlName="inputFirstName"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputFirstName')?.invalid && (accountSetupForm.get('inputFirstName')?.dirty || accountSetupForm.get('inputFirstName')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputFirstName')?.invalid && (accountSetupForm.get('inputFirstName')?.dirty || accountSetupForm.get('inputFirstName')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputFirstName')?.errors?.['required']">
+                                    First name is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputFirstName')?.errors?.['minlength']">
+                                    First name must be at least 3 character long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputFirstName')?.errors?.['maxlength']">
+                                    First name must be no more than 25 characters long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputFirstName')?.errors?.['pattern']">
+                                    Only letters, numbers, spaces, "ñ" and "ñ" are allowed.
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Form Group (last name)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputLastName">Last name</label>
+                            <input class="form-control" id="inputLastName" type="text"
+                                placeholder="Enter your last name" formControlName="inputLastName"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputLastName')?.invalid && (accountSetupForm.get('inputLastName')?.dirty || accountSetupForm.get('inputLastName')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputLastName')?.invalid && (accountSetupForm.get('inputLastName')?.dirty || accountSetupForm.get('inputLastName')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputLastName')?.errors?.['required']">
+                                    Last name is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputLastName')?.errors?.['minlength']">
+                                    Last name must be at least 3 character long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputLastName')?.errors?.['maxlength']">
+                                    Last name must be no more than 25 characters long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputLastName')?.errors?.['pattern']">
+                                    Only letters, numbers, spaces, "ñ" and "ñ" are allowed.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form Row  -->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (organization name)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputOrganizationName">Organization name</label>
+                            <input class="form-control" id="inputOrganizationName" type="text"
+                                placeholder="Enter your organization name" formControlName="inputOrganizationName"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputOrganizationName')?.invalid && (accountSetupForm.get('inputOrganizationName')?.dirty || accountSetupForm.get('inputOrganizationName')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputOrganizationName')?.invalid && (accountSetupForm.get('inputOrganizationName')?.dirty || accountSetupForm.get('inputOrganizationName')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputOrganizationName')?.errors?.['required']">
+                                    organization name is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputOrganizationName')?.errors?.['minlength']">
+                                    organization name must be at least 3 character long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputOrganizationName')?.errors?.['maxlength']">
+                                    organization name must be no more than 30 characters long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputOrganizationName')?.errors?.['pattern']">
+                                    Only letters, numbers, spaces, "ñ" and "ñ" are allowed.
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                            <input class="form-control" id="inputEmailAddress" type="email" autocomplete="email"
+                                placeholder="Enter your email address" formControlName="inputEmailAddress"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputEmailAddress')?.invalid && (accountSetupForm.get('inputEmailAddress')?.dirty || accountSetupForm.get('inputEmailAddress')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputEmailAddress')?.invalid && (accountSetupForm.get('inputEmailAddress')?.dirty || accountSetupForm.get('inputEmailAddress')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputEmailAddress')?.errors?.['required']">
+                                    Email address is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputEmailAddress')?.errors?.['email']">
+                                    Must be a valid email address.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (country)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputCountryAddress">Country</label>
+                            <select class="form-control" id="inputCountryAddress" formControlName="inputCountryAddress"
+                                (change)="onCountryChange($event)"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputCountryAddress')?.invalid && (accountSetupForm.get('inputCountryAddress')?.dirty || accountSetupForm.get('inputCountryAddress')?.touched)}">
+                                <option value="" disabled selected>Select your country</option>
+                                <option *ngFor="let country of countries" [value]="country.id">
+                                    {{ country.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="accountSetupForm.get('inputCountryAddress')?.invalid && (accountSetupForm.get('inputCountryAddress')?.dirty || accountSetupForm.get('inputCountryAddress')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputCountryAddress')?.errors?.['required']">
+                                    Country address is required.
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Form Group (state)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputStateAddress">State</label>
+                            <select class="form-control" id="inputStateAddress" formControlName="inputStateAddress"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputStateAddress')?.invalid && (accountSetupForm.get('inputStateAddress')?.dirty || accountSetupForm.get('inputStateAddress')?.touched)}">
+                                <option value="" disabled>Select your state</option>
+                                <option *ngFor="let state of filteredStates" [value]="state.id">
+                                    {{ state.province_name }}
+                                </option>
+                            </select>
+                            <div *ngIf="accountSetupForm.get('inputStateAddress')?.invalid && (accountSetupForm.get('inputStateAddress')?.dirty || accountSetupForm.get('inputStateAddress')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputStateAddress')?.errors?.['required']">
+                                    State address is required.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form Row-->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (phone number)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputPhoneNumber">Phone number</label>
+                            <input class="form-control" id="inputPhoneNumber" type="tel"
+                                placeholder="Enter your phone number" formControlName="inputPhoneNumber"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputPhoneNumber')?.invalid && (accountSetupForm.get('inputPhoneNumber')?.dirty || accountSetupForm.get('inputPhoneNumber')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputPhoneNumber')?.invalid && (accountSetupForm.get('inputPhoneNumber')?.dirty || accountSetupForm.get('inputPhoneNumber')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputPhoneNumber')?.errors?.['required']">
+                                    Phone number is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputPhoneNumber')?.errors?.['pattern']">
+                                    Must be a valid phone number.
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Form Group (birthday)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputBirthday">Birthday</label>
+                            <input class="form-control" id="inputBirthday" type="date" placeholder="Enter your birthday"
+                                formControlName="inputBirthday"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputBirthday')?.invalid && (accountSetupForm.get('inputBirthday')?.dirty || accountSetupForm.get('inputBirthday')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputBirthday')?.invalid && (accountSetupForm.get('inputBirthday')?.dirty || accountSetupForm.get('inputBirthday')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputBirthday')?.errors?.['required']">
+                                    Phone number is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputBirthday')?.errors?.['invalidDateFormat']">
+                                    Must be a valid date.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form Row-->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (role)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputRole">Role</label>
+                            <input class="form-control" id="inputRole" type="text" formControlName="inputRole"
+                                placeholder="Enter Role"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputRole')?.invalid && (accountSetupForm.get('inputRole')?.dirty || accountSetupForm.get('inputRole')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputRole')?.invalid && (accountSetupForm.get('inputRole')?.dirty || accountSetupForm.get('inputRole')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputRole')?.errors?.['required']">
+                                    Role is required.
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Form Group (identification)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputIdentification">ID/DNI/NIE</label>
+                            <input class="form-control" id="inputIdentification" type="text"
+                                placeholder="Enter your identification" formControlName="inputIdentification"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputIdentification')?.invalid && (accountSetupForm.get('inputIdentification')?.dirty || accountSetupForm.get('inputIdentification')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputIdentification')?.invalid && (accountSetupForm.get('inputIdentification')?.dirty || accountSetupForm.get('inputIdentification')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputIdentification')?.errors?.['required']">
+                                    Identification is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputIdentification')?.errors?.['pattern']">
+                                    Must be a valid identification.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form Group (additional info)-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputAdditionalInfo">Additional info</label>
+                        <input class="form-control" id="inputAdditionalInfo" type="text"
+                            placeholder="Enter your additional info" formControlName="inputAdditionalInfo"
+                            [ngClass]="{'is-invalid': accountSetupForm.get('inputAdditionalInfo')?.invalid && (accountSetupForm.get('inputAdditionalInfo')?.dirty || accountSetupForm.get('inputAdditionalInfo')?.touched)}" />
+                        <div *ngIf="accountSetupForm.get('inputAdditionalInfo')?.invalid && (accountSetupForm.get('inputAdditionalInfo')?.dirty || accountSetupForm.get('inputAdditionalInfo')?.touched)"
+                            class="text-danger">
+                            <span *ngIf="accountSetupForm.get('inputAdditionalInfo')?.errors?.['required']">
+                                additional info is required.
+                            </span>
+                            <span *ngIf="accountSetupForm.get('inputAdditionalInfo')?.errors?.['minlength']">
+                                additional info must be at least 10 character long.
+                            </span>
+                            <span *ngIf="accountSetupForm.get('inputAdditionalInfo')?.errors?.['maxlength']">
+                                additional info must be no more than 50 characters long.
+                            </span>
+                            <span *ngIf="accountSetupForm.get('inputAdditionalInfo')?.errors?.['pattern']">
+                                Only letters, numbers, spaces, "ñ" and "ñ" are allowed.
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Form Row -->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (password)-->
+                        <!-- <div class="col-md-6">
+                            <label class="small mb-1" for="inputPassword">Password</label>
+                            <input class="form-control" id="inputPassword" type="password" placeholder="Enter password"
+                                formControlName="inputPassword" autocomplete="new-password"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputPassword')?.invalid && (accountSetupForm.get('inputPassword')?.dirty || accountSetupForm.get('inputPassword')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputPassword')?.invalid && (accountSetupForm.get('inputPassword')?.dirty || accountSetupForm.get('inputPassword')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputPassword')?.errors?.['required']">
+                                    Password is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputPassword')?.errors?.['minlength']">
+                                    Password must be at least 3 character long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputPassword')?.errors?.['maxlength']">
+                                    Password must be no more than 25 characters long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputPassword')?.errors?.['mustMatch']">
+                                    Passwords must match
+                                </span>
+                            </div>
+                        </div> -->
+                        <!-- Form Group (Confirm Password)-->
+                        <!-- <div class="col-md-6">
+                            <label class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
+                            <input class="form-control" id="inputConfirmPassword" type="password"
+                                autocomplete="new-password" placeholder="Confirm password"
+                                formControlName="inputConfirmPassword"
+                                [ngClass]="{'is-invalid': accountSetupForm.get('inputConfirmPassword')?.invalid && (accountSetupForm.get('inputConfirmPassword')?.dirty || accountSetupForm.get('inputConfirmPassword')?.touched)}" />
+                            <div *ngIf="accountSetupForm.get('inputConfirmPassword')?.invalid && (accountSetupForm.get('inputConfirmPassword')?.dirty || accountSetupForm.get('inputConfirmPassword')?.touched)"
+                                class="text-danger">
+                                <span *ngIf="accountSetupForm.get('inputConfirmPassword')?.errors?.['required']">
+                                    Confirm Password is required.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputConfirmPassword')?.errors?.['minlength']">
+                                    Confirm Password must be at least 3 character long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputConfirmPassword')?.errors?.['maxlength']">
+                                    Confirm Password must be no more than 25 characters long.
+                                </span>
+                                <span *ngIf="accountSetupForm.get('inputConfirmPassword')?.errors?.['mustMatch']">
+                                    Passwords must match.
+                                </span>
+                            </div>
+                        </div> -->
+                    </div>
+                    <hr class="my-4" />
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-light disabled" type="button" disabled>Previous</button>
+                        <button class="btn btn-primary" type="button" (click)="goToNextStep()">Next</button>
+                    </div>
+                </form>
+            </ng-container>
+        </div>
+    </div>
+</div>

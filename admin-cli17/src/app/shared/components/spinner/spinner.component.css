@@ -1,0 +1,25 @@
+.overlay {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* Alinea los elementos en columna (verticalmente) */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Color de fondo con transparencia */
+    z-index: 1000;
+    /* Asegúrate que sea superior a cualquier otro elemento */
+}
+
+.spinner-text {
+    color: #fff;
+    /* Asegura que el texto sea visible sobre el fondo oscuro */
+    margin-top: 10px;
+    /* Ajusta la distancia entre el spinner y el texto */
+    font-size: 16px;
+    /* Tamaño del texto */
+}

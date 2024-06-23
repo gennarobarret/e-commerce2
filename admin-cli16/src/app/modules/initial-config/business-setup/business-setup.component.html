@@ -1,0 +1,133 @@
+<!-- Wizard tab pane item 1 -->
+
+<div class="py-5 py-xl-10">
+    <div class="row justify-content-center">
+        <div class="col-xxl-6 col-xl-8">
+            <h3 class="text-primary">Step 2: Enter Your Business Details</h3>
+            <ng-container *ngIf="load_data">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
+            <form [formGroup]="businessSetupForm" (ngSubmit)="goToNextStep()">
+                <!-- Business Name -->
+                <div class="pb-3">
+                    <label for="inputBusinessName" class="form-label">Business Name</label>
+                    <input type="text" id="inputBusinessName" class="form-control" formControlName="inputBusinessName">
+                </div>
+
+                <!-- Country -->
+                <div class="pb-3">
+                    <label for="inputCountryAddress" class="form-label">Country</label>
+                    <select class="form-control" id="inputCountryAddress" formControlName="inputCountryAddress"
+                        (change)="onCountryChange($event)">
+                        <option value="" disabled selected>Select your country</option>
+                        <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                    </select>
+                </div>
+
+                <!-- State -->
+                <div class="pb-3">
+                    <label for="inputStateAddress" class="form-label">State</label>
+                    <select class="form-control" id="inputStateAddress" formControlName="inputStateAddress">
+                        <option value="" disabled>Select your state</option>
+                        <option *ngFor="let state of filteredStates" [value]="state.id">{{ state.province_name }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Tax ID -->
+                <div class="pb-3">
+                    <label for="inputTaxId" class="form-label">Tax ID</label>
+                    <input type="text" id="inputTaxId" class="form-control" formControlName="inputTaxId">
+                </div>
+
+                <!-- Tax Type -->
+                <div class="pb-3">
+                    <label for="inputTaxType" class="form-label">Tax Type</label>
+                    <select id="inputTaxType" class="form-control" formControlName="inputTaxType">
+                        <option value="" disabled>Select tax type</option>
+                        <option value="IVA">IVA</option>
+                        <option value="ISR">ISR</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                </div>
+
+                <!-- Tax Percentage -->
+                <div class="pb-3">
+                    <label for="inputTaxPercentage" class="form-label">Tax Percentage</label>
+                    <input type="number" id="inputTaxPercentage" class="form-control" formControlName="inputTaxPercentage">
+                </div>
+
+                <!-- Payment Gateway -->
+                <div class="pb-3">
+                    <label for="inputPaymentGateway" class="form-label">Payment Gateway</label>
+                    <select id="inputPaymentGateway" class="form-control" formControlName="inputPaymentGateway">
+                        <option value="" disabled>Select payment gateway</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="googlepay">Google Pay</option>
+                        <option value="stripe">Stripe</option>
+                    </select>
+                </div>
+
+                <!-- Physical Location -->
+                <div class="pb-3">
+                    <label for="inputPhysicalLocation" class="form-label">Physical Location</label>
+                    <input type="text" id="inputPhysicalLocation" class="form-control" formControlName="inputPhysicalLocation">
+                </div>
+
+                <!-- Shipping Service -->
+                <div class="pb-3">
+                    <label for="inputShippingService" class="form-label">Shipping Service</label>
+                    <input type="text" id="inputShippingService" class="form-control" formControlName="inputShippingService">
+                </div>
+
+                <!-- Company Email -->
+                <div class="pb-3">
+                    <label for="inputCompanyEmail" class="form-label">Company Email</label>
+                    <input type="email" id="inputCompanyEmail" class="form-control" formControlName="inputCompanyEmail">
+                </div>
+
+                <!-- Customer Service Email -->
+                <div class="pb-3">
+                    <label for="inputCustomerServiceEmail" class="form-label">Customer Service Email</label>
+                    <input type="email" id="inputCustomerServiceEmail" class="form-control"
+                        formControlName="inputCustomerServiceEmail">
+                </div>
+
+                <!-- Returns Email -->
+                <div class="pb-3">
+                    <label for="inputReturnsEmail" class="form-label">Returns Email</label>
+                    <input type="email" id="inputReturnsEmail" class="form-control" formControlName="inputReturnsEmail">
+                </div>
+
+                <!-- Currency -->
+                <div class="pb-3">
+                    <label for="inputCurrency" class="form-label">Currency</label>
+                    <input type="text" id="inputCurrency" class="form-control" formControlName="inputCurrency">
+                </div>
+
+                <!-- Logo Upload -->
+                <div class="text-center">
+                    <label for="inputLogo" class="form-label">Business Logo</label>
+                    <div>
+                        <img class="img-fluid rounded-circle mb-2" [src]="imageUrl" alt="inputLogo"
+                            style="width: 100px; height: 100px;">
+                        <input type="file" #fileInput class="d-none" (change)="fileChangeEvent($event)"
+                            formControlName="inputLogo">
+                        <button class="btn btn-primary" type="button" (click)="triggerFileInput()">Upload Logo</button>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <hr class="my-4" />
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-light" type="button" (click)="goToPreviousStep()">Previous</button>
+                    <button class="btn btn-primary" type="submit" [disabled]="loading">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

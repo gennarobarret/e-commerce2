@@ -1,0 +1,55 @@
+<div class="container-sm px-4">
+    <div class="row justify-content-center text-center">
+        <div class="col-lg-5">
+            <!-- Basic forgot password form-->
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header justify-content-center">
+                    <h3 class="fw-light my-4">Verify</h3>
+                </div>
+                <div class="card-body">
+                    <div class="small mb-3 text-muted">Please enter the 4-digit verification code we sent
+                        via Email</div>
+                    <span>(we want to make sure it's you before we contact our movers)</span>
+                    <!-- Verification code form-->
+                    <form [formGroup]="verificationForm" (ngSubmit)="verifyCode()">
+                        <div id="form">
+                            <label for="digit1" class="visually-hidden">Digit 1</label>
+                            <input type="text" #input1 id="digit1" formControlName="digit1" maxlength="1"
+                                aria-label="Digit 1" (keyup)="goToNextInput($event, 'input2')">
+
+                            <label for="digit2" class="visually-hidden">Digit 2</label>
+                            <input type="text" #input2 id="digit2" formControlName="digit2" maxlength="1"
+                                aria-label="Digit 2" (keyup)="goToNextInput($event, 'input3')">
+
+                            <label for="digit3" class="visually-hidden">Digit 3</label>
+                            <input type="text" #input3 id="digit3" formControlName="digit3" maxlength="1"
+                                aria-label="Digit 3" (keyup)="goToNextInput($event, 'input4')">
+
+                            <label for="digit4" class="visually-hidden">Digit 4</label>
+                            <input type="text" #input4 id="digit4" formControlName="digit4" maxlength="1"
+                                aria-label="Digit 4" (keyup)="goToNextInput($event, 'input5')">
+
+                            <label for="digit5" class="visually-hidden">Digit 5</label>
+                            <input type="text" #input5 id="digit5" formControlName="digit5" maxlength="1"
+                                aria-label="Digit 5" (keyup)="goToNextInput($event, 'input6')">
+
+                            <label for="digit6" class="visually-hidden">Digit 6</label>
+                            <input type="text" #input6 id="digit6" formControlName="digit6" maxlength="1"
+                                aria-label="Digit 6" (keyup)="goToNextInput($event, 'submit')">
+                        </div>
+
+                        <button class="btn btn-primary mt-5" type="submit">Verify Code</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="small">
+                        Didn't receive the code?<br />
+                        <a href="#">Send code again</a><br />
+                        <a href="#">Change phone number</a>
+                        <a [routerLink]="['/auth/login']">Back to login login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

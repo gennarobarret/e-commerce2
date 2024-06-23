@@ -1,0 +1,60 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\.cd04dc7c5c9480a4434744008744db3a2b17d306-audit.json",
+    "files": [
+        {
+            "date": 1717960434112,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-09.log",
+            "hash": "24532df60dc9d3542b9bdb0f624232c15a26fd8edc80db4496744a730e5e8b05"
+        },
+        {
+            "date": 1718012396673,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-10.log",
+            "hash": "ff342219aa34c29d9678e7850056c20361ab2cc063fbeddd70b464ce9b89b023"
+        },
+        {
+            "date": 1718181730023,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-12.log",
+            "hash": "796619b28221d8d98f6924852e6286db5f2320067731d2a90be2ff576bd32400"
+        },
+        {
+            "date": 1718270601767,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-13.log",
+            "hash": "c9b4d29c84a61f61117ee9934b3f1e069e4f3dd53edd2c5f6334a2d38f9768e3"
+        },
+        {
+            "date": 1718481538779,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-15.log",
+            "hash": "550a3e2f3dcc2c602ee51d3dcf309d57c50fb42d11a992ae2f292b3b28d1091c"
+        },
+        {
+            "date": 1718535785365,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-16.log",
+            "hash": "bba6acb075f90c4ac71da99057b80f4dc1933987b1376bf7bd320e4ed98bc9bb"
+        },
+        {
+            "date": 1718808483872,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-19.log",
+            "hash": "e934e4ab947e8d624b680324efebeb67287b506b4587c6d02e09cd4792632d57"
+        },
+        {
+            "date": 1718899160266,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-20.log",
+            "hash": "dcf2b71ec4c47f3190fe66c9a9dd32e4eed3b06324073183d04b49d4afead701"
+        },
+        {
+            "date": 1718961045590,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-21.log",
+            "hash": "97fb2976808028636ed6b943623b88fa214966e1cec5ee12b40591f797061449"
+        },
+        {
+            "date": 1719136248212,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-23.log",
+            "hash": "f2e9a2bf61b9ad03eb8584ad0965965e501a174bc783c3498224a69b759c2100"
+        }
+    ],
+    "hashType": "sha256"
+}

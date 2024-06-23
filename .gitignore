@@ -1,0 +1,68 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+# Ignora globalmente todas las carpetas node_modules en cualquier nivel del proyecto
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Specific ignores for admin-cli16
+admin-cli16/node_modules/
+admin-cli16/.angular/
+admin-cli16/.vscode/
+admin-cli16/src/app/environments/
+
+# Specific ignores for admin-cli17
+admin-cli17/node_modules/
+admin-cli17/.angular/
+admin-cli17/.vscode/
+admin-cli17/src/app/environments/
+
+# Specific ignores for admin-cli18
+admin-cli18/node_modules/
+admin-cli18/.angular/
+admin-cli18/.vscode/
+admin-cli18/src/app/environments/
+
+# Specific ignores for back
+back/node_modules/
+back/.env

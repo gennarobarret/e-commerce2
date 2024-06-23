@@ -1,0 +1,252 @@
+<nav class="sidenav shadow-right sidenav-light">
+    <div class="sidenav-menu">
+        <div class="nav accordion" id="accordionSidenav">
+            <!-- Sidenav Menu Heading (Account)-->
+            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+            <div class="sidenav-menu-heading d-sm-none">Account</div>
+            <!-- Sidenav Link (Alerts)-->
+            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+            <a class="nav-link d-sm-none" href="#!">
+                <div class="nav-link-icon"><i data-feather="bell"></i></div>
+                Alerts
+                <span class="badge bg-warning-soft text-warning ms-auto">4 New!</span>
+            </a>
+            <!-- Sidenav Link (Messages)-->
+            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+            <a class="nav-link d-sm-none" href="#!">
+                <div class="nav-link-icon"><i data-feather="mail"></i></div>
+                Messages
+                <span class="badge bg-success-soft text-success ms-auto">2 New!</span>
+            </a>
+
+            <!-- Sidenav Menu Heading (Core)-->
+            <div class="sidenav-menu-heading">Core & Cross-Functional</div>
+            <!-- Sidenav Link (Dashboard)--->
+            <a class="nav-link" [routerLink]="['/dashboard']">
+                <div class="nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Dashboard
+            </a>
+            <!-- Nested Sidenav Accordion (Apps -> My Account)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#collapseAccount" aria-expanded="false" aria-controls="collapseFlows">
+                <div class="nav-link-icon"><i class="fa-regular fa-user"></i></div>My Account
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseAccount" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" [routerLink]="['/my-account/profile', user.data.userName ]">Profile</a>
+                    <a class="nav-link" [routerLink]="['my-account/billing']">Billing</a>
+                    <a class="nav-link" [routerLink]="['my-account/security']">Security</a>
+                    <a class="nav-link" [routerLink]="['my-account/notifications']">Notifications</a>
+                </nav>
+            </div>
+            <!-- Nested Sidenav Accordion (Apps -> People)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#appsCollapsePeople" aria-expanded="false" aria-controls="appsCollapsePeople">
+                <div class="nav-link-icon"><i class="fa-solid fa-users"></i></div>People
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="appsCollapsePeople" data-bs-parent="#accordionSidenavAppsMenu">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" [routerLink]="['people/users-list']">Staff Management</a>
+                    <a class="nav-link" [routerLink]="['people/customers-list']">Customer Management</a>
+                    <a class="nav-link" [routerLink]="['people/Role-and-Permission-Management']">Role and Permission
+                        Management</a>
+                </nav>
+            </div>
+            <!-- Nested Sidenav Accordion (Apps -> Settings)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#appsCollapseSettings" aria-expanded="false" aria-controls="appsCollapseSettings">
+                <div class="nav-link-icon"><i class="fas fa-cogs"></i></div>Settings
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="appsCollapseSettings" data-bs-parent="#accordionSidenavAppsMenu">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" [routerLink]="['settings/store-settings']">Store Settings</a>
+                    <a class="nav-link" [routerLink]="['settings/website-customization']">Website Customization</a>
+                    <a class="nav-link" [routerLink]="['settings/user-management']">UserManagement</a>
+                </nav>
+            </div>
+            <!-- Nested Sidenav Accordion (Apps -> Reports)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#appsCollapseReports" aria-expanded="false" aria-controls="appsCollapseReports">
+                <div class="nav-link-icon"><i class="fas fa-chart-line"></i></div>Reports
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="appsCollapseReports" data-bs-parent="#accordionSidenavAppsMenu">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" [routerLink]="['settings/Sales-settings']">Sales</a>
+                    <a class="nav-link" [routerLink]="['settings/inventory']">Inventory</a>
+                    <a class="nav-link" [routerLink]="['settings/consulting-performance']">Consulting performance</a>
+                    <a class="nav-link" [routerLink]="['settings/financial-analysis']">Financial analysis</a>
+                </nav>
+            </div>
+            <!-- Sidenav Accordion (Knowledge Base)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#collapseKnowledgeBase" aria-expanded="false" aria-controls="collapseKnowledgeBase">
+                <div class="nav-link-icon"><i class="fas fa-book-open"></i></div>
+                Knowledge Base
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseKnowledgeBase" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
+                    <!-- Nested Sidenav Accordion (Apps -> For Customers)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                        data-bs-target="#appsCollapseForCustomers" aria-expanded="false"
+                        aria-controls="appsCollapseForCustomers">
+                        For Customers
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="appsCollapseForCustomers" data-bs-parent="#accordionSidenavAppsMenu">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" [routerLink]="['for-customers/product-guides']">Product Guides</a>
+                            <a class="nav-link" [routerLink]="['for-customers/FAQs']">FAQs</a>
+                            <a class="nav-link" [routerLink]="['for-customers/Troubleshooting']">Troubleshooting</a>
+                            <a class="nav-link" [routerLink]="['for-customers/Tips-and-Tricks']">Tips and Tricks</a>
+                        </nav>
+                    </div>
+                    <!-- Nested Sidenav Accordion (Apps -> For Employees)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                        data-bs-target="#appsCollapseForEmployees" aria-expanded="false"
+                        aria-controls="appsCollapseForEmployees">
+                        For Employees
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="appsCollapseForEmployees" data-bs-parent="#accordionSidenavAppsMenu">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" [routerLink]="['for-employees/operational-procedures']">Operational
+                                Procedures</a>
+                            <a class="nav-link" [routerLink]="['for-employees/training-materials']">Training
+                                Materials</a>
+                            <a class="nav-link" [routerLink]="['for-employees/company-policies']">Company Policies</a>
+                            <a class="nav-link" [routerLink]="['for-employees/internal-FAQs']">Internal FAQs</a>
+                        </nav>
+                    </div>
+                    <!-- Nested Sidenav Accordion (Apps -> For Developers)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                        data-bs-target="#appsCollapseForDevelopers" aria-expanded="false"
+                        aria-controls="appsCollapseForDevelopers">
+                        For Developers
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="appsCollapseForDevelopers" data-bs-parent="#accordionSidenavAppsMenu">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" [routerLink]="['for-developers/technical-documentation']">Technical
+                                Documentation</a>
+                            <a class="nav-link" [routerLink]="['for-developers/aPI-guides']">API Guides</a>
+                            <a class="nav-link" [routerLink]="['for-employees/code-examples']">Code Examples</a>
+                            <a class="nav-link" [routerLink]="['for-employees/development-best-practices']">Development
+                                Best Practices</a>
+                        </nav>
+                    </div>
+                </nav>
+            </div>
+            <!-- Sidenav Heading (Operational Management)-->
+            <div class="sidenav-menu-heading">Operational Management</div>
+            <!-- Nested Sidenav Accordion (Apps -> Business Management)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#collapseBusinessManagement" aria-expanded="false" aria-controls="collapseFlows">
+                <div class="nav-link-icon"><i class="fas fa-briefcase"></i></div>Business Management
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseBusinessManagement" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" [routerLink]="['business-management/store-configuration']">Store
+                        Configuration</a>
+                    <a class="nav-link" [routerLink]="['business-management/price-history<']">Sales Strategy</a>
+                </nav>
+            </div>
+            <!-- Nested Sidenav Accordion (Apps -> Quotations)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#collapseQuotations" aria-expanded="false" aria-controls="collapseFlows">
+                <div class="nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div> Quotations
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseQuotations" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" [routerLink]="['quotations/new-requests']">New Requests</a>
+                    <a class="nav-link" [routerLink]="['quotations/in-process']">In process</a>
+                    <a class="nav-link" [routerLink]="['quotations/price-history<']">Price history</a>
+                </nav>
+            </div>
+            <!-- Nested Sidenav Accordion (Apps -> Purchases)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#collapsePurchases" aria-expanded="false" aria-controls="collapseFlows">
+                <div class="nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div> Purchases
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePurchases" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" [routerLink]="['purchases/new-requests']">New Requests</a>
+                    <a class="nav-link" [routerLink]="['purchases/in-process']">In process</a>
+                    <a class="nav-link" [routerLink]="['purchases/price-history<']">Price history</a>
+                </nav>
+            </div>
+            <!-- Sidenav Accordion (Inventory)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#collapseInventory" aria-expanded="false" aria-controls="collapseInventory">
+                <div class="nav-link-icon"><i class="fas fa-book-open"></i></div>
+                Inventory
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseInventory" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
+                    <!-- Nested Sidenav Accordion (Apps -> Knowledge Base)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                        data-bs-target="#appsCollapseProducts" aria-expanded="false"
+                        aria-controls="appsCollapseProducts">
+                        Products
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="appsCollapseProducts" data-bs-parent="#accordionSidenavAppsMenu">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" [routerLink]="['for-customers/product-guides']">Add New Product</a>
+                            <a class="nav-link" [routerLink]="['for-customers/FAQs']">Product List</a>
+                            <a class="nav-link" [routerLink]="['for-customers/Troubleshooting']">Product management</a>
+                        </nav>
+                    </div>
+                    <!-- Nested Sidenav Accordion (Apps -> Categories)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                        data-bs-target="#appsCollapseCategories" aria-expanded="false"
+                        aria-controls="appsCollapseCategories">
+                        Categories
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="appsCollapseCategories" data-bs-parent="#accordionSidenavAppsMenu">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" [routerLink]="['for-employees/operational-procedures']">Add New
+                                Category</a>
+                            <a class="nav-link" [routerLink]="['for-employees/training-materials']">Category Lists</a>
+                            <a class="nav-link" [routerLink]="['for-employees/company-policies']">Company Policies</a>
+                            <a class="nav-link" [routerLink]="['for-employees/internal-FAQs']">Category management</a>
+                        </nav>
+                    </div>
+                    <!-- Nested Sidenav Accordion (Apps -> Subcategories)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                        data-bs-target="#appsCollapseSubcategories" aria-expanded="false"
+                        aria-controls="appsCollapseSubcategories">
+                        Subcategories
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="appsCollapseSubcategories" data-bs-parent="#accordionSidenavAppsMenu">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" [routerLink]="['for-developers/technical-documentation']">Add new
+                                subcategory</a>
+                            <a class="nav-link" [routerLink]="['for-developers/aPI-guides']">List of subcategories</a>
+                            <a class="nav-link" [routerLink]="['for-employees/development-best-practices']">Subcategory
+                                management</a>
+                        </nav>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Sidenav Footer-->
+    <div class="sidenav-footer">
+        <div class="sidenav-footer-content" *ngIf="user && user.data">
+            <div class="sidenav-footer-subtitle">Logged in as:</div>
+            <div class="sidenav-footer-title">{{ displayFullName() }}</div>
+            <div class="sidenav-footer-title">{{ user.data.emailAddress }}</div>
+        </div>
+    </div>
+</nav>

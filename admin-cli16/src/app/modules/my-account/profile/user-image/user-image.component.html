@@ -1,0 +1,9 @@
+<div class="card mb-4 mb-xl-0">
+    <div class="card-header">Profile Picture</div>
+    <div class="card-body text-center">
+        <img *ngIf="imageUrl" class="img-account-profile rounded-circle mb-2" [src]="imageUrl" alt="Profile Image" />
+        <div class="small font-italic text-muted mb-4">PNG, JPG, JPEG, GIF, WEBP no larger than 5 MB</div>
+        <input type="file" #fileInput class="d-none" (change)="fileChangeEvent($event)" title="File Upload" />
+        <button class="btn btn-primary" type="button" (click)="fileInput.click()">Upload and Save Image</button>
+    </div>
+</div>

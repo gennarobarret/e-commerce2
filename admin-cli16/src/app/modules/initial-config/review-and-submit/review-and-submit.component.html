@@ -1,0 +1,68 @@
+<!-- Wizard tab pane item 4-->
+<div class="py-5 py-xl-10">
+    <div class="row justify-content-center">
+        <div class="col-xxl-6 col-xl-8">
+            <ng-container *ngIf="load_data">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!load_data">
+                <h3 class="text-primary">Step 4</h3>
+                <h5 class="card-title mb-4">Review the following information and submit</h5>
+                <div *ngIf="formData && formData.accountSetup">
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>Username:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputUserName }}</div>
+                    </div>
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>Name:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputFirstName }},{{
+                            formData.accountSetup.inputLastName
+                            }}</div>
+                    </div>
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>Organization Name:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputOrganizationName }}</div>
+                    </div>
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>Location:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputStateAddress }},{{
+                            formData.accountSetup.inputCountryAddress }}</div>
+                    </div>
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>Email Address:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputEmailAddress }}</div>
+                    </div>
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>Phone Number:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputPhoneNumber }}</div>
+                    </div>
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>Birthday:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputBirthday }}</div>
+                    </div>
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>Identification:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputIdentification }}</div>
+                    </div>
+                    <div class="row small text-muted">
+                        <div class="col-sm-3 text-truncate"><em>inputAdditionalInfo:</em></div>
+                        <div class="col">{{ formData.accountSetup.inputAdditionalInfo }}</div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-light" type="button" (click)="goToPreviousStep()">Previous</button>
+                    <button *ngIf="!load_btn" class="btn btn-primary" type="button" (click)="onSubmit()">Submit</button>
+                    <button *ngIf="load_btn" class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Sending...
+                    </button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

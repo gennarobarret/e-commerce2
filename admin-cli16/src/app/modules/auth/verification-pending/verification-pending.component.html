@@ -1,0 +1,66 @@
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container-xl px-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <!-- Basic Pending Verification form-->
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header justify-content-center">
+                                <h3 class="fw-light my-4">Pending Verification</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="small mb-3 text-muted">An email has been sent to . Please verify
+                                    your email to activate your account.
+                                </div>
+                                <!-- Pending Verification form-->
+                                <form [formGroup]="resendEmailForm" (ngSubmit)="resendVerificationEmail()">
+                                    <div class="form-group">
+                                        <!-- Form Group (email address)-->
+                                        <div class="mb-3">
+                                            <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                            <input type="email" class="form-control" id="inputEmailAddress"
+                                                formControlName="inputEmailAddress" aria-describedby="emailHelp"
+                                                placeholder="Enter email address">
+                                            <div *ngIf="resendEmailForm.get('email')?.invalid && resendEmailForm.get('email')?.touched"
+                                                class="alert alert-danger">
+                                                Please enter a valid email address.
+                                            </div>
+                                        </div>
+                                        <!-- Form Group (submit options)-->
+                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            <a class="small" href="auth-login-basic.html">Return to login</a>
+                                            <a class="btn btn-primary" (click)="resendVerificationEmail()">
+                                                Forward Verification Email
+                                            </a>
+                                        </div>
+                                        <div class="small mt-4 mb-3 text-muted">If you haven't received the email, check
+                                            your spam folder or try sending it again.
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="footer-admin mt-auto footer-dark">
+            <div class="container-xl px-4">
+                <div class="row">
+                    <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                    <div class="col-md-6 text-md-end small">
+                        <a href="#!">Privacy Policy</a>
+                        &middot;
+                        <a href="#!">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
