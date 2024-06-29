@@ -1,0 +1,34 @@
+<li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
+    <a class="btn btn-icon btn-transparent-dark dropdown-toggle position-relative" id="navbarDropdownAlerts"
+        href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+        title="Notifications">
+        <i data-feather="bell"></i>
+        <span *ngIf="notifications.length > 0" class="notification-indicator"></span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up"
+        aria-labelledby="navbarDropdownAlerts">
+        <h6 class="dropdown-header dropdown-notifications-header">
+            <i class="me-2" data-feather="bell"></i>
+            Alerts Center
+        </h6>
+        <ng-container *ngFor="let notification of notifications">
+            <a class="dropdown-item dropdown-notifications-item" href="javascript:void(0);"
+                (click)="onNotificationClick(notification)">
+                <div class="dropdown-notifications-item-icon" [ngClass]="{
+             'bg-success': notification.type === 'success',
+             'bg-info': notification.type === 'info',
+             'bg-danger': notification.type === 'danger',
+             'bg-warning': notification.type === 'warning'
+           }">
+                    <i [attr.data-feather]="notification.icon"></i>
+                </div>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-details">{{ notification.date | date:'short' }}
+                    </div>
+                    <div class="dropdown-notifications-item-content-text">{{ notification.message }}</div>
+                </div>
+            </a>
+        </ng-container>
+        <a class="dropdown-item dropdown-notifications-footer" routerLink="/all-notifications">View All Alerts</a>
+    </div>
+</li>

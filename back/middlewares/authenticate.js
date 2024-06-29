@@ -1,6 +1,4 @@
-// authenticate.js
-
-"use strict";
+// middlewares/authenticate.js
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
 const { ErrorHandler, handleErrorResponse } = require("../helpers/responseManagerHelper");
@@ -26,4 +24,3 @@ exports.auth = function (req, res, next) {
         handleErrorResponse(new ErrorHandler(403, "The token is invalid: " + error.message), req, res);
     }
 };
-

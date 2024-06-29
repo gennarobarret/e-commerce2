@@ -1,0 +1,114 @@
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 00:06:12"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 00:06:12"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:06:14"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:06:14"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:06:14"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:06:15"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:06:46"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:06:46"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:06:47"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:06:47"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:20:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:20:19"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:20:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:20:19"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 00:20:53"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 00:20:53"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:20:55"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:20:55"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:20:56"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:20:56"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 00:24:34"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 00:24:34"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:24:35"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:24:35"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:24:35"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:24:35"}
+{"details":"No additional details provided.","level":"error","message":"markAsViewed error: Invalid notification ID","method":"PATCH","path":"notifications/5/view","stack":"Error: Invalid notification ID\n    at markAsViewed (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:25:19)\n    at Layer.handle [as handle_request] (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at exports.auth (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\middlewares\\authenticate.js:22:9)\n    at Layer.handle [as handle_request] (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\express\\lib\\router\\index.js:365:14)","statusCode":400,"timestamp":"2024-06-25 00:24:40"}
+{"level":"error","message":"notifications/5/view error: Invalid notification ID","method":"PATCH","path":"notifications/5/view","stack":"No additional details provided.","status":400,"timestamp":"2024-06-25 00:24:40"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:27:32"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:27:32"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:27:32"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:27:32"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 00:27:45"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 00:27:45"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:27:45"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:27:45"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 00:27:45"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 00:27:45"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 10:14:07"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 10:14:07"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 10:14:07"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 10:14:07"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 10:14:42"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 10:14:42"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 10:14:43"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 10:14:43"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 10:14:43"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 10:14:43"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 10:19:33"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 10:19:33"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 10:19:34"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 10:19:34"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 10:19:51"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 10:19:51"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 10:19:51"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 10:19:51"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 10:19:51"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 10:19:51"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:11:14"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:11:14"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:11:14"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:11:14"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 11:11:24"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 11:11:24"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:11:24"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:11:24"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:11:24"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:11:24"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 11:13:31"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 11:13:31"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:13:32"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:13:32"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:13:32"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:13:32"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 11:14:18"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 11:14:27"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:14:27"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:14:27"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:14:27"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:14:27"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:43:39"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:43:39"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:43:39"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:43:39"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 11:44:05"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 11:44:05"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:44:05"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:44:05"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:44:05"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:44:05"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:53:40"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:53:40"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:53:40"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:53:40"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 11:53:53"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 11:53:53"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:53:54"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:53:54"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:53:54"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:53:54"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:53:59"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:53:59"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:53:59"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:53:59"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:55:20"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:55:20"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 11:55:20"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 11:55:20"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-06-25 12:00:44"}
+{"level":"info","message":"User masteradmin Successful login","timestamp":"2024-06-25 12:00:44"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 12:00:44"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 12:00:44"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-06-25 12:00:45"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-06-25 12:00:45"}

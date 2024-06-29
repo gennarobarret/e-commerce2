@@ -26,7 +26,6 @@ exports.createToken = function (user) {
         role: user.role,
         iat: moment().unix(),
         exp: moment().add(1, "days").unix(),
-    };
-    
+    };    
     return jwt.sign(payload, secret);
 };

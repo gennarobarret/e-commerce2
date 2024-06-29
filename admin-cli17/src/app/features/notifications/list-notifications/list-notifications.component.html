@@ -1,0 +1,80 @@
+<main>
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-xl px-4">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="filter"></i></div>
+                            Notifications
+                        </h1>
+                        <div class="page-header-subtitle">List of notifications</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-xl px-4 mt-n10">
+        <div class="card mb-4">
+            <div class="card-header">Notifications</div>
+            <div class="card-body">
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="datatable-top">
+                        <div class="datatable-dropdown">
+                            <label>
+                                <select class="datatable-selector" name="per-page">
+                                    <option value="5">5</option>
+                                    <option value="10" selected>10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select> entries per page
+                            </label>
+                        </div>
+                        <div class="datatable-search">
+                            <input class="datatable-input" placeholder="Search..." type="search" name="search"
+                                title="Search within table" aria-controls="notifications-table">
+                        </div>
+                    </div>
+                    <div class="datatable-container">
+                        <table id="notifications-table" class="datatable-table">
+                            <thead>
+                                <tr>
+                                    <th>Message</th>
+                                    <th>Date</th>
+                                    <th>Viewed</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let notification of notifications">
+                                    <td>{{ notification.message }}</td>
+                                    <td>{{ notification.date | date:'short' }}</td>
+                                    <td>{{ notification.isViewed ? 'Yes' : 'No' }}</td>
+                                    <td>
+                                        <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                            (click)="markAsViewed(notification)">
+                                            <i data-feather="eye"></i>
+                                        </button>
+                                        <button class="btn btn-datatable btn-icon btn-transparent-dark"
+                                            (click)="deleteNotification(notification._id)">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="datatable-bottom">
+                        <div class="datatable-info">Showing 1 to 10 of {{ notifications.length }} entries</div>
+                        <nav class="datatable-pagination">
+                            <ul class="datatable-pagination-list">
+                                <!-- La paginación se generará automáticamente -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

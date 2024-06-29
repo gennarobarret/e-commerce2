@@ -14,7 +14,6 @@ const jwt = require('../helpers/jwtHelper');
 const { validateResetPassword, validateLogin } = require('../helpers/validateHelper');
 const generateUserName = require('../helpers/userNameGeneratorHelper');
 const { checkIfAdminEmail } = require('../helpers/adminHelper');
-const { createSelfAlert } = require('../helpers/alertHelper');
 
 const { verifyGoogleToken } = require('../helpers/googleAuthHelper');
 
@@ -136,14 +135,13 @@ const loginUser = async (req, res) => {
         const cleanUser = getCleanUser(user);
         const token = jwt.createToken({ ...cleanUser, role: user.role.name });
 
-        await createSelfAlert(user._id.toString(), 'info', 'You have successfully logged in.', req.io);
 
 
         handleSuccessfulResponse('Login successful', {
             user: cleanUser,
             token: token
         })(req, res);
-        logger.info(`User ${userName} Successful login`, ipAddress);
+        // logger.info(`User ${userName} Successful login`, ipAddress);
         await logAudit(
             'LOGIN_SUCCESS',
             user._id,
@@ -182,6 +180,7 @@ const authenticateWithGoogle = async (req, res) => {
         }
 
         let user = await User.findOne({ googleId: userInfo.sub });
+
         if (!user) {
             user = new User({
                 googleId: userInfo.sub,
@@ -199,9 +198,6 @@ const authenticateWithGoogle = async (req, res) => {
             await user.save();
 
 
-            await createSelfAlert(user._id, 'info', 'You have successfully logged in with Google.', req.io);
-
-
             logger.info(`New Google user registered: ${user.userName}`, ipAddress);
             await logAudit(
                 'GOOGLE_USER_REGISTRATION',
@@ -214,10 +210,6 @@ const authenticateWithGoogle = async (req, res) => {
                 req.originalUrl
             );
         } else {
-
-
-            await createSelfAlert(user._id, 'info', 'You have been successfully registered with Google.', req.io);
-
 
             logger.info(`Existing Google user logged in: ${user.userName}`, ipAddress);
             await logAudit(
@@ -233,7 +225,7 @@ const authenticateWithGoogle = async (req, res) => {
         }
 
         const userToken = jwt.createToken({
-            sub: user._id.toString(),
+            id: user._id.toString(),
             userName: user.userName,
             firstName: user.firstName,
             lastName: user.lastName,
@@ -251,7 +243,7 @@ const authenticateWithGoogle = async (req, res) => {
         })(req, res);
 
     } catch (error) {
-        logger.error(`Google authentication error: ${error.message}`, { stack: error.stack });
+        // logger.error(`Google authentication error: ${error.message}`, { stack: error.stack });
         handleErrorResponse(error, req, res);
     }
 };
@@ -306,9 +298,6 @@ const activateUser = async (req, res) => {
             const confirmationEmailSent = await sendActivationEmail(user);
             handleSuccessfulResponse('Account successfully activated', { confirmationEmailSent })(req, res);
             logger.info(`User account activated: ${user.userName} from IP: ${ipAddress}`);
-
-            await createSelfAlert(user._id, 'success', 'Your account has been successfully activated.', req.io);
-
 
             await logAudit(
                 'USER_ACCOUNT_ACTIVATION_SUCCESS',
@@ -449,8 +438,6 @@ const forgotPassword = async (req, res) => {
         const resetUrl = verificationCodeUrl(resetToken);
         const tokenExpiration = user.resetPasswordExpires - Date.now();
         await user.save();
-
-        await createSelfAlert(user._id, 'warning', 'A password reset request has been initiated for your account.', req.io);
 
         await sendPasswordResetEmail(user.emailAddress, resetUrl, verificationCode, tokenExpiration);
         await logAudit(
@@ -633,8 +620,6 @@ const resetPassword = async (req, res) => {
             ipAddress
         );
         handleSuccessfulResponse('Your password has been updated successfully.', {})(req, res);
-
-        await createSelfAlert(user._id, 'success', 'Your password has been successfully reset.', req.io);
 
     } catch (error) {
         logger.error(`Reset password error for user ${req.body.userName}: ${error.message}`, { stack: error.stack });

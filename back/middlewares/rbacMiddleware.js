@@ -1,10 +1,6 @@
 // middlewares/rbacMiddleware.js
-"use strict";
-
-const User = require('../models/userModel');
 const Role = require('../models/roleModel');
-const logger = require('../helpers/logHelper');
-const { ErrorHandler, handleErrorResponse, handleSuccessfulResponse } = require("../helpers/responseManagerHelper");
+const { ErrorHandler, handleErrorResponse } = require("../helpers/responseManagerHelper");
 
 const rbacMiddleware = (action, resource) => async (req, res, next) => {
     try {
@@ -27,7 +23,6 @@ const rbacMiddleware = (action, resource) => async (req, res, next) => {
             throw new ErrorHandler(403, 'Unauthorized access');
         }
     } catch (error) {
-        logger.error('Error verifying permissions:', error);
         handleErrorResponse(error, req, res);
     }
 };

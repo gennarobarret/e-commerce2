@@ -10,7 +10,6 @@ const mongoose = require('mongoose');
 // Models (Internal modules)
 const User = require("../models/userModel");
 const Role = require("../models/roleModel");
-const Alert = require('../models/alertModel');
 
 // utilities (Internal modules)
 const { sendVerificationEmail } = require('../helpers/emailServiceHelper');
@@ -25,22 +24,13 @@ const { ErrorHandler, handleErrorResponse, handleSuccessfulResponse } = require(
 const logger = require('../helpers/logHelper');
 const { logAudit } = require('../helpers/logAuditHelper');
 
+// Services
+const notificationService = require('../services/notificationService');
+
 
 function getClientIp(req) {
     return req.headers['x-forwarded-for']?.split(',').shift() || req.socket.remoteAddress;
 }
-
-function getCleanUser(user) {
-    return {
-        id: user._id,
-        userName: user.userName,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        emailAddress: user.emailAddress,
-        role: user.role,
-        profileImage: user.profileImage,
-    };
-};
 
 const getUserIDByUserName = async (userName) => {
     try {
@@ -115,25 +105,11 @@ const createMasterAdmin = async (req, res) => {
         await masterAdmin.populate('role'); // Populate the role field
         const roleName = masterAdmin.role.name;
 
-        // 7. Crear y guardar la alerta
-        const alert = new Alert({
-            type: 'success',
-            message: `Master Administrator created: ${masterAdmin.userName} (${masterAdmin.emailAddress})`,
-            sender: req.user ? req.user._id : masterAdmin._id, // ID del usuario que realiza la acción
-            recipients: [masterAdmin._id] // El MasterAdmin creado recibirá la alerta
-        });
-        await alert.save();
-
-        // Emitir el evento de alerta a través de Socket.io, si está configurado
-        if (req.io) {
-            req.io.emit('alertCreated', alert);
-        }
-
-        // 8. Generate the configuration token
+        // 7. Generate the configuration token
         const token = masterAdmin.generateConfigurationToken();
         console.log("🚀 ~ createMasterAdmin ~ token:", token)
 
-        // 9. Send the verification email using the modular function
+        // 8. Send the verification email using the modular function
         // const emailSent = await sendVerificationEmail(masterAdmin, token);
         // if (!emailSent.success) {
         //     throw new ErrorHandler(500, 'Failed to send the verification email.', req.originalUrl, req.method);
@@ -152,8 +128,19 @@ const createMasterAdmin = async (req, res) => {
             req.originalUrl || ''
         );
 
-        // 10. Responder con éxito
-        handleSuccessfulResponse("Master Administrator successfully created and alert sent.", { masterAdminId: masterAdmin._id, alertId: alert._id })(req, res);
+        // 8. Crear una notificación para el nuevo usuario
+        const notification = await notificationService.createNotification({
+            userId: masterAdmin._id,
+            icon: 'user-plus',
+            message: `Welcome ${masterAdmin.userName}!`,
+            type: 'success'
+        });
+
+        console.log('Notification created and emitted:', notification); // Agregar log para depuración
+
+
+        // 9. Responder con éxito
+        handleSuccessfulResponse("Master Administrator successfully created.", { masterAdminId: masterAdmin._id })(req, res);
 
     } catch (error) {
         // Log and handle errors
@@ -221,7 +208,7 @@ const createUser = async (req, res) => {
         const userData = new User({
             ...data,
             createdBy: requestingUserId,
-            verification: 'notVerified'
+            verification: 'verified'
         });
 
         // 6. Guardar el usuario y verificar que se haya guardado correctamente
@@ -243,19 +230,22 @@ const createUser = async (req, res) => {
             req.originalUrl || ''
         );
 
-        // 8. Crear y guardar la alerta
-        const alert = new Alert({
-            type: 'info',
-            message: `New user created: ${userData.userName} (${userData.emailAddress})`,
-            sender: requestingUserId, // ID del usuario que realiza la acción
-            recipients: [userData._id] // El usuario creado recibirá la alerta
-        });
-        await alert.save();
-
-        // Emitir el evento de alerta a través de Socket.io, si está configurado
-        if (req.io) {
-            req.io.emit('alertCreated', alert);
+        // Obtener el ID del usuario que está creando el nuevo usuario
+        const creatorUserId = req.user ? req.user.sub : null;
+        if (!creatorUserId) {
+            return res.status(401).json(handleSuccessfulResponse("Access Denied", {}));
         }
+
+        // 8. Crear una notificación para el usuario creador
+        const notification = await notificationService.createNotification({
+            userId: creatorUserId,
+            icon: 'user-plus',
+            message: `User ${userData.userName} has been created successfully!`,
+            type: 'success'
+        });
+
+        console.log('Notification created and emitted:', notification); // Agregar log para depuración
+        
 
         // 9. Generar el token de configuración
         const token = userData.generateConfigurationToken();
@@ -268,7 +258,7 @@ const createUser = async (req, res) => {
         // }
 
         // 11. Responder con éxito
-        handleSuccessfulResponse("User created successfully and alert sent.", { userId: userData._id, alertId: alert._id })(req, res);
+        handleSuccessfulResponse("User created successfully.", { userId: userData._id })(req, res);
 
     } catch (error) {
         // Registrar y manejar errores
@@ -276,6 +266,7 @@ const createUser = async (req, res) => {
         handleErrorResponse(error, req, res);
     }
 };
+
 
 // GET USER PROFILE PICTURE
 const getUserImage = async (req, res) => {
@@ -376,6 +367,7 @@ const updateUserImage = async (req, res) => {
         handleErrorResponse(error, req, res);
     }
 };
+
 // GET USER DATA
 const getUser = async (req, res) => {
     try {
@@ -592,9 +584,8 @@ const deleteUser = async (req, res) => {
             return handleSuccessfulResponse("User not found", {})(req, res);
         }
 
-        // 3. Determinar el nivel de alerta y guardar la auditoría antes de eliminar el usuario
-        const alertLevel = userToDelete.determineAlertLevel ? userToDelete.determineAlertLevel('DELETE') : 'info'; // Verifica si el método existe
-        await logAudit('DELETE', userId, id, 'User', alertLevel, `User ${id} deleted by ${userId}`, getClientIp(req), req.originalUrl || '');
+        // 3. guardar la auditoría antes de eliminar el usuario
+        await logAudit('DELETE', userId, id, 'User', 'delete', `User ${id} deleted by ${userId}`, getClientIp(req), req.originalUrl || '');
 
         // 4. Eliminar el usuario
         await userToDelete.remove();
@@ -633,9 +624,8 @@ const updateUserActiveStatus = async (req, res) => {
         // 3. Actualizar el estado activo
         user.isActive = isActive;
 
-        // 4. Determinar el nivel de alerta y guardar la auditoría
-        const alertLevel = user.determineAlertLevel ? user.determineAlertLevel('UPDATE_ACTIVE_STATUS') : 'info';
-        await logAudit('UPDATE_ACTIVE_STATUS', modifierUserId, userId, 'User', alertLevel, `User ${userId} active status updated to ${isActive} by ${modifierUserId}`, getClientIp(req), req.originalUrl || '');
+        // 4. guardar la auditoría
+        await logAudit('UPDATE_ACTIVE_STATUS', modifierUserId, userId, 'User', 'updateactive', `User ${userId} active status updated to ${isActive} by ${modifierUserId}`, getClientIp(req), req.originalUrl || '');
 
         // Guardar los cambios con la auditoría
         await user.save();
@@ -680,8 +670,7 @@ const updateMultipleUserActiveStatus = async (req, res) => {
         // 3. Actualizar el estado activo de cada usuario y registrar en el log de auditoría
         for (let user of users) {
             user.isActive = isActive;
-            const alertLevel = user.determineAlertLevel ? user.determineAlertLevel('BULK_UPDATE_ACTIVE_STATUS') : 'info';
-            await logAudit('BULK_UPDATE_ACTIVE_STATUS', modifierUserId, user._id, 'User', alertLevel, `User ${user._id} active status updated to ${isActive} by ${modifierUserId}`, getClientIp(req), req.originalUrl || '');
+            await logAudit('BULK_UPDATE_ACTIVE_STATUS', modifierUserId, user._id, 'User', 'updateMultipleUserActiveStatus', `User ${user._id} active status updated to ${isActive} by ${modifierUserId}`, getClientIp(req), req.originalUrl || '');
             await user.save();
         }
 

@@ -7,15 +7,16 @@ import { UserManagementService } from '../../core/services/user-management.servi
 import { FeatherIconsService } from '../../core/services/feather-icons.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AlertsComponent } from '../../features/alerts/alerts.component';
+import { DropdownNotificationsComponent } from '../../features/notifications/dropdown-notifications/dropdown-notifications.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
-  imports: [CommonModule, RouterModule]
+  imports: [CommonModule, RouterModule, DropdownNotificationsComponent]
 })
+  
 export class HeaderComponent implements OnInit, OnDestroy {
   isCollapsed = true;
   imageUrl!: SafeUrl;

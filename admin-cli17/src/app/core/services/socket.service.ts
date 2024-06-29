@@ -1,68 +1,73 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy, Injector } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SocketService {
+export class SocketService implements OnDestroy {
   private socket!: Socket;
+  private authService!: AuthService;
+  private isConnected = false;
 
-  constructor() {
-    const token = localStorage.getItem('token');
+  constructor(private injector: Injector) {
+    setTimeout(() => {
+      this.authService = this.injector.get(AuthService);
+      const token = this.authService.getToken();
+      if (token && !this.isConnected) {
+        this.connect(token);
+      }
+    });
+  }
 
-    if (!token) {
-      console.error('Token not found');
-    } else {
-      console.log('Token found:', token);
-
-      // Conectar al servidor de Socket.io
+  connect(token: string): void {
+    if (!this.isConnected) {
       this.socket = io(environment.socketUrl, {
-        withCredentials: true,
-        extraHeaders: {
-          Authorization: `Bearer ${token}` // Asegúrate de usar el prefijo 'Bearer ' si es necesario
-        }
+        auth: {
+          token: token
+        },
+        reconnection: true,
+        reconnectionAttempts: Infinity,
+        reconnectionDelay: 1000
       });
 
-      // Eventos de conexión y error
       this.socket.on('connect', () => {
-        console.log('Connected to Socket.io server');
+        this.isConnected = true;
+        console.log('Connected to server with ID:', this.socket.id);
       });
 
-      this.socket.on('connect_error', (err) => {
-        console.error('Socket.io connection error:', err);
-      });
-
-      this.socket.on('disconnect', (reason) => {
-        console.log('Disconnected from Socket.io server:', reason);
+      this.socket.on('disconnect', () => {
+        this.isConnected = false;
+        console.log('Disconnected from server');
       });
     }
   }
 
+  disconnect(): void {
+    if (this.socket) {
+      this.socket.disconnect();
+      this.isConnected = false;
+      console.log('Socket disconnected');
+    }
+  }
 
-  // Método para recibir alertas en tiempo real
-  // Método para recibir alertas en tiempo real
-  onAlert(): Observable<any> {
+  emit(event: string, data: any): void {
+    this.socket.emit(event, data);
+  }
+
+  on(event: string): Observable<any> {
     return new Observable(observer => {
-      this.socket.on('alertCreated', (alert) => {
-        console.log('Received alert:', alert); // Log de depuración
-        observer.next(alert);
+      this.socket.on(event, (data: any) => {
+        observer.next(data);
       });
 
-      // Manejar desconexiones o errores
-      this.socket.on('disconnect', (reason) => {
-        observer.error('Socket disconnected: ' + reason);
-      });
-
-      return () => {
-        this.socket.off('alertCreated');
-      };
+      return () => this.socket.off(event);
     });
   }
 
-  // Método para emitir alertas (si es necesario)
-  sendAlert(alert: any) {
-    this.socket.emit('sendAlert', alert);
+  ngOnDestroy(): void {
+    this.disconnect();
   }
 }

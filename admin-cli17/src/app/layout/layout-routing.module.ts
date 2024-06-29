@@ -1,9 +1,7 @@
-// layout-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { isLoggedInGuard } from '../core/guards/is-logged.guard';
-
 
 const routes: Routes = [
     {
@@ -23,6 +21,10 @@ const routes: Routes = [
             {
                 path: 'users',
                 loadChildren: () => import('../features/users/users-routing.module').then(m => m.UserRoutingModule)
+            },
+            {
+                path: 'all-notifications',
+                loadChildren: () => import('../features/notifications/notifications-routing.module').then(m => m.NotificationsRoutingModule)
             },
             { path: '**', redirectTo: '/dashboard' }
         ]

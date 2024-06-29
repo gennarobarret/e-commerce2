@@ -1,3 +1,4 @@
+// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -17,6 +18,7 @@ import {
 import { SpinnerService } from './spinner.service';
 import { ResponseHandlingService } from './response-handling.service';
 import { ConfigService } from './config.service';
+import { SocketService } from './socket.service';
 
 const API_ENDPOINTS = {
   loginUser: 'loginUser',
@@ -43,21 +45,26 @@ export class AuthService {
     private _router: Router,
     private _spinnerService: SpinnerService,
     private _responseHandler: ResponseHandlingService,
-    private _configService: ConfigService
+    private _configService: ConfigService,
+    private _socketService: SocketService // Inyectar el servicio de Socket
+
   ) {
     this.url = this._configService.getConfig().url;
   }
 
   private storeToken(token: string): void {
     localStorage.setItem('token', token);
+    this.checkSocketConnection(token); // Conectar el socket al almacenar el token
   }
 
   private removeToken(): void {
+    this._socketService.disconnect();
     localStorage.removeItem('token');
     sessionStorage.removeItem('userData');
     this._router.navigate(['/auth/login']);
   }
-  public logoutAndRedirect(): void { 
+
+  public logoutAndRedirect(): void {
     this.removeToken();
   }
 
@@ -67,6 +74,10 @@ export class AuthService {
 
   logout(): void {
     this.removeToken();
+  }
+
+  checkSocketConnection(token: string): void {
+    this._socketService.connect(token);
   }
 
   private handleApiCall<T>(call: Observable<T>, tapHandler: (response: any) => void): Observable<T> {
