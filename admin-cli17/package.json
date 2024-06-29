@@ -19,9 +19,9 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@auth0/angular-jwt": "^5.2.0",
+    "bootstrap": "^5.3.3",
     "izitoast": "^1.4.0",
     "rxjs": "~7.8.0",
-    "simple-datatables": "^9.0.3",
     "socket.io-client": "^4.7.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

@@ -1,0 +1,19 @@
+th::after {
+    content: '▲▼';
+    color: lightgray;
+    /* Color por defecto cuando no se ordena */
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+th.sorted-asc::after {
+    content: '▲';
+    color: black;
+    /* Color cuando se ordena ascendente */
+}
+
+th.sorted-desc::after {
+    content: '▼';
+    color: black;
+    /* Color cuando se ordena descendente */
+}

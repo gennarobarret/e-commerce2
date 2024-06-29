@@ -22,54 +22,114 @@
                     <div class="datatable-top">
                         <div class="datatable-dropdown">
                             <label>
-                                <select class="datatable-selector" name="per-page">
-                                    <option value="5">5</option>
-                                    <option value="10" selected>10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                </select> entries per page
+                                <select class="datatable-selector form-select" name="per-page"
+                                    (change)="onPageSizeChange($event)">
+                                    <option *ngFor="let size of pageSizeOptions" [value]="size"
+                                        [selected]="size === pageSize">{{size}}</option>
+                                </select>
+                                entries per page
                             </label>
                         </div>
                         <div class="datatable-search">
-                            <input class="datatable-input" placeholder="Search..." type="search" name="search"
-                                title="Search within table" aria-controls="notifications-table">
+                            <div class="input-group mb-3">
+                                <select class="form-select" [(ngModel)]="selectedFilterKey"
+                                    aria-label="Filter selection">
+                                    <option *ngFor="let key of filterKeys" [value]="key">{{ key }}</option>
+                                </select>
+                                <input type="text" class="form-control" [(ngModel)]="searchText"
+                                    placeholder="Search..." />
+                                <button class="btn btn-outline-secondary" type="button"
+                                    (click)="search()">Search</button>
+                                <button class="btn btn-outline-secondary" type="button" (click)="reset()">Reset</button>
+                            </div>
                         </div>
                     </div>
                     <div class="datatable-container">
-                        <table id="notifications-table" class="datatable-table">
-                            <thead>
-                                <tr>
-                                    <th>Message</th>
-                                    <th>Date</th>
-                                    <th>Viewed</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let notification of notifications">
-                                    <td>{{ notification.message }}</td>
-                                    <td>{{ notification.date | date:'short' }}</td>
-                                    <td>{{ notification.isViewed ? 'Yes' : 'No' }}</td>
-                                    <td>
-                                        <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                            (click)="markAsViewed(notification)">
-                                            <i data-feather="eye"></i>
-                                        </button>
-                                        <button class="btn btn-datatable btn-icon btn-transparent-dark"
-                                            (click)="deleteNotification(notification._id)">
-                                            <i data-feather="trash-2"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sort('message')"
+                                            [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'message', 'sorted-desc': sortOrder === 'desc' && sortKey === 'message'}">
+                                            Message
+                                        </th>
+                                        <th (click)="sort('date')"
+                                            [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'date', 'sorted-desc': sortOrder === 'desc' && sortKey === 'date'}">
+                                            Date
+                                        </th>
+                                        <th (click)="sort('isViewed')"
+                                            [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'isViewed', 'sorted-desc': sortOrder === 'desc' && sortKey === 'isViewed'}">
+                                            Viewed
+                                        </th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="load_data">
+                                    <tr>
+                                        <td class="text-center" colspan="4">
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="!load_data && filteredNotifications.length > 0">
+                                    <tr
+                                        *ngFor="let notification of filteredNotifications | slice: (page - 1) * pageSize: (page - 1) * pageSize + pageSize">
+                                        <td [ngClass]="getRowClass(notification.type)">
+                                            <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
+                                                class="mb-0">
+                                                {{ notification.message }}
+                                            </h6>
+                                        </td>
+                                        <td [ngClass]="getRowClass(notification.type)">
+                                            <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
+                                                class="mb-0">
+                                                {{ notification.date | date:
+                                                "short" }}
+                                            </h6>
+                                        </td>
+                                        <td [ngClass]="getRowClass(notification.type)">
+                                            <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
+                                                class="mb-0">
+
+                                                {{ notification.isViewed ? "Yes"
+                                                : "No" }}
+                                            </h6>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                                title="Mark as viewed" (click)="markAsViewed(notification)">
+                                                <i data-feather="eye"></i>
+                                            </button>
+                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"
+                                                title="Delete" (click)="deleteNotification(notification._id)">
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="!load_data && filteredNotifications.length === 0">
+                                    <tr>
+                                        <td class="text-center" colspan="4">No record found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="datatable-bottom">
-                        <div class="datatable-info">Showing 1 to 10 of {{ notifications.length }} entries</div>
-                        <nav class="datatable-pagination">
-                            <ul class="datatable-pagination-list">
-                                <!-- La paginación se generará automáticamente -->
+                    <div class="card-footer">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item" [ngClass]="{ disabled: page === 1 }">
+                                    <a class="page-link" (click)="page > 1 && (page = page - 1)">Previous</a>
+                                </li>
+                                <li class="page-item" *ngFor="let p of [].constructor(getTotalPages()); let i = index"
+                                    [ngClass]="{ active: page === i + 1 }">
+                                    <a class="page-link" (click)="page = i + 1">{{ i + 1 }}</a>
+                                </li>
+                                <li class="page-item" [ngClass]="{ disabled: page === getTotalPages() }">
+                                    <a class="page-link" (click)="page < getTotalPages() && (page = page + 1)">Next</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
