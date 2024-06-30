@@ -1,19 +1,33 @@
+th {
+    position: relative;
+    white-space: nowrap;
+    padding-right: 30px;
+    /* Aumentar el espacio adicional para los iconos */
+}
+
 th::after {
-    content: '▲▼';
+    content: ' ▲▼';
     color: lightgray;
-    /* Color por defecto cuando no se ordena */
     font-size: 0.8em;
+    position: absolute;
+    right: 5px;
+    /* Espacio entre el icono y la línea de división */
+    top: 50%;
+    transform: translateY(-50%);
     margin-left: 5px;
+    /* Espacio entre el texto y los iconos */
 }
 
 th.sorted-asc::after {
-    content: '▲';
+    content: ' ▲';
     color: black;
-    /* Color cuando se ordena ascendente */
 }
 
 th.sorted-desc::after {
-    content: '▼';
+    content: ' ▼';
     color: black;
-    /* Color cuando se ordena descendente */
+}
+
+th.no-sort::after {
+    content: '';
 }

@@ -8,9 +8,15 @@ export class DataTableService {
 
   // Método para filtrar los datos
   applyFilter<T>(items: T[], filterKey: string, filterValue: string): T[] {
-    return items.filter(item =>
-      (item as any)[filterKey].toString().toLowerCase().includes(filterValue.toLowerCase())
-    );
+    return items.filter(item => {
+      const itemValue = (item as any)[filterKey];
+      if (itemValue instanceof Date) {
+        const filterDate = new Date(filterValue).getTime();
+        const itemDate = new Date(itemValue).getTime();
+        return !isNaN(filterDate) && itemDate === filterDate;
+      }
+      return itemValue.toString().toLowerCase().includes(filterValue.toLowerCase());
+    });
   }
 
   // Método para paginar los datos
@@ -54,5 +60,4 @@ export class DataTableService {
       }
     });
   }
-
 }

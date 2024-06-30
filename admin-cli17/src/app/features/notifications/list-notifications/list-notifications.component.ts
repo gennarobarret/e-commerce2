@@ -21,9 +21,9 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
   private socketSubscription: Subscription | null = null;
   page = 1;
   pageSize = 10;
-  pageSizeOptions = [5, 10, 15, 20, 25];
+  pageSizeOptions = [5, 10, 25, 50, 100, 200, 1000];
   sortOrder: 'asc' | 'desc' = 'asc';
-  sortKey: string = 'message'; // Definir sortKey
+  sortKey: string = 'message';
   load_data = true;
   selectedFilterKey: string = 'message';
   searchText: string = '';
@@ -58,6 +58,9 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
     this.notificationService.getNotifications().subscribe(
       (response: any) => {
         this.notifications = response.data.notifications;
+        this.notifications.forEach(notification => {
+          notification.date = new Date(notification.date); // Asegurarse de que la fecha sea un objeto Date
+        });
         this.applyFilter();
         this.load_data = false;
         this.activateFeatherIcons();
@@ -77,7 +80,6 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
       this.socketSubscription.unsubscribe();
     }
   }
-
 
   markAsViewed(notification: Notification): void {
     this.notificationService.markAsViewed(notification._id).subscribe(

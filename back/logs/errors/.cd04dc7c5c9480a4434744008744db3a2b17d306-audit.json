@@ -6,11 +6,6 @@
     "auditLog": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\.cd04dc7c5c9480a4434744008744db3a2b17d306-audit.json",
     "files": [
         {
-            "date": 1718481538779,
-            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-15.log",
-            "hash": "550a3e2f3dcc2c602ee51d3dcf309d57c50fb42d11a992ae2f292b3b28d1091c"
-        },
-        {
             "date": 1718535785365,
             "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-16.log",
             "hash": "bba6acb075f90c4ac71da99057b80f4dc1933987b1376bf7bd320e4ed98bc9bb"
@@ -64,6 +59,11 @@
             "date": 1719654313347,
             "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-29.log",
             "hash": "0b59d2ffec3d3b65344b0defe6f903222639b2e37a88943384ddff8a78ca9566"
+        },
+        {
+            "date": 1719736919645,
+            "name": "C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\logs\\errors\\error-2024-06-30.log",
+            "hash": "30166b0c4c2775a59b91d730e4920721e36144cdfb028e1737550612c0c4603a"
         }
     ],
     "hashType": "sha256"
