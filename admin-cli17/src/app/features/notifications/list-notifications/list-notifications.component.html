@@ -17,6 +17,7 @@
     <div class="container-xl px-4 mt-n10">
         <div class="card mb-4">
             <div class="card-header">Notifications</div>
+            <button (click)="onDeleteAllViewed()">Delete All Viewed Notifications</button>
             <div class="card-body">
                 <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
                     <div class="datatable-top row mb-3">
@@ -34,14 +35,40 @@
                         </div>
                         <div class="datatable-search col-8">
                             <div class="input-group">
-                                <select class="form-select" [(ngModel)]="selectedFilterKey"
+                                <select class="form-select" [(ngModel)]="selectedFilterKey" (change)="reset()"
                                     aria-label="Filter selection">
                                     <option *ngFor="let key of filterKeys" [value]="key">{{ key }}</option>
                                 </select>
-                                <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="applyFilter()"
-                                    placeholder="Search..." />
+
+                                <ng-container [ngSwitch]="selectedFilterKey">
+                                    <input *ngSwitchCase="'message'" type="text" class="form-control"
+                                        [(ngModel)]="searchText" (keyup)="applyFilter()"
+                                        placeholder="Search by message..." />
+
+                                    <select *ngSwitchCase="'isViewed'" class="form-control" [(ngModel)]="searchText"
+                                        (change)="applyFilter()">
+                                        <option value="">All</option>
+                                        <option value="true">Viewed</option>
+                                        <option value="false">Not viewed</option>
+                                    </select>
+
+                                    <select *ngSwitchCase="'type'" class="form-control" [(ngModel)]="searchText"
+                                        (change)="applyFilter()">
+                                        <option value="">All</option>
+                                        <option value="success">Success</option>
+                                        <option value="info">Info</option>
+                                        <option value="warning">Warning</option>
+                                        <option value="danger">Danger</option>
+                                    </select>
+
+                                    <input *ngSwitchCase="'date'" type="date" class="form-control"
+                                        [(ngModel)]="startDate" (change)="applyFilter()" placeholder="Start date" />
+                                    <input *ngSwitchCase="'date'" type="date" class="form-control" [(ngModel)]="endDate"
+                                        (change)="applyFilter()" placeholder="End date" />
+                                </ng-container>
                             </div>
                         </div>
+
                     </div>
                     <div class="datatable-container">
                         <div class="table-responsive">
@@ -77,8 +104,7 @@
                                     </tr>
                                 </tbody>
                                 <tbody *ngIf="!load_data && filteredNotifications.length > 0">
-                                    <tr
-                                        *ngFor="let notification of filteredNotifications | slice: (page - 1) * pageSize: (page - 1) * pageSize + pageSize">
+                                    <tr *ngFor="let notification of filteredNotifications">
                                         <td [ngClass]="getRowClass(notification.type)">
                                             <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
                                                 class="mb-0">
@@ -100,7 +126,7 @@
                                         <td class="text-center" [ngClass]="getRowClass(notification.type)">
                                             <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
                                                 class="mb-0">
-                                                {{ notification.isViewed ? "Yes" : "No" }}
+                                                {{ notification.isViewed ? "Viewed" : "Not viewed" }}
                                             </h6>
                                         </td>
                                         <td class="text-center">
@@ -128,14 +154,14 @@
                         <nav>
                             <ul class="pagination justify-content-end">
                                 <li class="page-item" [ngClass]="{ disabled: page === 1 }">
-                                    <a class="page-link" (click)="page > 1 && (page = page - 1)">Previous</a>
+                                    <a class="page-link" (click)="previousPage()">Previous</a>
                                 </li>
                                 <li class="page-item" *ngFor="let p of [].constructor(getTotalPages()); let i = index"
                                     [ngClass]="{ active: page === i + 1 }">
-                                    <a class="page-link" (click)="page = i + 1">{{ i + 1 }}</a>
+                                    <a class="page-link" (click)="setPage(i + 1)">{{ i + 1 }}</a>
                                 </li>
                                 <li class="page-item" [ngClass]="{ disabled: page === getTotalPages() }">
-                                    <a class="page-link" (click)="page < getTotalPages() && (page = page + 1)">Next</a>
+                                    <a class="page-link" (click)="nextPage()">Next</a>
                                 </li>
                             </ul>
                         </nav>

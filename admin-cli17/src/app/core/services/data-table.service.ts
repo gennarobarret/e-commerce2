@@ -8,6 +8,10 @@ export class DataTableService {
 
   // Método para filtrar los datos
   applyFilter<T>(items: T[], filterKey: string, filterValue: string): T[] {
+    if (!filterValue) {
+      return items;
+    }
+
     return items.filter(item => {
       const itemValue = (item as any)[filterKey];
       if (itemValue instanceof Date) {
@@ -18,6 +22,7 @@ export class DataTableService {
       return itemValue.toString().toLowerCase().includes(filterValue.toLowerCase());
     });
   }
+
 
   // Método para paginar los datos
   paginate<T>(items: T[], pageSize: number, page: number): T[] {

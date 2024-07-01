@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { ApiResponse } from '../models/api-response.model';
 import { SpinnerService } from './spinner.service';
@@ -19,6 +19,7 @@ const API_ENDPOINTS = {
   providedIn: 'root',
 })
 export class NotificationService {
+  private notificationsChanged = new Subject<void>();
 
   private url: string;
 
@@ -56,11 +57,16 @@ export class NotificationService {
     const call = this._http.patch<ApiResponse<Notification>>(url, {});
     return this.handleApiCall(call, response => {
       if (response.status === 'success') {
-        // console.log('Notification marked as viewed:', response.data);
+        this.notificationsChanged.next();
       } else {
         throw new Error('Failed to mark notification as viewed');
       }
     });
+  }
+
+  // Método para obtener el Observable del Subject
+  getNotificationsChanged() {
+    return this.notificationsChanged.asObservable();
   }
 
   deleteNotification(notificationId: string): Observable<ApiResponse<null>> {
@@ -69,6 +75,7 @@ export class NotificationService {
     return this.handleApiCall(call, response => {
       if (response.status === 'success') {
         console.log('Notification deleted:', response.data);
+        this.notificationsChanged.next();  // Emitir el cambio aquí
       } else {
         throw new Error('Failed to delete notification');
       }
@@ -80,6 +87,7 @@ export class NotificationService {
     return this.handleApiCall(call, response => {
       if (response.status === 'success') {
         console.log('All viewed notifications deleted:', response.data);
+        this.notificationsChanged.next();
       } else {
         throw new Error('Failed to delete all viewed notifications');
       }

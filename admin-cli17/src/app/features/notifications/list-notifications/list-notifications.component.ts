@@ -19,15 +19,19 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
   notifications: Notification[] = [];
   filteredNotifications: Notification[] = [];
   private socketSubscription: Subscription | null = null;
+  private notificationsChangedSubscription: Subscription | null = null;
   page = 1;
   pageSize = 10;
+  totalPages = 0;
   pageSizeOptions = [5, 10, 25, 50, 100, 200, 1000];
   sortOrder: 'asc' | 'desc' = 'asc';
   sortKey: string = 'message';
   load_data = true;
   selectedFilterKey: string = 'message';
   searchText: string = '';
-  filterKeys: string[] = ['message', 'date', 'isViewed'];
+  filterKeys: string[] = ['message', 'date', 'type', 'isViewed'];
+  startDate: string = '';
+  endDate: string = '';
 
   constructor(
     private notificationService: NotificationService,
@@ -48,6 +52,10 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
         }
       }
     );
+
+    this.notificationsChangedSubscription = this.notificationService.getNotificationsChanged().subscribe(() => {
+      this.fetchNotifications();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -59,7 +67,7 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
       (response: any) => {
         this.notifications = response.data.notifications;
         this.notifications.forEach(notification => {
-          notification.date = new Date(notification.date); // Asegurarse de que la fecha sea un objeto Date
+          notification.date = new Date(notification.date);
         });
         this.applyFilter();
         this.load_data = false;
@@ -78,6 +86,9 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
   ngOnDestroy(): void {
     if (this.socketSubscription) {
       this.socketSubscription.unsubscribe();
+    }
+    if (this.notificationsChangedSubscription) {
+      this.notificationsChangedSubscription.unsubscribe();
     }
   }
 
@@ -110,23 +121,100 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
   }
 
   sort(key: string) {
-    this.sortKey = key; // Actualizar sortKey
+    this.sortKey = key;
     this.notifications = this.dataTableService.sort(this.notifications, key, this.sortOrder);
     this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
     this.applyFilter();
   }
 
   applyFilter() {
-    this.filteredNotifications = this.dataTableService.applyFilter(this.notifications, this.selectedFilterKey, this.searchText);
-    this.filteredNotifications = this.dataTableService.paginate(this.filteredNotifications, this.pageSize, this.page);
+    let filtered = this.notifications;
+
+    // Filtrado por fecha
+    if (this.selectedFilterKey === 'date') {
+      const start = this.startDate ? new Date(this.startDate) : null;
+      const end = this.endDate ? new Date(this.endDate) : null;
+
+      filtered = filtered.filter(notification => {
+        const date = new Date(notification.date);
+        if (start && end) {
+          return date >= start && date <= end;
+        } else if (start) {
+          return date >= start;
+        } else if (end) {
+          return date <= end;
+        }
+        return true;
+      });
+    } else if (this.selectedFilterKey === 'isViewed') {
+      if (this.searchText !== '') {
+        filtered = filtered.filter(notification => notification.isViewed.toString() === this.searchText);
+      }
+    } else if (this.searchText !== '') {
+      filtered = this.dataTableService.applyFilter(filtered, this.selectedFilterKey, this.searchText);
+    }
+
+    // Ordenar los datos
+    filtered = this.dataTableService.sort(filtered, this.sortKey, this.sortOrder);
+
+    // Aplicar paginación
+    this.totalPages = Math.ceil(filtered.length / this.pageSize);
+    const startIndex = (this.page - 1) * this.pageSize;
+    this.filteredNotifications = filtered.slice(startIndex, startIndex + this.pageSize);
+
+    // Logs para depuración
+    // console.log('Total notifications:', this.notifications.length);
+    // console.log('Filtered notifications:', filtered.length);
+    // console.log('Current page:', this.page);
+    // console.log('Page size:', this.pageSize);
+    // console.log('Filtered notifications for current page:', this.filteredNotifications.length);
+  }
+
+  onDeleteAllViewed(): void {
+    this.notificationService.deleteAllViewed().subscribe({
+      next: (response) => {
+        console.log('Deleted all viewed notifications successfully', response);
+        // Aquí puedes manejar la respuesta, por ejemplo, actualizar la lista de notificaciones
+      },
+      error: (error) => {
+        console.error('Error deleting viewed notifications', error);
+      }
+    });
+  }
+
+  setPage(pageNumber: number): void {
+    this.page = pageNumber;
+    this.applyFilter();
+  }
+
+  previousPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.applyFilter();
+    }
+  }
+
+  nextPage() {
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.applyFilter();
+    }
+  }
+
+  getTotalPages(): number {
+    return this.totalPages;
   }
 
   search() {
+    this.page = 1; // Reiniciar a la primera página cuando se realiza una búsqueda
     this.applyFilter();
   }
 
   reset() {
     this.searchText = '';
+    this.startDate = '';
+    this.endDate = '';
+    this.page = 1; // Reiniciar a la primera página cuando se restablecen los filtros
     this.applyFilter();
   }
 
@@ -149,9 +237,5 @@ export class ListNotificationsComponent implements OnInit, AfterViewInit, OnDest
       default:
         return '';
     }
-  }
-
-  getTotalPages(): number {
-    return Math.ceil(this.filteredNotifications.length / this.pageSize);
   }
 }
