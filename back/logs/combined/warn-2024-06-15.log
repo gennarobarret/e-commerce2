@@ -1,3 +1,0 @@
-{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-06-15 22:23:31"}
-{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-06-15 22:25:21"}
-{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-06-15 22:26:27"}

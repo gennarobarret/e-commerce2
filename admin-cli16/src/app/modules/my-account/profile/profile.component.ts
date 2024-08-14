@@ -58,6 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
+  
   fetchUserData() {
     this.loading = true;
     this.subscriptions.add(

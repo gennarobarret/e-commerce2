@@ -10,7 +10,7 @@ export class ResponseHandlingService {
   constructor() { }
 
   public handleResponse(response: HttpResponse<any>) {
-    console.log('Complete Response:', response);
+    // console.log('Complete Response:', response);
     if (response.status >= 200 && response.status < 300) {
       // Respuesta exitosa
       return of({

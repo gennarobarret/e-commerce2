@@ -2,23 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject, throwError, EMPTY } from 'rxjs';
-import { catchError, finalize, tap } from 'rxjs/operators';
+import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { ApiResponse } from '../models/api-response.model';
-import {
-  User,
-  UserWithToken,
-  LoginCredentials
-} from '../models/user.model';
+import { User, UserWithToken, LoginCredentials } from '../models/user.model';
 import { SpinnerService } from './spinner.service';
 import { ResponseHandlingService } from './response-handling.service';
 import { ConfigService } from './config.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 const API_ENDPOINTS = {
-  updateProfileImage: 'updateUserImage',
+  updateProfileImage: 'updateProfileImage',
   getUser: 'getUser',
-  getUserImageUrl: 'getUserImage',
+  getProfileImage: 'getProfileImage',
   getUserById: 'getUserById',
   createUser: 'createUser',
+  createMasterAdmin: 'createMasterAdmin',
   updateUser: 'updateUser',
   listAllUsers: 'listAllUsers'
 };
@@ -36,7 +34,8 @@ export class UserManagementService {
     private router: Router,
     private spinnerService: SpinnerService,
     private responseHandler: ResponseHandlingService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private sanitizer: DomSanitizer
   ) { this.url = this.configService.getConfig().url; }
 
   private handleApiCall<T>(call: Observable<T>, tapHandler: (response: any) => void): Observable<T> {
@@ -64,20 +63,27 @@ export class UserManagementService {
     return false;
   }
 
-  getUserImageUrl(profileImage: string): Observable<Blob> {
-    const call = this.http.get<Blob>(`${this.url}${API_ENDPOINTS.getUserImageUrl}/${profileImage}`, { responseType: 'blob' as 'json' });
-    return this.handleApiCall(call, response => {
-      this.responseHandler.handleResponse(response);
-    });
+  getProfileImage(imageFileName: string): Observable<SafeUrl> {
+    const url = `${this.url}${API_ENDPOINTS.getProfileImage}/${imageFileName}`;
+    return this.http.get(url, { responseType: 'blob' }).pipe(
+      map(blob => {
+        const objectUrl = URL.createObjectURL(blob);
+        return this.sanitizer.bypassSecurityTrustUrl(objectUrl);
+      }),
+      catchError(error => {
+        this.responseHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
   }
 
-  updateProfileImage(userId: string, formData: FormData): Observable<any> {
-    const url = `${this.url}${API_ENDPOINTS.updateProfileImage}/${userId}`;
-    const call = this.http.put<any>(url, formData);
-    return this.handleApiCall(call, response => {
-      this.responseHandler.handleResponse(response);
-    });
+
+
+  updateProfileImage(userName: string, formData: FormData): Observable<any> {
+    const url = `${this.url}${API_ENDPOINTS.updateProfileImage}/${userName}`;
+    return this.http.put<any>(url, formData);
   }
+
 
   getUser(): Observable<ApiResponse<User>> {
     if (this.redirectToLoginIfNoToken()) return EMPTY;
@@ -92,7 +98,7 @@ export class UserManagementService {
 
   getUserById(id: string): Observable<ApiResponse<User>> {
     if (this.redirectToLoginIfNoToken()) return EMPTY;
-
+    
     const call = this.http.get<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.getUserById}/${id}`);
     return this.handleApiCall(call, response => {
       if (response?.data) {
@@ -101,16 +107,25 @@ export class UserManagementService {
     });
   }
 
-  createUser(data: FormData): Observable<ApiResponse<User>> {
+  createUser(data: any): Observable<ApiResponse<User>> {
     const call = this.http.post<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.createUser}`, data);
     return this.handleApiCall(call, response => {
       this.responseHandler.handleResponse(response);
     });
   }
 
-  updateUser(data: FormData, id: string): Observable<ApiResponse<User>> {
-    const call = this.http.put<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.updateUser}/${id}`, data);
+  createMasterAdmin(data: any): Observable<any> {
+    const call = this.http.post(`${this.url}${API_ENDPOINTS.createMasterAdmin}`, data);
     return this.handleApiCall(call, response => {
+      this.responseHandler.handleResponse(response);
+    });
+  }
+
+  updateUser(data: any, id: string): Observable<ApiResponse<User>> {
+    const call = this.http.put<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.updateUser}/${id}`, data);
+    console.log("🚀 ~ UserManagementService ~ updateUser ~ call:", call)
+    return this.handleApiCall(call, response => {
+      
       this.responseHandler.handleResponse(response);
     });
   }
@@ -124,4 +139,5 @@ export class UserManagementService {
     const call = this.http.get<ApiResponse<User[]>>(`${this.url}${API_ENDPOINTS.listAllUsers}`, { params });
     return this.handleApiCall(call, () => { });
   }
+  
 }

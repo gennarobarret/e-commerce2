@@ -21,7 +21,7 @@ const routes: Routes = [
                 loadComponent: () => import('./forgot-password/forgot-password.component').then(c => c.ForgotPasswordComponent)
             },
             {
-                path: 'reset-password',
+                path: 'reset-password/:token',  // Ahora recibe el token como parámetro
                 loadComponent: () => import('./reset-password/reset-password.component').then(c => c.ResetPasswordComponent)
             },
             {
@@ -29,7 +29,7 @@ const routes: Routes = [
                 loadComponent: () => import('./activation/activation.component').then(c => c.ActivationComponent)
             },
             {
-                path: 'verification-code',
+                path: 'verification-code/:token',  // Token en la URL
                 loadComponent: () => import('./verification-code/verification-code.component').then(c => c.VerificationCodeComponent)
             },
             {

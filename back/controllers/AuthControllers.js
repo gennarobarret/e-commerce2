@@ -135,8 +135,6 @@ const loginUser = async (req, res) => {
         const cleanUser = getCleanUser(user);
         const token = jwt.createToken({ ...cleanUser, role: user.role.name });
 
-
-
         handleSuccessfulResponse('Login successful', {
             user: cleanUser,
             token: token
@@ -370,10 +368,9 @@ const resendVerificationEmail = async (req, res) => {
 
 // FORGOT PASSWORD
 const forgotPassword = async (req, res) => {
+    const ipAddress = getClientIp(req);
     try {
         const { emailAddress } = req.body;
-        const ipAddress = getClientIp(req);
-
         if (!emailAddress) {
             logger.warn(`Forgot password attempt without email address from IP: ${ipAddress}`);
             await logAudit(
@@ -403,7 +400,6 @@ const forgotPassword = async (req, res) => {
             );
             throw new ErrorHandler(200, 'If the email exists in our system, a password reset email will be sent.', req.originalUrl, req.method);
         }
-
         if (user.isBlocked) {
             logger.warn(`Attempted reset from blocked account: ${emailAddress}`);
             await logAudit(
@@ -433,6 +429,7 @@ const forgotPassword = async (req, res) => {
             throw new ErrorHandler(403, 'Non-local authentication. Operation not allowed.', req.originalUrl, req.method);
         }
         const resetToken = user.generatePasswordResetToken();
+        console.log("Token antes de hashear:", resetToken);
         const verificationCode = user.generateVerificationCode();
 
         const resetUrl = verificationCodeUrl(resetToken);
@@ -453,7 +450,7 @@ const forgotPassword = async (req, res) => {
         handleSuccessfulResponse('If the email exists in our system, a password reset email will be sent.', {})(req, res);
 
     } catch (error) {
-        logger.error(`Forgot password error: ${error.message} from IP: ${getClientIp(req)}`, { stack: error.stack });
+        // logger.error(`Forgot password error: ${error.message} from IP: ${getClientIp(req)}`, { stack: error.stack });
         await logAudit(
             'PASSWORD_RESET_PROCESS_ERROR',
             null,
@@ -470,9 +467,11 @@ const forgotPassword = async (req, res) => {
 
 // VERIFY VERIFICATION CODE
 const verificationCode = async (req, res) => {
+    const ipAddress = getClientIp(req);
     try {
-        const { token, verificationCode } = req.body;
-        const ipAddress = getClientIp(req);
+        const { token } = req.params;  // El token ahora se recibe desde la URL
+        const { verificationCode } = req.body;
+        console.log("🚀 ~ verificationCode ~ verificationCode:", verificationCode)
 
         if (!token || !verificationCode) {
             logger.warn(`Verification attempt without token or code from IP: ${ipAddress}`);
@@ -488,12 +487,15 @@ const verificationCode = async (req, res) => {
             );
             throw new ErrorHandler(400, 'Token and verification code are required.', req.originalUrl, req.method);
         }
+
         const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
         const user = await User.findOne({
             resetPasswordToken: hashedToken,
             verificationCode,
             verificationCodeExpires: { $gt: Date.now() }
         });
+
         if (!user) {
             logger.warn(`Invalid or expired token or code used from IP: ${ipAddress}`);
             await logAudit(
@@ -508,10 +510,12 @@ const verificationCode = async (req, res) => {
             );
             throw new ErrorHandler(400, 'Invalid or expired token or verification code.', req.originalUrl, req.method);
         }
+
         const newResetToken = user.generatePasswordResetToken();
         user.verificationCode = null;
         user.verificationCodeExpires = null;
         await user.save();
+
         await logAudit(
             'VERIFICATION_CODE_VALIDATED',
             user._id,
@@ -522,9 +526,10 @@ const verificationCode = async (req, res) => {
             ipAddress,
             req.originalUrl
         );
+
         handleSuccessfulResponse('Verification code is valid. Change to a new password.', { resetToken: newResetToken })(req, res);
     } catch (error) {
-        logger.error('Verify verification code error:', error);
+        // logger.error(`Verify verification code error: ${error.message}`, { stack: error.stack });
         await logAudit(
             'VERIFICATION_CODE_PROCESSING_ERROR',
             null,
@@ -532,7 +537,7 @@ const verificationCode = async (req, res) => {
             'User',
             'High',
             `Error processing verification code: ${error.message}`,
-            getClientIp(req),
+            ipAddress,
             req.originalUrl
         );
         handleErrorResponse(error, req, res);
@@ -541,10 +546,13 @@ const verificationCode = async (req, res) => {
 
 // RESET PASSWORD
 const resetPassword = async (req, res) => {
+    const ipAddress = getClientIp(req);
     try {
-        const { token, newPassword } = req.body;
-        const ipAddress = getClientIp(req);
-        const { error } = validateResetPassword(req.body);
+        const { newPassword } = req.body;
+        const { token } = req.params;  // Ahora obtenemos el token desde los parámetros de la URL
+
+        // Validar que el token y la nueva contraseña estén presentes
+        const { error } = validateResetPassword({ token, newPassword });
         if (error) {
             logger.warn(`Reset password validation failed from IP: ${ipAddress}`, { error });
             await logAudit(
@@ -559,11 +567,13 @@ const resetPassword = async (req, res) => {
             );
             throw new ErrorHandler(400, error.details.map(detail => detail.message).join(', '), req.originalUrl, req.method);
         }
+
         const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
         const user = await User.findOne({
             resetPasswordToken: hashedToken,
             resetPasswordExpires: { $gt: Date.now() },
         });
+
         if (!user) {
             logger.warn(`Invalid or expired password reset token used from IP: ${ipAddress}`);
             await logAudit(
@@ -578,6 +588,7 @@ const resetPassword = async (req, res) => {
             );
             throw new ErrorHandler(400, 'Invalid or expired password reset token.', req.originalUrl, req.method);
         }
+
         let isOldPassword = false;
         for (const p of user.passwordHistory) {
             if (await bcrypt.compare(newPassword, p.password)) {
@@ -585,6 +596,7 @@ const resetPassword = async (req, res) => {
                 break;
             }
         }
+
         if (isOldPassword) {
             logger.warn(`Attempt to reuse old password by user: ${user.userName} from IP: ${ipAddress}`);
             await logAudit(
@@ -599,17 +611,21 @@ const resetPassword = async (req, res) => {
             );
             throw new ErrorHandler(400, 'The new password cannot be the same as any of your previous passwords.', req.originalUrl, req.method);
         }
+
         user.password = newPassword;
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
+
         if (user.password) {
             user.passwordHistory.unshift({ password: user.password });
             if (user.passwordHistory.length > 5) {
                 user.passwordHistory.pop();
             }
         }
+
         await user.save();
         await sendConfirmationEmail(user.emailAddress);
+        const path = req.originalUrl || req.url || 'undefined_path';
         await logAudit(
             'PASSWORD_RESET_COMPLETED',
             user._id,
@@ -617,12 +633,23 @@ const resetPassword = async (req, res) => {
             'User',
             'High',
             'Password has been reset successfully.',
-            ipAddress
+            ipAddress,
+            path  // Usa una ruta por defecto si req.originalUrl no está disponible
         );
+
+        // Crear una notificación para el usuario sobre el cambio de contraseña
+        await notificationService.createNotification({
+            userId: user._id,
+            icon: 'key',  // Puedes usar un icono alusivo al cambio de contraseña
+            message: 'Your password has been successfully changed.',
+            type: 'info'
+        });
+
+
         handleSuccessfulResponse('Your password has been updated successfully.', {})(req, res);
 
     } catch (error) {
-        logger.error(`Reset password error for user ${req.body.userName}: ${error.message}`, { stack: error.stack });
+        // logger.error(`Reset password error: ${error.message}`, { stack: error.stack });
         await logAudit(
             'PASSWORD_RESET_PROCESS_ERROR',
             null,
@@ -630,12 +657,15 @@ const resetPassword = async (req, res) => {
             'User',
             'High',
             `Error during the password reset process: ${error.message}`,
-            getClientIp(req),
+            ipAddress,
             req.originalUrl
         );
         handleErrorResponse(error, req, res);
     }
 };
+
+
+
 
 module.exports = {
     loginUser,

@@ -11,9 +11,9 @@ api.post('/createUser', [auth.auth, rbac('create', 'user')], userManagement.crea
 api.get('/getUser', [auth.auth, rbac('read', 'user')], userManagement.getUser);
 api.get('/getUserById/:id', [auth.auth, rbac('read', 'user')], userManagement.getUserById);
 api.get('/listAllUsers', [auth.auth, rbac('read', 'user')], userManagement.listAllUsers);
-api.get('/getUserImage/:profileImage', [auth.auth, rbac('read', 'userImage')], userManagement.getUserImage);
+api.get('/getProfileImage/:profileImage', [auth.auth, rbac('read', 'userImage')], userManagement.getProfileImage);
 api.put('/updateUser/:id', [auth.auth, rbac('update', 'user')], userManagement.updateUser);
-api.put('/updateUserImage/:userName', [auth.auth, rbac('update', 'user'), uploadConfig.multerErrorHandler], userManagement.updateUserImage);
+api.put('/updateProfileImage/:userName', [auth.auth, rbac('update', 'user'), uploadConfig.multerErrorHandler], userManagement.updateProfileImage);
 api.patch('/updateUserActiveStatus/:userId', [auth.auth, rbac('update', 'user')], userManagement.updateUserActiveStatus);
 api.patch('/updateMultipleUserActiveStatus', [auth.auth, rbac('update', 'user')], userManagement.updateMultipleUserActiveStatus);
 

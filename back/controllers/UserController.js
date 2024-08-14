@@ -27,7 +27,6 @@ const { logAudit } = require('../helpers/logAuditHelper');
 // Services
 const notificationService = require('../services/notificationService');
 
-
 function getClientIp(req) {
     return req.headers['x-forwarded-for']?.split(',').shift() || req.socket.remoteAddress;
 }
@@ -269,7 +268,7 @@ const createUser = async (req, res) => {
 
 
 // GET USER PROFILE PICTURE
-const getUserImage = async (req, res) => {
+const getProfileImage = async (req, res) => {
     try {
         // 1. Validar y sanitizar la entrada
         const profileImage = req.params.profileImage;
@@ -293,6 +292,7 @@ const getUserImage = async (req, res) => {
 
         // 4. Enviar el archivo como respuesta
         res.sendFile(pathImg);
+        logger.info(`User retrieved: ${profileImage}`);
 
     } catch (error) {
         // Manejar errores
@@ -301,7 +301,7 @@ const getUserImage = async (req, res) => {
 };
 
 // UPDATE USER PROFILE PICTURE
-const updateUserImage = async (req, res) => {
+const updateProfileImage = async (req, res) => {
     let file;
     try {
         // 1. Validar y sanitizar la entrada
@@ -349,7 +349,7 @@ const updateUserImage = async (req, res) => {
 
         // 5. Registrar la auditoría
         const ipAddress = getClientIp(req);
-        await logAudit('UPDATE_PROFILE_IMAGE', userIdToUpdate, userIdToUpdate, 'User', 'Medium', 'Profile image updated.', ipAddress);
+        await logAudit('UPDATE_PROFILE_IMAGE', userIdToUpdate, userIdToUpdate, 'User', 'Medium', 'Profile image updated.', ipAddress, req.originalUrl);
 
         // 6. Responder con éxito
         handleSuccessfulResponse("Profile image updated successfully", { profileImage: userToUpdate.profileImage })(req, res);
@@ -419,6 +419,7 @@ const getUser = async (req, res) => {
 
 // UPDATE USER INFO
 const updateUser = async (req, res) => {
+    
     try {
         // 1. Validar y sanitizar la entrada
         const emailAddress = req.user ? req.user.emailAddress : null;
@@ -433,6 +434,7 @@ const updateUser = async (req, res) => {
 
         // 2. Obtener datos del cuerpo de la solicitud
         let data = req.body;
+        console.log("🚀 ~ updateUser ~ data:", data)
 
         // Verificar que los datos están llegando correctamente
         console.log("🚀 ~ updateUser ~ data:", data);
@@ -489,7 +491,17 @@ const updateUser = async (req, res) => {
         handleSuccessfulResponse("User updated successfully", filteredUserData)(req, res);
 
         // 8. Registrar la auditoría
-        await logAudit('UPDATE', req.user._id, userToUpdate._id, 'User', 'info', `User ${userToUpdate._id} updated by ${req.user._id}`, getClientIp(req));
+        await logAudit(
+            'UPDATE',
+            req.user._id,
+            userToUpdate._id,
+            'User',
+            'Medium',  // Cambia 'info' por un valor válido como 'Medium'
+            `User ${userToUpdate._id} updated by ${req.user._id}`,
+            getClientIp(req),
+            req.originalUrl
+        );
+
 
     } catch (error) {
         // Manejar errores
@@ -688,9 +700,9 @@ module.exports = {
     createUser,
     getUser,
     getUserById,
-    getUserImage,
+    getProfileImage,
     updateUser,
-    updateUserImage,
+    updateProfileImage,
     listAllUsers,
     deleteUser,
     updateUserActiveStatus,

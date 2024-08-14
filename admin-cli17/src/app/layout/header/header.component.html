@@ -38,7 +38,6 @@
             </div>
         </li>
         <!-- Alerts Dropdown-->
-        <!-- <app-alerts></app-alerts> -->
         <app-dropdown-notifications></app-dropdown-notifications>
         <!-- Messages Dropdown-->
         <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
@@ -116,25 +115,18 @@
             <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
                 href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                <img *ngIf="user.data.profileImage; else defaultImage" class="img-fluid" [src]="imageUrl"
-                    alt="Profile Image">
-                <ng-template #defaultImage>
-                    <img class="img-fluid" [src]="imageUrl" alt="Profile Image" />
-                </ng-template>
+                <!-- Aquí solo necesitas usar el componente sin pasarle la imagen -->
+                <app-user-image cssClass="img-fluid header-class" [showButtons]="false"></app-user-image>
             </a>
             <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up"
                 aria-labelledby="navbarDropdownUserImage">
                 <h6 class="dropdown-header d-flex align-items-center">
-                    <img *ngIf="user.data.profileImage; else defaultDropdownImage" class="dropdown-user-img"
-                        [src]="imageUrl" alt="Profile Layout Image">
-                    <ng-template #defaultDropdownImage>
-                        <img class="dropdown-user-img" [src]="imageUrl" alt="Profile Image" />
-                    </ng-template>
+                    <!-- Nuevamente, no es necesario pasar la imagen como input -->
+                    <app-user-image cssClass="dropdown-user-img header-class" [showButtons]="false"></app-user-image>
                     <div class="dropdown-user-details">
                         <div class="dropdown-user-details-name">{{ displayFullName() }}</div>
                         <div class="dropdown-user-details-email">{{ user.data.userName }}</div>
                     </div>
-
                 </h6>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" (click)="accountSetting()">

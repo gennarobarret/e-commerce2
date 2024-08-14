@@ -78,6 +78,7 @@ const deleteNotification = async (req, res) => {
             getClientIp(req),
             req.originalUrl || ''
         );
+        
 
         handleSuccessfulResponse("Notification deleted successfully", {})(req, res);
     } catch (error) {

@@ -17,7 +17,6 @@
     <div class="container-xl px-4 mt-n10">
         <div class="card mb-4">
             <div class="card-header">Notifications</div>
-            <button (click)="onDeleteAllViewed()">Delete All Viewed Notifications</button>
             <div class="card-body">
                 <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
                     <div class="datatable-top row mb-3">
@@ -68,8 +67,12 @@
                                 </ng-container>
                             </div>
                         </div>
-
                     </div>
+                    <button *ngFor="let notification of filteredNotifications" class="btn btn-datatable btn-icon btn-transparent-dark" (click)="onDeleteAllViewed()">
+                        <i *ngIf="notification.isViewed" data-feather="eye"></i>
+                        <i *ngIf="!notification.isViewed" data-feather="eye-off"></i>
+                        Delete All Viewed Notifications
+                    </button>
                     <div class="datatable-container">
                         <div class="table-responsive">
                             <table class="table table-bordered">

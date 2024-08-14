@@ -24,7 +24,6 @@ const API_ENDPOINTS = {
   loginUser: 'loginUser',
   authenticateGoogle: 'auth/google',
   forgotPassword: 'forgotPassword',
-  createMasterAdmin: 'createMasterAdmin',
   activation: 'activation/',
   verificationCode: 'verification-code/',
   resetPassword: 'resetPassword/',
@@ -136,7 +135,7 @@ export class AuthService {
   }
 
   verificationCode(token: string, verificationCode: string): Observable<any> {
-    const call = this._http.post<any>(`${this.url}${API_ENDPOINTS.verificationCode}${token}`, { token, verificationCode });
+    const call = this._http.post<any>(`${this.url}${API_ENDPOINTS.verificationCode}${token}`, { verificationCode });
     return this.handleApiCall(call, response => {
       this._responseHandler.handleResponse(new HttpResponse({
         status: 200,
@@ -146,7 +145,7 @@ export class AuthService {
   }
 
   resetPassword(token: string, newPassword: string): Observable<ApiResponse<null>> {
-    const call = this._http.post<ApiResponse<null>>(`${this.url}${API_ENDPOINTS.resetPassword}${token}`, { token, newPassword });
+    const call = this._http.post<ApiResponse<null>>(`${this.url}${API_ENDPOINTS.resetPassword}${token}`, { newPassword });
     return this.handleApiCall(call, response => {
       this._responseHandler.handleResponse(new HttpResponse({
         status: 200,
@@ -200,13 +199,5 @@ export class AuthService {
     }
   }
 
-  createMasterAdmin(data: any): Observable<any> {
-    const call = this._http.post(`${this.url}${API_ENDPOINTS.createMasterAdmin}`, data);
-    return this.handleApiCall(call, response => {
-      this._responseHandler.handleResponse(new HttpResponse({
-        status: 200,
-        body: response
-      }));
-    });
-  }
+
 }
