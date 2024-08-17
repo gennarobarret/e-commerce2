@@ -14,13 +14,13 @@ const jwt = require('../helpers/jwtHelper');
 const { validateResetPassword, validateLogin } = require('../helpers/validateHelper');
 const generateUserName = require('../helpers/userNameGeneratorHelper');
 const { checkIfAdminEmail } = require('../helpers/adminHelper');
-
 const { verifyGoogleToken } = require('../helpers/googleAuthHelper');
-
 const { sendActivationEmail, sendPasswordResetEmail, sendConfirmationEmail, sendVerificationEmail, verificationCodeUrl } = require('../helpers/emailServiceHelper');
-
 const MAX_LOGIN_ATTEMPTS = parseInt(process.env.MAX_LOGIN_ATTEMPTS);
 const LOCK_TIME = parseInt(process.env.LOCK_TIME);
+
+// Services
+const notificationService = require('../services/notificationService');
 
 function validateLoginEnvironment() {
     if (isNaN(MAX_LOGIN_ATTEMPTS) || isNaN(LOCK_TIME)) {
@@ -471,7 +471,6 @@ const verificationCode = async (req, res) => {
     try {
         const { token } = req.params;  // El token ahora se recibe desde la URL
         const { verificationCode } = req.body;
-        console.log("🚀 ~ verificationCode ~ verificationCode:", verificationCode)
 
         if (!token || !verificationCode) {
             logger.warn(`Verification attempt without token or code from IP: ${ipAddress}`);
@@ -623,8 +622,21 @@ const resetPassword = async (req, res) => {
             }
         }
 
+        // Guardar el usuario con la nueva contraseña
         await user.save();
-        await sendConfirmationEmail(user.emailAddress);
+
+        // Si el usuario aún no está verificado, generar un token de activación y enviar el correo
+        if (user.verification !== 'verified') {
+            const activationToken = user.generateConfigurationToken();  // Usar el método que ya tienes para generar el token
+            await user.save();  // Guardar el token en el usuario
+
+            // Enviar el correo de activación
+            await sendVerificationEmail(user, activationToken);
+        } else {
+            // Enviar correo de confirmación de cambio de contraseña
+            await sendConfirmationEmail(user.emailAddress);
+        }
+
         const path = req.originalUrl || req.url || 'undefined_path';
         await logAudit(
             'PASSWORD_RESET_COMPLETED',
@@ -645,11 +657,9 @@ const resetPassword = async (req, res) => {
             type: 'info'
         });
 
-
         handleSuccessfulResponse('Your password has been updated successfully.', {})(req, res);
 
     } catch (error) {
-        // logger.error(`Reset password error: ${error.message}`, { stack: error.stack });
         await logAudit(
             'PASSWORD_RESET_PROCESS_ERROR',
             null,
@@ -665,7 +675,138 @@ const resetPassword = async (req, res) => {
 };
 
 
+// CHANGE PASSWORD (FOR LOGGED-IN USERS)
+const changePassword = async (req, res) => {
+    const ipAddress = getClientIp(req);
+    try {
+        const userId = req.user.sub;  // Acceder al 'sub' del payload que contiene el 'userId'
+        console.log("🚀 ~ changePassword ~ userId:", userId)
+        const { currentPassword, newPassword } = req.body;
 
+        // Validar que los campos necesarios estén presentes
+        if (!currentPassword || !newPassword) {
+            logger.warn(`Change password attempt with missing fields from IP: ${ipAddress}`);
+            await logAudit(
+                'PASSWORD_CHANGE_ATTEMPT_MISSING_FIELDS',
+                userId,
+                userId,
+                'User',
+                'Medium',
+                'Password change attempt failed due to missing fields.',
+                ipAddress,
+                req.originalUrl
+            );
+            throw new ErrorHandler(400, 'Current password and new password are required.', req.originalUrl, req.method);
+        }
+
+        // Buscar al usuario por ID
+        const user = await User.findById(userId).select('+password');
+        if (!user) {
+            logger.warn(`Change password attempt for non-existing user ID: ${userId} from IP: ${ipAddress}`);
+            await logAudit(
+                'PASSWORD_CHANGE_ATTEMPT_NON_EXISTING_USER',
+                userId,
+                null,
+                'User',
+                'High',
+                'Password change attempt for a non-existing user.',
+                ipAddress,
+                req.originalUrl
+            );
+            throw new ErrorHandler(404, 'User not found.', req.originalUrl, req.method);
+        }
+
+        // Verificar la contraseña actual
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            logger.warn(`Incorrect current password attempt by user: ${user.userName} from IP: ${ipAddress}`);
+            await logAudit(
+                'PASSWORD_CHANGE_ATTEMPT_INCORRECT_CURRENT_PASSWORD',
+                userId,
+                userId,
+                'User',
+                'High',
+                'User provided an incorrect current password.',
+                ipAddress,
+                req.originalUrl
+            );
+            throw new ErrorHandler(400, 'Current password is incorrect.', req.originalUrl, req.method);
+        }
+
+        // Verificar que la nueva contraseña no coincida con las contraseñas anteriores
+        let isOldPassword = false;
+        for (const p of user.passwordHistory) {
+            if (await bcrypt.compare(newPassword, p.password)) {
+                isOldPassword = true;
+                break;
+            }
+        }
+
+        if (isOldPassword) {
+            logger.warn(`Attempt to reuse old password by user: ${user.userName} from IP: ${ipAddress}`);
+            await logAudit(
+                'PASSWORD_CHANGE_REUSE_OLD_PASSWORD',
+                userId,
+                userId,
+                'User',
+                'High',
+                'User attempted to reuse an old password.',
+                ipAddress,
+                req.originalUrl
+            );
+            throw new ErrorHandler(400, 'The new password cannot be the same as any of your previous passwords.', req.originalUrl, req.method);
+        }
+
+        // Actualizar la contraseña
+        user.password = newPassword;
+        user.passwordHistory.unshift({ password: user.password });
+        if (user.passwordHistory.length > 5) {
+            user.passwordHistory.pop();
+        }
+
+        await user.save();
+
+        // Registrar la acción en el log de auditoría
+        await logAudit(
+            'PASSWORD_CHANGE_SUCCESS',
+            userId,
+            userId,
+            'User',
+            'Medium',
+            'User successfully changed their password.',
+            ipAddress,
+            req.originalUrl
+        );
+
+        // Enviar correo electrónico de confirmación de cambio de contraseña
+        await sendConfirmationEmail(user.emailAddress);
+
+        // Crear una notificación para el usuario
+        await notificationService.createNotification({
+            userId: user._id,
+            icon: 'key',  // Puedes usar un icono alusivo al cambio de contraseña
+            message: 'Your password has been successfully changed.',
+            type: 'info'
+        });
+
+        // Responder con éxito
+        handleSuccessfulResponse('Your password has been changed successfully.', {})(req, res);
+
+    } catch (error) {
+        // Manejar errores
+        await logAudit(
+            'PASSWORD_CHANGE_PROCESS_ERROR',
+            null,
+            null,
+            'User',
+            'High',
+            `Error during the password change process: ${error.message}`,
+            ipAddress,
+            req.originalUrl
+        );
+        handleErrorResponse(error, req, res);
+    }
+};
 
 module.exports = {
     loginUser,
@@ -674,5 +815,6 @@ module.exports = {
     authenticateWithGoogle,
     activateUser,
     resendVerificationEmail,
-    verificationCode
+    verificationCode,
+    changePassword
 };

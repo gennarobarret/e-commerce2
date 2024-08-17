@@ -1,1 +1,141 @@
-<p>edit-user works!</p>
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-xl px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                            Edit User
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-xl px-4 mt-4">
+        <ng-container *ngIf="loading">
+            <app-spinner></app-spinner>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+            <div class="row">
+                <div class="col-xl-4">
+                    <app-user-image [cssClass]="'my-custom-class'" [showButtons]="true"
+                        [profileImage]="user?.profileImage ?? null" [userName]="user?.userName ?? ''"
+                        (imageUpdated)="fetchUserData(user?._id || '')">
+                    </app-user-image>
+                </div>
+
+                <div class="col-xl-8">
+                    <form [formGroup]="updateForm" (ngSubmit)="update()">
+                        <div class="card mb-4">
+                            <div class="card-header">User Details</div>
+                            <div class="card-body">
+                                <!-- Username -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputUserName">Username</label>
+                                    <input class="form-control" id="inputUserName" type="text"
+                                        formControlName="inputUserName" [disabled]="true" />
+                                </div>
+                                <!-- First Name & Last Name -->
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputFirstName">First name</label>
+                                        <input class="form-control" id="inputFirstName" type="text"
+                                            formControlName="inputFirstName" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLastName">Last name</label>
+                                        <input class="form-control" id="inputLastName" type="text"
+                                            formControlName="inputLastName" />
+                                    </div>
+                                </div>
+                                <!-- Organization & Email -->
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputOrganizationName">Organization</label>
+                                        <input class="form-control" id="inputOrganizationName" type="text"
+                                            formControlName="inputOrganizationName" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                        <input class="form-control" id="inputEmailAddress" type="email"
+                                            formControlName="inputEmailAddress" [disabled]="true" />
+                                    </div>
+                                </div>
+                                <!-- Country & State -->
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputCountryAddress">Country</label>
+                                        <select class="form-control" id="inputCountryAddress"
+                                            formControlName="inputCountryAddress" (change)="onCountryChange($event)">
+                                            <option value="" [disabled]="true"
+                                                [selected]="!updateForm.get('inputCountryAddress')?.value">Select your
+                                                country</option>
+                                            <option *ngFor="let country of countries" [value]="country._id">{{
+                                                country.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputStateAddress">State</label>
+                                        <select class="form-control" id="inputStateAddress"
+                                            formControlName="inputStateAddress">
+                                            <option value="" [disabled]="true"
+                                                [selected]="!updateForm.get('inputStateAddress')?.value">Select your
+                                                state</option>
+                                            <option *ngFor="let state of filteredStates" [value]="state._id">{{
+                                                state.province_name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Phone & Birthday -->
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputPhoneNumber">Phone</label>
+                                        <input class="form-control" id="inputPhoneNumber" type="tel"
+                                            formControlName="inputPhoneNumber" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputBirthday">Birthday</label>
+                                        <input class="form-control" id="inputBirthday" type="date"
+                                            formControlName="inputBirthday" />
+                                    </div>
+                                </div>
+                                <!-- Role & Identification -->
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputRole">Role</label>
+                                        <input class="form-control" id="inputRole" type="text"
+                                            formControlName="inputRole" [disabled]="true" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputIdentification">ID/DNI/NIE</label>
+                                        <input class="form-control" id="inputIdentification" type="text"
+                                            formControlName="inputIdentification" />
+                                    </div>
+                                </div>
+                                <!-- Active Status & Additional Info -->
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputActiveStatus">Active Status</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="inputActiveStatus"
+                                                formControlName="inputActiveStatus">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputAdditionalInfo">Additional Info</label>
+                                        <input class="form-control" id="inputAdditionalInfo" type="text"
+                                            formControlName="inputAdditionalInfo" />
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Save changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</main>

@@ -9,7 +9,11 @@ const routes: Routes = [
         canActivate: [isLoggedInGuard],
         component: MainLayoutComponent,
         children: [
-            { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+            {
+                path: '',
+                redirectTo: '/dashboard',
+                pathMatch: 'full'
+            },
             {
                 path: 'dashboard',
                 loadChildren: () => import('../features/dashboard/dashboard-routing.module').then(m => m.DashboardRoutingModule)
@@ -26,7 +30,10 @@ const routes: Routes = [
                 path: 'all-notifications',
                 loadChildren: () => import('../features/notifications/notifications-routing.module').then(m => m.NotificationsRoutingModule)
             },
-            { path: '**', redirectTo: '/dashboard' }
+            {
+                path: '**',
+                redirectTo: '/dashboard'
+            }
         ]
     }
 ];

@@ -35,9 +35,9 @@
             <div class="collapse" id="collapseAccount" data-bs-parent="#accordionSidenav">
                 <nav class="sidenav-menu-nested nav">
                     <a class="nav-link" [routerLink]="['/my-account/profile', user.data.userName ]">Profile</a>
-                    <a class="nav-link" [routerLink]="['my-account/billing']">Billing</a>
-                    <a class="nav-link" [routerLink]="['my-account/security']">Security</a>
-                    <a class="nav-link" [routerLink]="['my-account/notifications']">Notifications</a>
+                    <a class="nav-link" [routerLink]="['/my-account/billing']">Billing</a>
+                    <a class="nav-link" [routerLink]="['/my-account/security']">Security</a>
+                    <a class="nav-link" [routerLink]="['/my-account/notifications']">Notifications</a>
                 </nav>
             </div>
             <!-- Nested Sidenav Accordion (Apps -> People)-->
@@ -48,9 +48,9 @@
             </a>
             <div class="collapse" id="appsCollapsePeople" data-bs-parent="#accordionSidenavAppsMenu">
                 <nav class="sidenav-menu-nested nav">
-                    <a class="nav-link" [routerLink]="['people/users-list']">Staff Management</a>
-                    <a class="nav-link" [routerLink]="['people/customers-list']">Customer Management</a>
-                    <a class="nav-link" [routerLink]="['people/Role-and-Permission-Management']">Role and Permission
+                    <a class="nav-link" [routerLink]="['/users/staff-list']">Staff Management</a>
+                    <a class="nav-link" [routerLink]="['/users/customers-list']">Customer Management</a>
+                    <a class="nav-link" [routerLink]="['/users/Role-and-Permission-Management']">Role and Permission
                         Management</a>
                 </nav>
             </div>

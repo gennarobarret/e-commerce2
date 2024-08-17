@@ -18,7 +18,10 @@ const API_ENDPOINTS = {
   createUser: 'createUser',
   createMasterAdmin: 'createMasterAdmin',
   updateUser: 'updateUser',
-  listAllUsers: 'listAllUsers'
+  listAllUsers: 'listAllUsers',
+  resetPassword: 'resetPassword', 
+  deleteUser: 'deleteUser',  
+  updateUserActiveStatus: 'updateUserActiveStatus',
 };
 
 @Injectable({
@@ -36,7 +39,9 @@ export class UserManagementService {
     private responseHandler: ResponseHandlingService,
     private configService: ConfigService,
     private sanitizer: DomSanitizer
-  ) { this.url = this.configService.getConfig().url; }
+  ) {
+    this.url = this.configService.getConfig().url;
+  }
 
   private handleApiCall<T>(call: Observable<T>, tapHandler: (response: any) => void): Observable<T> {
     this.spinnerService.show();
@@ -77,17 +82,32 @@ export class UserManagementService {
     );
   }
 
-
-
   updateProfileImage(userName: string, formData: FormData): Observable<any> {
     const url = `${this.url}${API_ENDPOINTS.updateProfileImage}/${userName}`;
-    return this.http.put<any>(url, formData);
+    return this.http.put<any>(url, formData).pipe(
+      tap(() => {
+        this.getUser().subscribe();
+      }),
+      catchError(error => {
+        this.responseHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+
+  updateUser(data: any, id: string): Observable<ApiResponse<User>> {
+    const call = this.http.put<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.updateUser}/${id}`, data);
+    return this.handleApiCall(call, response => {
+      this.responseHandler.handleResponse(response);
+      // Después de actualizar el usuario, obtén los datos actualizados y emite los nuevos datos
+      this.getUser().subscribe();  // Actualizar los datos del usuario
+    });
   }
 
 
   getUser(): Observable<ApiResponse<User>> {
     if (this.redirectToLoginIfNoToken()) return EMPTY;
-
     const call = this.http.get<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.getUser}`);
     return this.handleApiCall(call, response => {
       if (response?.data) {
@@ -96,9 +116,9 @@ export class UserManagementService {
     });
   }
 
+
   getUserById(id: string): Observable<ApiResponse<User>> {
     if (this.redirectToLoginIfNoToken()) return EMPTY;
-    
     const call = this.http.get<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.getUserById}/${id}`);
     return this.handleApiCall(call, response => {
       if (response?.data) {
@@ -121,14 +141,6 @@ export class UserManagementService {
     });
   }
 
-  updateUser(data: any, id: string): Observable<ApiResponse<User>> {
-    const call = this.http.put<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.updateUser}/${id}`, data);
-    console.log("🚀 ~ UserManagementService ~ updateUser ~ call:", call)
-    return this.handleApiCall(call, response => {
-      
-      this.responseHandler.handleResponse(response);
-    });
-  }
 
   listAllUsers(filterKey?: string, filterValue?: string): Observable<ApiResponse<User[]>> {
     let params = new HttpParams();
@@ -139,5 +151,44 @@ export class UserManagementService {
     const call = this.http.get<ApiResponse<User[]>>(`${this.url}${API_ENDPOINTS.listAllUsers}`, { params });
     return this.handleApiCall(call, () => { });
   }
-  
+
+  // Endpoint para restablecer la contraseña
+  resetPassword(token: string, newPassword: string): Observable<ApiResponse<any>> {
+    const url = `${this.url}${API_ENDPOINTS.resetPassword}/${token}`;
+    const body = { password: newPassword };
+    const call = this.http.post<ApiResponse<any>>(url, body);
+    return this.handleApiCall(call, response => {
+      this.responseHandler.handleResponse(response);
+    });
+  }
+
+  // Endpoint para eliminar usuario
+  deleteUser(id: string): Observable<ApiResponse<any>> {
+    const url = `${this.url}${API_ENDPOINTS.deleteUser}/${id}`;
+    const call = this.http.delete<ApiResponse<any>>(url);
+    return this.handleApiCall(call, response => {
+      this.responseHandler.handleResponse(response);
+    });
+  }
+
+  // Endpoint para actualizar el estado de actividad del usuario
+  updateUserActiveStatus(id: string, isActive: boolean): Observable<ApiResponse<any>> {
+    const url = `${this.url}${API_ENDPOINTS.updateUserActiveStatus}/${id}`;
+    const body = { isActive };
+    const call = this.http.patch<ApiResponse<any>>(url, body);
+    return this.handleApiCall(call, response => {
+      this.responseHandler.handleResponse(response);
+    });
+  }
+
+  // Service: user-management.service.ts
+  updateMultipleUserActiveStatus(userIds: string[], isActive: boolean): Observable<ApiResponse<any>> {
+    const url = `${this.url}/updateMultipleUserActiveStatus`;
+    const body = { userIds, isActive };
+    const call = this.http.patch<ApiResponse<any>>(url, body);
+    return this.handleApiCall(call, response => {
+      this.responseHandler.handleResponse(response);
+    });
+  }
+
 }

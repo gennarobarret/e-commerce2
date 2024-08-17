@@ -53,6 +53,11 @@ const resendEmailLimiter = rateLimit({
     message: 'Demasiadas solicitudes de reenvío de correo electrónico de verificación desde esta IP, intente nuevamente después de una hora'
 });
 
+const changePasswordLimiter = rateLimit({
+    windowMs: 30 * 60 * 1000, // 30 minutos
+    max: 5, // Límite de 5 solicitudes por ventana por IP
+    message: 'Demasiados intentos de cambio de contraseña desde esta IP, intente nuevamente después de 30 minutos'
+});
 
 module.exports = {
     loginLimiter,
@@ -63,5 +68,6 @@ module.exports = {
     createAdminLimiter,
     googleAuthLimiter,
     resetPasswordLimiter,
-    resetPasswordLimiter
+    resetPasswordLimiter,
+    changePasswordLimiter
 };

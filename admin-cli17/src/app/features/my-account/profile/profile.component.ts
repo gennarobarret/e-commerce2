@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FeatherIconsService } from '../../../core/services';
 import { AuthService } from '../../../core/services';
@@ -22,7 +22,7 @@ import { SpinnerComponent } from '../../../shared/components/spinner/spinner.com
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, UserImageComponent, SpinnerComponent]
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, UserImageComponent, SpinnerComponent, RouterLink]
 })
 export class ProfileComponent implements OnInit {
   updateForm!: FormGroup;
@@ -59,7 +59,6 @@ export class ProfileComponent implements OnInit {
     } else {
       this.router.navigate(['']);
     }
-
     this.fetchUserData();
   }
 
@@ -173,8 +172,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-
-
   private createForm() {
     this.updateForm = this.formBuilder.group({
       inputUserName: [{ value: '', disabled: true }, Validators.required],
@@ -217,7 +214,6 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-
   private createJsonData(): any {
     return {
       firstName: this.updateForm.get('inputFirstName')?.value,
@@ -239,7 +235,6 @@ export class ProfileComponent implements OnInit {
       // }
     };
   }
-
 
   private markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {

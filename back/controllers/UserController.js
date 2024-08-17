@@ -10,9 +10,11 @@ const mongoose = require('mongoose');
 // Models (Internal modules)
 const User = require("../models/userModel");
 const Role = require("../models/roleModel");
+const Country = require("../models/countriesModel");
+const States = require("../models/statesModel");
 
 // utilities (Internal modules)
-const { sendVerificationEmail } = require('../helpers/emailServiceHelper');
+const { resetPasswordUrl, sendVerificationEmail, sendPasswordResetEmail, verificationCodeUrl} = require('../helpers/emailServiceHelper');
 
 // Validation Helpers (Internal modules)
 const { validateUser } = require("../helpers/validateHelper");
@@ -47,6 +49,71 @@ const getUserIDByUserName = async (userName) => {
 
 const isValidObjectId = (id) => {
     return /^[0-9a-fA-F]{24}$/.test(id);
+};
+
+// LIST USER DATA
+const listAllUsers = async (req, res) => {
+    try {
+        // 1. Construir la consulta de búsqueda basada en los parámetros de filtro
+        let query = {};
+        if (req.query.type && req.query.filter) {
+            // Usar una expresión regular para realizar la búsqueda con insensibilidad a mayúsculas/minúsculas
+            query[req.query.type] = new RegExp(req.query.filter, 'i');
+        }
+
+        // 2. Buscar los usuarios en la base de datos y popular los campos 'role', 'countryAddress', y 'stateAddress'
+        const users = await User.find(query)
+            .populate('role', 'name') // Poblar el nombre del rol
+            .populate('countryAddress', 'name') // Poblar el nombre del país
+            .populate('stateAddress', 'province_name'); // Poblar el nombre del estado
+
+        // 3. Sanitizar los datos de los usuarios eliminando campos sensibles
+        const sanitizedUsers = users.map(user => {
+            let userObject = user.toObject();
+            delete userObject.passwordHistory;
+            delete userObject.loginAttempts;
+            delete userObject.configurationToken;
+            delete userObject.resetPasswordToken;
+            delete userObject.verificationCode;
+            delete userObject.verificationCodeExpires;
+            delete userObject.configurationTokenExpires;
+            delete userObject.emailNotifications;
+            delete userObject.lockUntil;
+            delete userObject.resetPasswordExpires;
+            delete userObject.__v;
+            delete userObject.verification;
+
+            // Reemplazar el campo role con el nombre del rol
+            userObject.role = userObject.role.name;
+
+            // Reemplazar el campo countryAddress y stateAddress con el nombre del país y estado
+            if (userObject.countryAddress) {
+                userObject.countryAddress = {
+                    _id: userObject.countryAddress._id,
+                    name: userObject.countryAddress.name,
+                };
+            }
+
+            if (userObject.stateAddress) {
+                userObject.stateAddress = {
+                    _id: userObject.stateAddress._id,
+                    province_name: userObject.stateAddress.province_name,
+                };
+            }
+
+            return userObject;
+        });
+
+        // 4. Responder con éxito
+        handleSuccessfulResponse("Users listed successfully", sanitizedUsers)(req, res);
+
+        // Registrar en el log de auditoría la operación de listar usuarios
+        await logAudit('LIST_USERS', req.user ? req.user._id : 'system', null, 'User', 'Low', 'Listed all users with filters', getClientIp(req), req.originalUrl || '');
+
+    } catch (error) {
+        // Manejar errores
+        handleErrorResponse(error, req, res);
+    }
 };
 
 // CREATE MASTER ADMIN USER
@@ -160,22 +227,17 @@ const createUser = async (req, res) => {
         // 2. Extraer y validar los datos de entrada
         let data = req.body;
 
-        // Verificar que role sea un ObjectId válido
-        if (!data.role || !mongoose.Types.ObjectId.isValid(data.role)) {
-            throw new ErrorHandler(400, "Role must be provided as a valid ObjectId.", req.originalUrl, req.method);
-        }
-
-        // Verificar que el ObjectId del rol existe en la base de datos
-        const role = await Role.findById(data.role);
+        // 2.1 Buscar el ObjectId del rol basado en su nombre
+        const role = await Role.findOne({ name: data.role });
         if (!role) {
-            throw new ErrorHandler(400, `Role with ID '${data.role}' does not exist.`, req.originalUrl, req.method);
+            throw new ErrorHandler(400, `Role with name '${data.role}' does not exist.`, req.originalUrl, req.method);
         }
 
-        // Reemplazar el campo role con un array que contenga el ObjectId
-        data.role = [data.role]; // El esquema espera un array de ObjectIds
+        // Convertir a array de cadenas (ObjectId como string)
+        data.role = [role._id.toString()]; // Convertir ObjectId a cadena y envolver en un array
 
         // 3. Validar los datos después de la conversión a ObjectId
-        const { error: validationError } = validateUser(data, { userNameRequired: true, emailAddressRequired: true, roleRequired: true, passwordRequired: true });
+        const { error: validationError } = validateUser(data, { userNameRequired: true, emailAddressRequired: true, roleRequired: true, passwordRequired: false });
         if (validationError) {
             throw new ErrorHandler(400, validationError.details[0].message, req.originalUrl, req.method);
         }
@@ -188,7 +250,7 @@ const createUser = async (req, res) => {
             ]
         });
         if (existingUser) {
-            const conflictLogMessage = `Attempt to create user with conflicting data:-UserName:${data.userName}-Email:${data.emailAddress}`.trim();
+            const conflictLogMessage = `Attempt to create user with conflicting data: -UserName:${data.userName} -Email:${data.emailAddress}`.trim();
             await logAudit(
                 'ATTEMPT_CREATE_USER',
                 req.user ? req.user.userName : 'unknown',
@@ -203,21 +265,27 @@ const createUser = async (req, res) => {
             throw new ErrorHandler(409, "Registration failed due to a conflict with existing data. Please review your information.", req.originalUrl, req.method);
         }
 
-        // 5. Crear el objeto del usuario con el ObjectId del rol
+        // 5. Crear el objeto del usuario
         const userData = new User({
             ...data,
             createdBy: requestingUserId,
-            verification: 'verified'
+            verification: 'notVerified',  // El usuario aún no está verificado
+            isActive: false  // El usuario no está activado hasta que configure su contraseña
         });
 
-        // 6. Guardar el usuario y verificar que se haya guardado correctamente
+        // 6. Generar el token de verificación y el código de verificación
+        const verificationToken = userData.generatePasswordResetToken();
+        const verificationCode = userData.generateVerificationCode();
+
+        // 7. Guardar el usuario y verificar que se haya guardado correctamente
         await userData.save();
+
         if (!userData._id) {
             throw new ErrorHandler(500, "Failed to save the user.", req.originalUrl, req.method);
         }
 
-        // 7. Registrar la creación del usuario en el log de auditoría
-        const creationLogMessage = `User created:-UserName:${userData.userName} -Name:${userData.firstName},${userData.lastName} -Email:${userData.emailAddress} -ID:${userData._id}`.trim();
+        // 8. Registrar la creación del usuario en el log de auditoría
+        const creationLogMessage = `User created: -UserName:${userData.userName} -Name:${userData.firstName},${userData.lastName} -Email:${userData.emailAddress} -ID:${userData._id}`.trim();
         await logAudit(
             'CREATE_USER',
             req.user ? req.user.userName : 'unknown',
@@ -229,43 +297,76 @@ const createUser = async (req, res) => {
             req.originalUrl || ''
         );
 
-        // Obtener el ID del usuario que está creando el nuevo usuario
-        const creatorUserId = req.user ? req.user.sub : null;
-        if (!creatorUserId) {
-            return res.status(401).json(handleSuccessfulResponse("Access Denied", {}));
-        }
-
-        // 8. Crear una notificación para el usuario creador
+        // 9. Crear una notificación para el usuario creador
         const notification = await notificationService.createNotification({
-            userId: creatorUserId,
+            userId: requestingUserId,
             icon: 'user-plus',
             message: `User ${userData.userName} has been created successfully!`,
             type: 'success'
         });
 
         console.log('Notification created and emitted:', notification); // Agregar log para depuración
-        
 
-        // 9. Generar el token de configuración
-        const token = userData.generateConfigurationToken();
-        console.log("🚀 ~ createUser ~ token:", token)
-
-        // 10. Enviar el email de verificación
-        // const emailSent = await sendVerificationEmail(userData, token);
-        // if (!emailSent.success) {
-        //     throw new ErrorHandler(500, 'Failed to send the verification email.', req.originalUrl, req.method);
-        // }
+        // 10. Enviar el email para verificar la cuenta antes de configurar la contraseña
+        const verificationUrl = verificationCodeUrl(verificationToken);
+        const tokenExpiration = userData.resetPasswordExpires - Date.now();
+        const emailSent = await sendPasswordResetEmail(userData.emailAddress, verificationUrl, verificationCode, tokenExpiration);
+        if (!emailSent.success) {
+            throw new ErrorHandler(500, 'Failed to send the verification email.', req.originalUrl, req.method);
+        }
 
         // 11. Responder con éxito
-        handleSuccessfulResponse("User created successfully.", { userId: userData._id })(req, res);
+        handleSuccessfulResponse("User created successfully. A verification email has been sent.", { userId: userData._id })(req, res);
 
     } catch (error) {
-        // Registrar y manejar errores
-        // logger.error('createUser error:', error);
         handleErrorResponse(error, req, res);
     }
 };
 
+const registerUser = async (req, res) => {
+    try {
+        // Extraer y validar los datos de entrada
+        let data = req.body;
+
+        // Validar los datos del usuario
+        const { error: validationError } = validateUser(data, { userNameRequired: true, emailAddressRequired: true, passwordRequired: true });
+        if (validationError) {
+            throw new ErrorHandler(400, validationError.details[0].message, req.originalUrl, req.method);
+        }
+
+        // Verificar si ya existe un usuario con el mismo nombre de usuario o correo
+        const existingUser = await User.findOne({
+            $or: [
+                { userName: { $regex: new RegExp('^' + data.userName + '$', 'i') } },
+                { emailAddress: { $regex: new RegExp('^' + data.emailAddress + '$', 'i') } }
+            ]
+        });
+        if (existingUser) {
+            throw new ErrorHandler(409, "User with provided details already exists.", req.originalUrl, req.method);
+        }
+
+        // Crear el objeto del usuario
+        const userData = new User({
+            ...data,
+            verification: 'pending'
+        });
+
+        // Guardar el usuario
+        await userData.save();
+
+        // Enviar el correo de verificación
+        const emailSent = await sendVerificationEmail(userData);
+        if (!emailSent.success) {
+            throw new ErrorHandler(500, 'Failed to send the verification email.', req.originalUrl, req.method);
+        }
+
+        // Responder con éxito
+        handleSuccessfulResponse("User registered successfully. Please verify your email.", { userId: userData._id })(req, res);
+
+    } catch (error) {
+        handleErrorResponse(error, req, res);
+    }
+};
 
 // GET USER PROFILE PICTURE
 const getProfileImage = async (req, res) => {
@@ -306,6 +407,12 @@ const updateProfileImage = async (req, res) => {
     try {
         // 1. Validar y sanitizar la entrada
         const userName = req.params.userName;
+
+        // Asegurarse de que userName no sea undefined
+        if (!userName) {
+            throw new ErrorHandler(400, "User name is required to update profile image", req.originalUrl, req.method);
+        }
+
         const userIdToUpdate = await getUserIDByUserName(userName);
         if (!userIdToUpdate) {
             throw new ErrorHandler(404, "User not found", req.originalUrl, req.method);
@@ -417,6 +524,50 @@ const getUser = async (req, res) => {
     }
 };
 
+
+// GET USER BY ID
+const getUserById = async (req, res) => {
+    try {
+        // 1. Validar y sanitizar la entrada
+        const userId = req.params.id;
+        console.log("🚀 ~ getUserById ~ userId:", userId)
+
+        if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
+            throw new ErrorHandler(400, "Invalid or missing User ID", req.originalUrl, req.method);
+        }
+
+        // 2. Buscar el usuario por su ID y seleccionar solo los campos necesarios
+        const user = await User.findById(userId)
+            .select('userName firstName lastName emailAddress authMethod isActive profileImage emailNotifications role organizationName countryAddress stateAddress phoneNumber birthday identification additionalInfo')
+            .populate({ path: 'role', select: 'name' })
+            .populate({ path: 'countryAddress', select: 'name' })
+            .populate({ path: 'stateAddress', select: 'province_name' });
+
+        if (!user) {
+            throw new ErrorHandler(404, "User not found", req.originalUrl, req.method);
+        }
+
+        // 3. Formatear los datos del usuario para la respuesta
+        const userData = {
+            ...user.toObject(),
+            role: user.role ? user.role.name : 'No role',
+            countryAddress: user.countryAddress ? { _id: user.countryAddress._id, name: user.countryAddress.name } : { _id: null, name: 'No country found' },
+            stateAddress: user.stateAddress ? { _id: user.stateAddress._id, name: user.stateAddress.province_name } : { _id: null, name: 'No state/province/district/community found' },
+        };
+
+        // 4. Loggear la recuperación exitosa del usuario
+        logger.info(`User retrieved: ${userData.userName}`);
+
+        // 5. Responder con éxito
+        handleSuccessfulResponse("User retrieved successfully", userData)(req, res);
+
+    } catch (error) {
+        // Manejar errores
+        logger.error(`getUserById error: ${error.message}`);
+        handleErrorResponse(error, req, res);
+    }
+};
+
 // UPDATE USER INFO
 const updateUser = async (req, res) => {
     
@@ -468,7 +619,7 @@ const updateUser = async (req, res) => {
             "firstName", "lastName", "organizationName", "countryAddress",
             "stateAddress", "phoneNumber", "birthday",
             "identification", "additionalInfo",
-            "emailNotifications"
+            "emailNotifications", "isActive"
         ];
 
         // Actualizar solo los campos permitidos
@@ -509,73 +660,6 @@ const updateUser = async (req, res) => {
     }
 };
 
-// GET USER BY ID
-const getUserById = async (req, res) => {
-    try {
-        // 1. Validar y sanitizar la entrada
-        const userId = req.params.userId;
-        if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
-            throw new ErrorHandler(400, "Invalid or missing User ID", req.originalUrl, req.method);
-        }
-
-        // 2. Buscar el usuario por su ID
-        const user = await User.findById(userId).select('-password'); // Excluir el campo password
-        if (!user) {
-            throw new ErrorHandler(404, "User not found", req.originalUrl, req.method);
-        }
-
-        // 3. Responder con el usuario encontrado
-        handleSuccessfulResponse("User retrieved successfully", user)(req, res);
-
-    } catch (error) {
-        // Manejar errores
-        handleErrorResponse(error, req, res);
-    }
-};
-
-// LIST USER DATA
-const listAllUsers = async (req, res) => {
-    try {
-        // 1. Construir la consulta de búsqueda basada en los parámetros de filtro
-        let query = {};
-        if (req.query.type && req.query.filter) {
-            // Usar una expresión regular para realizar la búsqueda con insensibilidad a mayúsculas/minúsculas
-            query[req.query.type] = new RegExp(req.query.filter, 'i');
-        }
-
-        // 2. Buscar los usuarios en la base de datos
-        const users = await User.find(query);
-
-        // 3. Sanitizar los datos de los usuarios eliminando campos sensibles
-        const sanitizedUsers = users.map(user => {
-            let userObject = user.toObject();
-            delete userObject.passwordHistory;
-            delete userObject.loginAttempts;
-            delete userObject.configurationToken;
-            delete userObject.resetPasswordToken;
-            delete userObject.verificationCode;
-            delete userObject.verificationCodeExpires;
-            delete userObject.configurationTokenExpires;
-            delete userObject.emailNotifications;
-            delete userObject.lockUntil;
-            delete userObject.resetPasswordExpires;
-            delete userObject.__v;
-            delete userObject.verification;
-            return userObject;
-        });
-
-        // 4. Responder con éxito
-        handleSuccessfulResponse("Users listed successfully", sanitizedUsers)(req, res);
-
-        // Registrar en el log de auditoría la operación de listar usuarios
-        await logAudit('LIST_USERS', req.user ? req.user._id : 'system', null, 'User', 'Low', 'Listed all users with filters', getClientIp(req), req.originalUrl || '');
-
-    } catch (error) {
-        // Manejar errores
-        handleErrorResponse(error, req, res);
-    }
-};
-
 // DELETE USER
 const deleteUser = async (req, res) => {
     try {
@@ -590,19 +674,25 @@ const deleteUser = async (req, res) => {
             throw new ErrorHandler(400, "Invalid User ID format", req.originalUrl, req.method);
         }
 
-        // 2. Buscar el usuario a eliminar
-        const userToDelete = await User.findById(id);
+        // 2. Buscar y eliminar el usuario
+        const userToDelete = await User.findByIdAndDelete(id);
         if (!userToDelete) {
             return handleSuccessfulResponse("User not found", {})(req, res);
         }
 
-        // 3. guardar la auditoría antes de eliminar el usuario
-        await logAudit('DELETE', userId, id, 'User', 'delete', `User ${id} deleted by ${userId}`, getClientIp(req), req.originalUrl || '');
+        // 3. guardar la auditoría después de eliminar el usuario
+        await logAudit(
+            'DELETE',
+            userId,
+            id,
+            'User',
+            'High',  // Cambiar 'delete' a un valor válido como 'High'
+            `User ${id} deleted by ${userId}`,
+            getClientIp(req),
+            req.originalUrl || ''
+        );
 
-        // 4. Eliminar el usuario
-        await userToDelete.remove();
-
-        // 5. Responder con éxito
+        // 4. Responder con éxito
         handleSuccessfulResponse("User deleted successfully", { id })(req, res);
 
     } catch (error) {
@@ -610,6 +700,7 @@ const deleteUser = async (req, res) => {
         handleErrorResponse(error, req, res);
     }
 };
+
 
 // UPDATE USER ACTIVE STATUS
 const updateUserActiveStatus = async (req, res) => {
@@ -698,6 +789,7 @@ const updateMultipleUserActiveStatus = async (req, res) => {
 module.exports = {
     createMasterAdmin,
     createUser,
+    registerUser,
     getUser,
     getUserById,
     getProfileImage,

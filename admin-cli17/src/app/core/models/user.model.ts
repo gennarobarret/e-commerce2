@@ -16,13 +16,18 @@ export interface User {
     phoneNumber?: string;
     birthday?: Date;
     role: UserRole;
+    isActive: boolean;
     authMethod?: string;
     identification?: string;
     additionalInfo?: string;
     profileImage?: string;
     createdAt?: Date;
     updatedAt?: Date;
+    twoFactor?: boolean; // Añadir esta propiedad
+    privacySetting?: string; // Añadir esta propiedad (puede ser un enum si tiene valores predefinidos)
+    dataSharing?: boolean; // Añadir esta propiedad
 }
+
 
 // Interfaz para usuario con token
 export interface UserWithToken extends User {

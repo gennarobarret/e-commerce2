@@ -7,10 +7,15 @@ const {
     loginLimiter,
     forgotPasswordLimiter,
     verifyCodeLimiter,
-    resetPasswordLimiter
+    resetPasswordLimiter,
+    changePasswordLimiter // Importar el limitador para cambio de contraseña
 } = require('../middlewares/rateLimit');
 const api = express.Router();
+const auth = require('../middlewares/authenticate');
+const rbac = require('../middlewares/rbacMiddleware');
 
+// Ruta para cambiar la contraseña desde la cuenta autenticada con limitador
+api.post('/change-password', [auth.auth, rbac('update', 'user'), changePasswordLimiter], AuthController.changePassword);
 api.post('/auth/google', googleAuthLimiter, AuthController.authenticateWithGoogle); // Autenticación con Google con limitador
 api.get('/activation/:token', activationLimiter, AuthController.activateUser); // Activación de cuenta con limitador
 api.post('/resendVerificationEmail', resendEmailLimiter, AuthController.resendVerificationEmail); // Reenviar email de verificación con limitador

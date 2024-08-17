@@ -1,0 +1,1 @@
+{"level":"error","message":"loginUser error: Invalid credentials","method":"POST","path":"loginUser","stack":"Failed login attempt for user: masteradmin from IP: ::ffff:127.0.0.1","status":401,"timestamp":"2024-08-17 12:25:01"}

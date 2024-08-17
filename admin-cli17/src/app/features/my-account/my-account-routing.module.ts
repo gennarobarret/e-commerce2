@@ -3,6 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+    },
+    {
         path: 'profile/:userName',
         loadComponent: () => import('./profile/profile.component').then(c => c.ProfileComponent)
     },
@@ -17,6 +22,10 @@ const routes: Routes = [
     {
         path: 'security',
         loadComponent: () => import('./security/security.component').then(c => c.SecurityComponent)
+    },
+    {
+        path: '**',
+        redirectTo: '/dashboard'
     }
 ];
 

@@ -1,13 +1,29 @@
 <main>
     <!-- Header -->
     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-        <!-- contenido del header -->
+        <div class="container-xl px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                            Account Settings - Profile
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- Main page content-->
     <div class="container-xl px-4 mt-4">
         <!-- Account page navigation-->
-        <!-- contenido de navegación -->
+        <nav class="nav nav-borders">
+            <a class="nav-link active ms-0">Profile</a>
+            <a class="nav-link" [routerLink]="['/my-account/billing']">Billing</a>
+            <a class="nav-link" [routerLink]="['/my-account/security']">Security</a>
+            <a class="nav-link" [routerLink]="['/my-account/notifications']">Notifications</a>
+        </nav>
 
         <!-- Spinner o contenido -->
         <ng-container *ngIf="loading">
@@ -17,10 +33,15 @@
             <div class="row">
                 <div class="col-xl-4">
                     <!-- Componente de imagen del usuario -->
-                    <app-user-image [cssClass]="'my-custom-class'" [showButtons]="true"
-                        (imageUpdated)="fetchUserData()">
+                    <app-user-image 
+                    [cssClass]="'my-custom-class'"
+                    [showButtons]="true"
+                    [profileImage]="user?.profileImage ?? null" [userName]="user?.userName ?? ''"
+                    (imageUpdated)="fetchUserData()"
+                    >
                     </app-user-image>
                 </div>
+
                 <div class="col-xl-8">
                     <form [formGroup]="updateForm" (ngSubmit)="update()">
                         <!-- Account details card-->
@@ -32,8 +53,8 @@
                                     <label class="small mb-1" for="inputUserName">
                                         Username (how your name will appear to other users on the site)
                                     </label>
-                                    <input class="form-control" id="inputUserName" type="text" placeholder="Enter your UserName"
-                                        formControlName="inputUserName"
+                                    <input class="form-control" id="inputUserName" type="text"
+                                        placeholder="Enter your UserName" formControlName="inputUserName"
                                         [ngClass]="{'is-invalid': updateForm.get('inputUserName')?.invalid && (updateForm.get('inputUserName')?.dirty || updateForm.get('inputUserName')?.touched)}" />
                                     <div *ngIf="updateForm.get('inputUserName')?.invalid && (updateForm.get('inputUserName')?.dirty || updateForm.get('inputUserName')?.touched)"
                                         class="text-danger">
@@ -56,8 +77,8 @@
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputFirstName">First name</label>
-                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name"
-                                            formControlName="inputFirstName"
+                                        <input class="form-control" id="inputFirstName" type="text"
+                                            placeholder="Enter your first name" formControlName="inputFirstName"
                                             [ngClass]="{'is-invalid': updateForm.get('inputFirstName')?.invalid && (updateForm.get('inputFirstName')?.dirty || updateForm.get('inputFirstName')?.touched)}" />
                                         <div *ngIf="updateForm.get('inputFirstName')?.invalid && (updateForm.get('inputFirstName')?.dirty || updateForm.get('inputFirstName')?.touched)"
                                             class="text-danger">
@@ -78,8 +99,8 @@
                                     <!-- Form Group (last name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Last name</label>
-                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name"
-                                            formControlName="inputLastName"
+                                        <input class="form-control" id="inputLastName" type="text"
+                                            placeholder="Enter your last name" formControlName="inputLastName"
                                             [ngClass]="{'is-invalid': updateForm.get('inputLastName')?.invalid && (updateForm.get('inputLastName')?.dirty || updateForm.get('inputLastName')?.touched)}" />
                                         <div *ngIf="updateForm.get('inputLastName')?.invalid && (updateForm.get('inputLastName')?.dirty || updateForm.get('inputLastName')?.touched)"
                                             class="text-danger">
@@ -105,17 +126,20 @@
                                         <label class="small mb-1" for="inputOrganizationName">Organization
                                             name</label>
                                         <input class="form-control" id="inputOrganizationName" type="text"
-                                            placeholder="Enter your organization name" formControlName="inputOrganizationName"
+                                            placeholder="Enter your organization name"
+                                            formControlName="inputOrganizationName"
                                             [ngClass]="{'is-invalid': updateForm.get('inputOrganizationName')?.invalid && (updateForm.get('inputOrganizationName')?.dirty || updateForm.get('inputOrganizationName')?.touched)}" />
                                         <div *ngIf="updateForm.get('inputOrganizationName')?.invalid && (updateForm.get('inputOrganizationName')?.dirty || updateForm.get('inputOrganizationName')?.touched)"
                                             class="text-danger">
                                             <span *ngIf="updateForm.get('inputOrganizationName')?.errors?.['required']">
                                                 organization name is required.
                                             </span>
-                                            <span *ngIf="updateForm.get('inputOrganizationName')?.errors?.['minlength']">
+                                            <span
+                                                *ngIf="updateForm.get('inputOrganizationName')?.errors?.['minlength']">
                                                 organization name must be at least 4 character long.
                                             </span>
-                                            <span *ngIf="updateForm.get('inputOrganizationName')?.errors?.['maxlength']">
+                                            <span
+                                                *ngIf="updateForm.get('inputOrganizationName')?.errors?.['maxlength']">
                                                 organization name must be no more than 25 characters long.
                                             </span>
                                             <span *ngIf="updateForm.get('inputOrganizationName')?.errors?.['pattern']">
@@ -141,14 +165,16 @@
                                     </div>
                                 </div>
                                 <div class="row gx-3 mb-3">
-                    
+
                                     <!-- Form Group (country)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputCountryAddress">Country</label>
-                                        <select class="form-control" id="inputCountryAddress" formControlName="inputCountryAddress"
-                                            (click)="loadCountries()" (change)="onCountryChange($event)"
+                                        <select class="form-control" id="inputCountryAddress"
+                                            formControlName="inputCountryAddress" (click)="loadCountries()"
+                                            (change)="onCountryChange($event)"
                                             [ngClass]="{'is-invalid': updateForm.get('inputCountryAddress')?.invalid && (updateForm.get('inputCountryAddress')?.dirty || updateForm.get('inputCountryAddress')?.touched)}">
-                                            <option value="" disabled [selected]="!updateForm.get('inputCountryAddress')?.value">Select your
+                                            <option value="" disabled
+                                                [selected]="!updateForm.get('inputCountryAddress')?.value">Select your
                                                 country
                                             </option>
                                             <option *ngFor="let country of countries" [value]="country._id">
@@ -164,9 +190,11 @@
                                     <!-- Form Group (state)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputStateAddress">State</label>
-                                        <select class="form-control" id="inputStateAddress" formControlName="inputStateAddress"
+                                        <select class="form-control" id="inputStateAddress"
+                                            formControlName="inputStateAddress"
                                             [ngClass]="{'is-invalid': updateForm.get('inputStateAddress')?.invalid && (updateForm.get('inputStateAddress')?.dirty || updateForm.get('inputStateAddress')?.touched)}">
-                                            <option value="" disabled [selected]="!updateForm.get('inputStateAddress')?.value">Select your
+                                            <option value="" disabled
+                                                [selected]="!updateForm.get('inputStateAddress')?.value">Select your
                                                 state</option>
                                             <option *ngFor="let state of filteredStates" [value]="state._id">
                                                 {{ state.province_name }}
@@ -178,15 +206,15 @@
                                                 is required.</div>
                                         </div>
                                     </div>
-                    
+
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputPhoneNumber">Phone number</label>
-                                        <input class="form-control" id="inputPhoneNumber" type="tel" placeholder="Enter your phone number"
-                                            formControlName="inputPhoneNumber"
+                                        <input class="form-control" id="inputPhoneNumber" type="tel"
+                                            placeholder="Enter your phone number" formControlName="inputPhoneNumber"
                                             [ngClass]="{'is-invalid': updateForm.get('inputPhoneNumber')?.invalid && (updateForm.get('inputPhoneNumber')?.dirty || updateForm.get('inputPhoneNumber')?.touched)}" />
                                         <div *ngIf="updateForm.get('inputPhoneNumber')?.invalid && (updateForm.get('inputPhoneNumber')?.dirty || updateForm.get('inputPhoneNumber')?.touched)"
                                             class="text-danger">
@@ -201,15 +229,16 @@
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                        <input class="form-control" id="inputBirthday" type="date" placeholder="Enter your birthday"
-                                            formControlName="inputBirthday"
+                                        <input class="form-control" id="inputBirthday" type="date"
+                                            placeholder="Enter your birthday" formControlName="inputBirthday"
                                             [ngClass]="{'is-invalid': updateForm.get('inputBirthday')?.invalid && (updateForm.get('inputBirthday')?.dirty || updateForm.get('inputBirthday')?.touched)}" />
                                         <div *ngIf="updateForm.get('inputBirthday')?.invalid && (updateForm.get('inputBirthday')?.dirty || updateForm.get('inputBirthday')?.touched)"
                                             class="text-danger">
                                             <span *ngIf="updateForm.get('inputBirthday')?.errors?.['required']">
                                                 Phone number is required.
                                             </span>
-                                            <span *ngIf="updateForm.get('inputBirthday')?.errors?.['invalidDateFormat']">
+                                            <span
+                                                *ngIf="updateForm.get('inputBirthday')?.errors?.['invalidDateFormat']">
                                                 Must be a valid date.
                                             </span>
                                         </div>
@@ -220,8 +249,8 @@
                                     <!-- Form Group (role)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputRole">Role</label>
-                                        <input class="form-control" id="inputRole" type="text" formControlName="inputRole"
-                                            placeholder="Enter Role"
+                                        <input class="form-control" id="inputRole" type="text"
+                                            formControlName="inputRole" placeholder="Enter Role"
                                             [ngClass]="{'is-invalid': updateForm.get('inputRole')?.invalid && (updateForm.get('inputRole')?.dirty || updateForm.get('inputRole')?.touched)}" />
                                         <div *ngIf="updateForm.get('inputRole')?.invalid && (updateForm.get('inputRole')?.dirty || updateForm.get('inputRole')?.touched)"
                                             class="text-danger">
@@ -234,7 +263,8 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputIdentification">ID/DNI/NIE</label>
                                         <input class="form-control" id="inputIdentification" type="text"
-                                            placeholder="Enter your identification" formControlName="inputIdentification"
+                                            placeholder="Enter your identification"
+                                            formControlName="inputIdentification"
                                             [ngClass]="{'is-invalid': updateForm.get('inputIdentification')?.invalid && (updateForm.get('inputIdentification')?.dirty || updateForm.get('inputIdentification')?.touched)}" />
                                         <div *ngIf="updateForm.get('inputIdentification')?.invalid && (updateForm.get('inputIdentification')?.dirty || updateForm.get('inputIdentification')?.touched)"
                                             class="text-danger">
@@ -269,13 +299,13 @@
                                         </span>
                                     </div>
                                 </div>
-                    
-                    
+
+
                                 <!-- Save changes button-->
                                 <button class="btn btn-primary" type="submit">
                                     Save changes
                                 </button>
-                    
+
                             </div>
                         </div>
                     </form>

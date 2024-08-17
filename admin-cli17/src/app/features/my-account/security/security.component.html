@@ -1,1 +1,220 @@
-<p>security works!</p>
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-xl px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                            Account Settings - Security
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main page content-->
+    <div class="container-xl px-4 mt-4">
+        <!-- Account page navigation-->
+        <nav class="nav nav-borders">
+            <a class="nav-link" [routerLink]="['/my-account/profile', user?.userName]">Profile</a>
+            <a class="nav-link" [routerLink]="['/my-account/billing']">Billing</a>
+            <a class="nav-link active ms-0" [routerLink]="['/my-account/security']">Security</a>
+            <a class="nav-link" [routerLink]="['/my-account/notifications']">Notifications</a>
+        </nav>
+
+
+        <hr class="mt-0 mb-4" />
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Change password card-->
+                <div class="card mb-4">
+                    <div class="card-header">Change Password</div>
+                    <div class="card-body">
+                        <form [formGroup]="securityForm" (ngSubmit)="onChangePassword()">
+                            <!-- Form Group (current password)-->
+                            <div class="mb-3">
+                                <label class="small mb-1" for="currentPassword">Current Password</label>
+                                <input class="form-control" id="currentPassword" type="password"
+                                    formControlName="currentPassword" [ngClass]="{'is-invalid': securityForm.get('currentPassword')?.invalid && 
+                                            (securityForm.get('currentPassword')?.dirty || 
+                                             securityForm.get('currentPassword')?.touched)}"
+                                    placeholder="Enter current password" />
+                                <div *ngIf="securityForm.get('currentPassword')?.invalid && 
+                            (securityForm.get('currentPassword')?.dirty || 
+                             securityForm.get('currentPassword')?.touched)" class="text-danger">
+                                    <span *ngIf="securityForm.get('currentPassword')?.errors?.['required']">
+                                        Current password is required.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Form Group (new password)-->
+                            <div class="mb-3">
+                                <label class="small mb-1" for="newPassword">New Password</label>
+                                <input class="form-control" id="newPassword" type="password"
+                                    formControlName="newPassword" [ngClass]="{'is-invalid': securityForm.get('newPassword')?.invalid && 
+                                            (securityForm.get('newPassword')?.dirty || 
+                                             securityForm.get('newPassword')?.touched)}"
+                                    placeholder="Enter new password" />
+                                <div *ngIf="securityForm.get('newPassword')?.invalid && 
+                            (securityForm.get('newPassword')?.dirty || 
+                             securityForm.get('newPassword')?.touched)" class="text-danger">
+                                    <span *ngIf="securityForm.get('newPassword')?.errors?.['required']">
+                                        Password is required.
+                                    </span>
+                                    <span *ngIf="securityForm.get('newPassword')?.errors?.['passwordStrength']">
+                                        Password must meet strength requirements.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Form Group (confirm password)-->
+                            <div class="mb-3">
+                                <label class="small mb-1" for="confirmPassword">Confirm Password</label>
+                                <input class="form-control" id="confirmPassword" type="password"
+                                    formControlName="confirmPassword" [ngClass]="{'is-invalid': securityForm.get('confirmPassword')?.invalid && 
+                                            (securityForm.get('confirmPassword')?.dirty || 
+                                             securityForm.get('confirmPassword')?.touched)}"
+                                    placeholder="Confirm new password" />
+                                <div *ngIf="securityForm.get('confirmPassword')?.invalid && 
+                            (securityForm.get('confirmPassword')?.dirty || 
+                             securityForm.get('confirmPassword')?.touched)" class="text-danger">
+                                    <span *ngIf="securityForm.get('confirmPassword')?.errors?.['required']">
+                                        Confirm Password is required.
+                                    </span>
+                                    <span *ngIf="securityForm.get('confirmPassword')?.errors?.['mustMatch']">
+                                        Passwords must match.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div *ngIf="securityForm.disabled" class="alert alert-warning" role="alert">
+                                Password change is disabled for users authenticated with external providers.
+                            </div>
+
+                            <button class="btn btn-primary" type="submit"
+                                [disabled]="load_btn || securityForm.disabled || user?.authMethod !== 'local'">
+                                <span *ngIf="!load_btn">Save</span>
+                                <span *ngIf="load_btn" class="spinner-border spinner-border-sm" role="status"
+                                    aria-hidden="true"></span>
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Security preferences card-->
+                <div class="card mb-4">
+                    <div class="card-header">Security Preferences</div>
+                    <div class="card-body">
+                        <!-- Account privacy optinos-->
+                        <h5 class="mb-1">Account Privacy</h5>
+                        <p class="small text-muted">By setting your account to private, your profile information and
+                            posts will not be visible to users outside of your user groups.</p>
+                        <form>
+                            <div class="form-check">
+                                <input class="form-check-input" id="radioPrivacy1" type="radio" name="radioPrivacy"
+                                    checked />
+                                <label class="form-check-label" for="radioPrivacy1">Public (posts are available to all
+                                    users)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" id="radioPrivacy2" type="radio" name="radioPrivacy" />
+                                <label class="form-check-label" for="radioPrivacy2">Private (posts are available to only
+                                    users in your groups)</label>
+                            </div>
+                        </form>
+                        <hr class="my-4" />
+                        <!-- Data sharing options-->
+                        <h5 class="mb-1">Data Sharing</h5>
+                        <p class="small text-muted">Sharing usage data can help us to improve our products and better
+                            serve our users as they navigation through our application. When you agree to share usage
+                            data with us, crash reports and usage analytics will be automatically sent to our
+                            development team for investigation.</p>
+                        <form>
+                            <div class="form-check">
+                                <input class="form-check-input" id="radioUsage1" type="radio" name="radioUsage"
+                                    checked />
+                                <label class="form-check-label" for="radioUsage1">Yes, share data and crash reports with
+                                    app developers</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" id="radioUsage2" type="radio" name="radioUsage" />
+                                <label class="form-check-label" for="radioUsage2">No, limit my data sharing with app
+                                    developers</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- Two factor authentication card-->
+                <div class="card mb-4">
+                    <div class="card-header">Two-Factor Authentication</div>
+                    <div class="card-body">
+                        <p>Add another level of security to your account by enabling two-factor authentication. We will
+                            send you a text message to verify your login attempts on unrecognized devices and browsers.
+                        </p>
+                        <form>
+                            <div class="form-check">
+                                <input class="form-check-input" id="twoFactorOn" type="radio" name="twoFactor"
+                                    checked />
+                                <label class="form-check-label" for="twoFactorOn">On</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" id="twoFactorOff" type="radio" name="twoFactor" />
+                                <label class="form-check-label" for="twoFactorOff">Off</label>
+                            </div>
+                            <div class="mt-3">
+                                <label class="small mb-1" for="twoFactorSMS">SMS Number</label>
+                                <input class="form-control" id="twoFactorSMS" type="tel"
+                                    placeholder="Enter a phone number" value="555-123-4567" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Delete account card-->
+                <div class="card mb-4">
+                    <div class="card-header">Delete Account</div>
+                    <div class="card-body">
+                        <p>Deleting your account is a permanent action and cannot be undone. If you are sure you want to
+                            delete your
+                            account, select the button below.</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-danger-soft text-danger" type="button" data-bs-toggle="modal"
+                            data-bs-target="#deleteAccountModal">
+                            I understand, delete my account
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog"
+                            aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Account Deletion
+                                        </h5>
+                                        <button class="btn-close" type="button" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete your account? This action cannot be undone.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-danger" type="button" (click)="onConfirmDelete()">Delete
+                                            Account</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>

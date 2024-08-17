@@ -115,14 +115,17 @@
             <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
                 href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                <!-- Aquí solo necesitas usar el componente sin pasarle la imagen -->
-                <app-user-image cssClass="img-fluid header-class" [showButtons]="false"></app-user-image>
+                <!-- Pasar la imagen de perfil al componente -->
+                <app-user-image [profileImage]="user.data.profileImage" cssClass="img-fluid header-class"
+                    [showButtons]="false"></app-user-image>
             </a>
             <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up"
                 aria-labelledby="navbarDropdownUserImage">
                 <h6 class="dropdown-header d-flex align-items-center">
-                    <!-- Nuevamente, no es necesario pasar la imagen como input -->
-                    <app-user-image cssClass="dropdown-user-img header-class" [showButtons]="false"></app-user-image>
+                    <!-- Pasar la imagen de perfil al componente -->
+                    <app-user-image [profileImage]="user.data.profileImage" cssClass="dropdown-user-img header-class"
+                        [showButtons]="false">
+                    </app-user-image>
                     <div class="dropdown-user-details">
                         <div class="dropdown-user-details-name">{{ displayFullName() }}</div>
                         <div class="dropdown-user-details-email">{{ user.data.userName }}</div>
@@ -139,6 +142,5 @@
                 </a>
             </div>
         </li>
-
     </ul>
 </nav>

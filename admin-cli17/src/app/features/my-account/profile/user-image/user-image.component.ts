@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy, Output, ViewChild, ElementRef, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges, Output, ViewChild, ElementRef, EventEmitter, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { UserManagementService } from '../../../../core/services';
 import { ToastService } from '../../../../core/services';
-import { User } from '../../../../core/models';
 
 @Component({
   selector: 'app-user-image',
@@ -13,15 +12,17 @@ import { User } from '../../../../core/models';
   standalone: true,
   imports: [CommonModule]
 })
-export class UserImageComponent implements OnInit, OnDestroy {
+export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
   @Input() cssClass: string = '';
   @Input() showButtons: boolean = false;
+  @Input() profileImage: string | null | undefined = null;
+  @Input() userName!: string;
   imageUrl!: SafeUrl;
   private subscriptions = new Subscription();
   selectedFile: File | null = null;
   @Output() imageUpdated = new EventEmitter<void>();
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-  private userName!: string; // Cambiado de userId a userName
+  disableUploadButton: boolean = false;
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -30,27 +31,27 @@ export class UserImageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.subscriptions.add(
-      this._userManagementService.getUser().subscribe({
-        next: (response) => {
-          const user = response.data;
-          this.userName = user.userName; // Asigna el userName
-          if (user?.profileImage) {
-            if (user.profileImage.startsWith('http')) {
-              this.imageUrl = this._sanitizer.bypassSecurityTrustUrl(user.profileImage);
-            } else {
-              this.loadUserImage(user.profileImage);
-            }
-          } else {
-            this.setImageAsDefault();
-          }
-        },
-        error: (error) => {
-          this.showErrorMessage('Failed to load user data.');
-          this.setImageAsDefault();
-        }
-      })
-    );
+    this.loadProfileImage();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['profileImage']) {
+      this.loadProfileImage();
+    }
+  }
+
+  private loadProfileImage(): void {
+    if (this.profileImage) {
+      if (this.profileImage.startsWith('http')) {
+        this.disableUploadButton = true;
+        this.imageUrl = this._sanitizer.bypassSecurityTrustUrl(this.profileImage);
+        console.log("🚀 ~ UserImageComponent ~ loadProfileImage ~ this.imageUrl:", this.imageUrl);
+      } else {
+        this.loadUserImage(this.profileImage);
+      }
+    } else {
+      this.setImageAsDefault();
+    }
   }
 
   private loadUserImage(imageFileName: string): void {
@@ -109,15 +110,11 @@ export class UserImageComponent implements OnInit, OnDestroy {
     const formData = new FormData();
     formData.append('profileImage', this.selectedFile, this.selectedFile.name);
 
-    this._userManagementService.updateProfileImage(this.userName, formData).subscribe({ // Usar userName
+    this._userManagementService.updateProfileImage(this.userName, formData).subscribe({
       next: response => {
-        // Emite el evento de actualización de la imagen
         this.imageUpdated.emit();
-
-        // Muestra un mensaje de éxito
         this.showSuccessMessage('Image uploaded successfully.');
 
-        // Recarga la nueva imagen directamente desde el servicio de usuario
         this.subscriptions.add(
           this._userManagementService.getUser().subscribe({
             next: (response) => {
@@ -138,7 +135,6 @@ export class UserImageComponent implements OnInit, OnDestroy {
       error: error => this._toastService.showToast('error', error.message)
     });
   }
-
 
   private showErrorMessage(message: string): void {
     this._toastService.showToast('error', message);

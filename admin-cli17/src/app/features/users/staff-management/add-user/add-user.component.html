@@ -1,1 +1,272 @@
-<p>add-user works!</p>
+<main>
+    <!-- Header -->
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-xl px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="user-plus"></i></div>
+                            Add New User
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main page content-->
+    <div class="container-xl px-4 mt-4">
+        <!-- Spinner o contenido -->
+        <ng-container *ngIf="loading">
+            <app-spinner></app-spinner>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2">
+                    <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+                        <!-- Account details card-->
+                        <div class="card mb-4">
+                            <div class="card-header">User Details</div>
+                            <div class="card-body">
+                                <!-- Form Group (username)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="userName">Username</label>
+                                    <input class="form-control" id="userName" type="text"
+                                        placeholder="Enter your UserName" formControlName="userName"
+                                        [ngClass]="{'is-invalid': addUserForm.get('userName')?.invalid && (addUserForm.get('userName')?.dirty || addUserForm.get('userName')?.touched)}" />
+                                    <div *ngIf="addUserForm.get('userName')?.invalid && (addUserForm.get('userName')?.dirty || addUserForm.get('userName')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="addUserForm.get('userName')?.errors?.['required']">
+                                            Username is required.
+                                        </span>
+                                        <span *ngIf="addUserForm.get('userName')?.errors?.['minlength']">
+                                            Username must be at least 4 characters long.
+                                        </span>
+                                        <span *ngIf="addUserForm.get('userName')?.errors?.['maxlength']">
+                                            Username must be no more than 25 characters long.
+                                        </span>
+                                        <span *ngIf="addUserForm.get('userName')?.errors?.['pattern']">
+                                            Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="firstName">First name</label>
+                                        <input class="form-control" id="firstName" type="text"
+                                            placeholder="Enter your first name" formControlName="firstName"
+                                            [ngClass]="{'is-invalid': addUserForm.get('firstName')?.invalid && (addUserForm.get('firstName')?.dirty || addUserForm.get('firstName')?.touched)}" />
+                                        <div *ngIf="addUserForm.get('firstName')?.invalid && (addUserForm.get('firstName')?.dirty || addUserForm.get('firstName')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="addUserForm.get('firstName')?.errors?.['required']">
+                                                First name is required.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('firstName')?.errors?.['minlength']">
+                                                First name must be at least 3 characters long.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('firstName')?.errors?.['maxlength']">
+                                                First name must be no more than 25 characters long.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('firstName')?.errors?.['pattern']">
+                                                Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (last name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="lastName">Last name</label>
+                                        <input class="form-control" id="lastName" type="text"
+                                            placeholder="Enter your last name" formControlName="lastName"
+                                            [ngClass]="{'is-invalid': addUserForm.get('lastName')?.invalid && (addUserForm.get('lastName')?.dirty || addUserForm.get('lastName')?.touched)}" />
+                                        <div *ngIf="addUserForm.get('lastName')?.invalid && (addUserForm.get('lastName')?.dirty || addUserForm.get('lastName')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="addUserForm.get('lastName')?.errors?.['required']">
+                                                Last name is required.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('lastName')?.errors?.['minlength']">
+                                                Last name must be at least 3 characters long.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('lastName')?.errors?.['maxlength']">
+                                                Last name must be no more than 25 characters long.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('lastName')?.errors?.['pattern']">
+                                                Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (email address)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="emailAddress">Email address</label>
+                                        <input class="form-control" id="emailAddress" type="email"
+                                            placeholder="Enter your email address" formControlName="emailAddress"
+                                            [ngClass]="{'is-invalid': addUserForm.get('emailAddress')?.invalid && (addUserForm.get('emailAddress')?.dirty || addUserForm.get('emailAddress')?.touched)}" />
+                                        <div *ngIf="addUserForm.get('emailAddress')?.invalid && (addUserForm.get('emailAddress')?.dirty || addUserForm.get('emailAddress')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="addUserForm.get('emailAddress')?.errors?.['required']">
+                                                Email address is required.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('emailAddress')?.errors?.['email']">
+                                                Must be a valid email address.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (phone number)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="phoneNumber">Phone number</label>
+                                        <input class="form-control" id="phoneNumber" type="tel"
+                                            placeholder="Enter your phone number" formControlName="phoneNumber"
+                                            [ngClass]="{'is-invalid': addUserForm.get('phoneNumber')?.invalid && (addUserForm.get('phoneNumber')?.dirty || addUserForm.get('phoneNumber')?.touched)}" />
+                                        <div *ngIf="addUserForm.get('phoneNumber')?.invalid && (addUserForm.get('phoneNumber')?.dirty || addUserForm.get('phoneNumber')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="addUserForm.get('phoneNumber')?.errors?.['required']">
+                                                Phone number is required.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('phoneNumber')?.errors?.['pattern']">
+                                                Must be a valid phone number.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (country)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="countryAddress">Country</label>
+                                        <select class="form-control" id="countryAddress"
+                                            formControlName="countryAddress" (click)="loadCountries()"
+                                            (change)="onCountryChange($event)"
+                                            [ngClass]="{'is-invalid': addUserForm.get('countryAddress')?.invalid && (addUserForm.get('countryAddress')?.dirty || addUserForm.get('countryAddress')?.touched)}">
+                                            <option value="" disabled
+                                                [selected]="!addUserForm.get('countryAddress')?.value">Select your
+                                                country</option>
+                                            <option *ngFor="let country of countries" [value]="country._id">
+                                                {{ country.name }}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="addUserForm.get('countryAddress')?.invalid && (addUserForm.get('countryAddress')?.dirty || addUserForm.get('countryAddress')?.touched)"
+                                            class="invalid-feedback">
+                                            <div *ngIf="addUserForm.get('countryAddress')?.errors?.['required']">
+                                                Country is required.</div>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (state)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="stateAddress">State</label>
+                                        <select class="form-control" id="stateAddress" formControlName="stateAddress"
+                                            [ngClass]="{'is-invalid': addUserForm.get('stateAddress')?.invalid && (addUserForm.get('stateAddress')?.dirty || addUserForm.get('stateAddress')?.touched)}">
+                                            <option value="" disabled
+                                                [selected]="!addUserForm.get('stateAddress')?.value">Select your
+                                                state</option>
+                                            <option *ngFor="let state of filteredStates" [value]="state._id">
+                                                {{ state.province_name }}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="addUserForm.get('stateAddress')?.invalid && (addUserForm.get('stateAddress')?.dirty || addUserForm.get('stateAddress')?.touched)"
+                                            class="invalid-feedback">
+                                            <div *ngIf="addUserForm.get('stateAddress')?.errors?.['required']">State
+                                                is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (birthday)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="birthday">Birthday</label>
+                                        <input class="form-control" id="birthday" type="date"
+                                            placeholder="Enter your birthday" formControlName="birthday"
+                                            [ngClass]="{'is-invalid': addUserForm.get('birthday')?.invalid && (addUserForm.get('birthday')?.dirty || addUserForm.get('birthday')?.touched)}" />
+                                        <div *ngIf="addUserForm.get('birthday')?.invalid && (addUserForm.get('birthday')?.dirty || addUserForm.get('birthday')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="addUserForm.get('birthday')?.errors?.['required']">
+                                                Birthday is required.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('birthday')?.errors?.['invalidDateFormat']">
+                                                Must be a valid date.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (identification)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="identification">ID/DNI/NIE</label>
+                                        <input class="form-control" id="identification" type="text"
+                                            placeholder="Enter your identification" formControlName="identification"
+                                            [ngClass]="{'is-invalid': addUserForm.get('identification')?.invalid && (addUserForm.get('identification')?.dirty || addUserForm.get('identification')?.touched)}" />
+                                        <div *ngIf="addUserForm.get('identification')?.invalid && (addUserForm.get('identification')?.dirty || addUserForm.get('identification')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="addUserForm.get('identification')?.errors?.['required']">
+                                                Identification is required.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('identification')?.errors?.['pattern']">
+                                                Must be a valid identification.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (birthday)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="role">Role</label>
+                                        <select class="form-control" id="role" formControlName="role"
+                                            [ngClass]="{'is-invalid': addUserForm.get('role')?.invalid && (addUserForm.get('role')?.dirty || addUserForm.get('role')?.touched)}">
+                                            <option value="" disabled [selected]="!addUserForm.get('role')?.value">
+                                                Select a
+                                                role</option>
+                                            <option value="Developer">Developer</option>
+                                            <option value="Registered">Registered</option>
+                                            <option value="Editor">Editor</option>
+                                            <option value="Guest">Guest</option>
+                                        </select>
+                                        <div *ngIf="addUserForm.get('role')?.invalid && (addUserForm.get('role')?.dirty || addUserForm.get('role')?.touched)"
+                                            class="invalid-feedback">
+                                            <span *ngIf="addUserForm.get('role')?.errors?.['required']">Role is
+                                                required.</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form Group (identification)-->
+                                    <div class="col-md-6">
+
+                                        <label class="small mb-1" for="additionalInfo">Additional info</label>
+                                        <input class="form-control" id="additionalInfo" type="text"
+                                            placeholder="Enter your additional info" formControlName="additionalInfo"
+                                            [ngClass]="{'is-invalid': addUserForm.get('additionalInfo')?.invalid && (addUserForm.get('additionalInfo')?.dirty || addUserForm.get('additionalInfo')?.touched)}" />
+                                        <div *ngIf="addUserForm.get('additionalInfo')?.invalid && (addUserForm.get('additionalInfo')?.dirty || addUserForm.get('additionalInfo')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="addUserForm.get('additionalInfo')?.errors?.['required']">
+                                                Additional info is required.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('additionalInfo')?.errors?.['minlength']">
+                                                Additional info must be at least 10 characters long.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('additionalInfo')?.errors?.['maxlength']">
+                                                Additional info must be no more than 50 characters long.
+                                            </span>
+                                            <span *ngIf="addUserForm.get('additionalInfo')?.errors?.['pattern']">
+                                                Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Save changes button-->
+                                <button class="btn btn-primary" type="submit">
+                                    Add User
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+</main>

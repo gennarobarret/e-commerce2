@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { FeatherIconsService } from '../../core/services/feather-icons.service';
+import { UserManagementService } from '../../core/services/user-management.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DropdownNotificationsComponent } from '../../features/notifications/dropdown-notifications/dropdown-notifications.component';
@@ -24,15 +25,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private _authService: AuthService,
     private _router: Router,
     private _featherIconsService: FeatherIconsService,
+    private _userManagementService: UserManagementService,
   ) { }
 
   ngOnInit(): void {
     this._featherIconsService.activateFeatherIcons();
-    const userData = sessionStorage.getItem('userData');
-    if (userData) {
-      this.user.data = JSON.parse(userData);
-      // console.log("Profile Image URL:", this.user.data.profileImage);
-    }
+
+    // Suscribirse al BehaviorSubject user$ para recibir actualizaciones en tiempo real
+    const userSubscription = this._userManagementService.user$.subscribe({
+      next: (user) => {
+        if (user) {
+          this.user.data = user;
+          console.log("Datos del usuario actualizados:", this.user.data);
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar los datos del usuario:', error);
+      }
+    });
+
+    // Agregar la suscripción al grupo de suscripciones para su posterior limpieza
+    this.subscriptions.add(userSubscription);
   }
 
   ngOnDestroy(): void {
@@ -51,12 +64,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (lastName && lastName !== 'notSpecified') {
       nameParts.push(lastName);
     }
-    return nameParts.join(', ');
+    return nameParts.join(' ');
   }
 
   logout(): void {
     this._authService.logout();
-    sessionStorage.removeItem('user'); 
+    sessionStorage.removeItem('user');
+    this._router.navigate(['/login']);
   }
 
   accountSetting(): void {

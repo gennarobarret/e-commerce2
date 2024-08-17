@@ -1,4 +1,3 @@
-// userRoute.js
 const express = require('express');
 const api = express.Router();
 const userManagement = require('../controllers/UserController');
@@ -17,6 +16,7 @@ api.put('/updateProfileImage/:userName', [auth.auth, rbac('update', 'user'), upl
 api.patch('/updateUserActiveStatus/:userId', [auth.auth, rbac('update', 'user')], userManagement.updateUserActiveStatus);
 api.patch('/updateMultipleUserActiveStatus', [auth.auth, rbac('update', 'user')], userManagement.updateMultipleUserActiveStatus);
 
+// Aquí se agrega el endpoint para eliminar un usuario
+api.delete('/deleteUser/:id', [auth.auth, rbac('delete', 'user')], userManagement.deleteUser);
+
 module.exports = api;
-
-
