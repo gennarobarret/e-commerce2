@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject, throwError, EMPTY } from 'rxjs';
-import { catchError, finalize, map, tap } from 'rxjs/operators';
+import { catchError, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { ApiResponse } from '../models/api-response.model';
 import { User, UserWithToken, LoginCredentials } from '../models/user.model';
 import { SpinnerService } from './spinner.service';
@@ -43,10 +43,14 @@ export class UserManagementService {
     this.url = this.configService.getConfig().url;
   }
 
-  private handleApiCall<T>(call: Observable<T>, tapHandler: (response: any) => void): Observable<T> {
+  private handleApiCall<T>(call: Observable<T>, tapHandler?: (response: any) => void): Observable<T> {
     this.spinnerService.show();
     return call.pipe(
-      tap(tapHandler),
+      tap(response => {
+        if (tapHandler) {
+          tapHandler(response);
+        }
+      }),
       catchError(error => {
         this.responseHandler.handleError(error);
         return throwError(() => error);
@@ -68,6 +72,45 @@ export class UserManagementService {
     return false;
   }
 
+  setUser(user: User): void {
+    this.userSubject.next(user);
+  }
+
+  getUser(): Observable<ApiResponse<User>> {
+    if (this.redirectToLoginIfNoToken()) return EMPTY;
+    const call = this.http.get<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.getUser}`);
+    return this.handleApiCall(call, response => {
+      if (response?.data) {
+        this.setUser(response.data);
+      }
+    });
+  }
+
+  getUserById(id: string): Observable<ApiResponse<User>> {
+    if (this.redirectToLoginIfNoToken()) return EMPTY;
+    const call = this.http.get<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.getUserById}/${id}`);
+    return this.handleApiCall(call);
+  }
+
+
+  updateUser(data: any, id: string): Observable<ApiResponse<User>> {
+    const call = this.http.put<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.updateUser}/${id}`, data);
+    return this.handleApiCall(call, response => {
+      this.setUser(response.data);
+    });
+  }
+
+  updateProfileImage(userName: string, formData: FormData): Observable<any> {
+    const url = `${this.url}${API_ENDPOINTS.updateProfileImage}/${userName}`;
+    return this.http.put<any>(url, formData).pipe(
+      switchMap(() => this.getUser()),  // Actualizar los datos del usuario
+      catchError(error => {
+        this.responseHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
+  }
+
   getProfileImage(imageFileName: string): Observable<SafeUrl> {
     const url = `${this.url}${API_ENDPOINTS.getProfileImage}/${imageFileName}`;
     return this.http.get(url, { responseType: 'blob' }).pipe(
@@ -82,51 +125,7 @@ export class UserManagementService {
     );
   }
 
-  updateProfileImage(userName: string, formData: FormData): Observable<any> {
-    const url = `${this.url}${API_ENDPOINTS.updateProfileImage}/${userName}`;
-    return this.http.put<any>(url, formData).pipe(
-      tap(() => {
-        this.getUser().subscribe();
-      }),
-      catchError(error => {
-        this.responseHandler.handleError(error);
-        return throwError(() => error);
-      })
-    );
-  }
-
-
-  updateUser(data: any, id: string): Observable<ApiResponse<User>> {
-    const call = this.http.put<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.updateUser}/${id}`, data);
-    return this.handleApiCall(call, response => {
-      this.responseHandler.handleResponse(response);
-      // Después de actualizar el usuario, obtén los datos actualizados y emite los nuevos datos
-      this.getUser().subscribe();  // Actualizar los datos del usuario
-    });
-  }
-
-
-  getUser(): Observable<ApiResponse<User>> {
-    if (this.redirectToLoginIfNoToken()) return EMPTY;
-    const call = this.http.get<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.getUser}`);
-    return this.handleApiCall(call, response => {
-      if (response?.data) {
-        this.userSubject.next(response.data);
-      }
-    });
-  }
-
-
-  getUserById(id: string): Observable<ApiResponse<User>> {
-    if (this.redirectToLoginIfNoToken()) return EMPTY;
-    const call = this.http.get<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.getUserById}/${id}`);
-    return this.handleApiCall(call, response => {
-      if (response?.data) {
-        this.userSubject.next(response.data);
-      }
-    });
-  }
-
+  
   createUser(data: any): Observable<ApiResponse<User>> {
     const call = this.http.post<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.createUser}`, data);
     return this.handleApiCall(call, response => {

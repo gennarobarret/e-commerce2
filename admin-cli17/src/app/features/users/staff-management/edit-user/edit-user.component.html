@@ -28,92 +28,247 @@
                 </div>
 
                 <div class="col-xl-8">
-                    <form [formGroup]="updateForm" (ngSubmit)="update()">
+                    <form [formGroup]="updateUserForm" (ngSubmit)="update()">
+                        <!-- Account details card-->
                         <div class="card mb-4">
                             <div class="card-header">User Details</div>
                             <div class="card-body">
-                                <!-- Username -->
+                                <!-- Form Group (username)-->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputUserName">Username</label>
                                     <input class="form-control" id="inputUserName" type="text"
-                                        formControlName="inputUserName" [disabled]="true" />
+                                        placeholder="Enter your UserName" formControlName="inputUserName"
+                                        [ngClass]="{'is-invalid': updateUserForm.get('inputUserName')?.invalid && (updateUserForm.get('inputUserName')?.dirty || updateUserForm.get('inputUserName')?.touched)}" />
+                                    <div *ngIf="updateUserForm.get('inputUserName')?.invalid && (updateUserForm.get('inputUserName')?.dirty || updateUserForm.get('inputUserName')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="updateUserForm.get('inputUserName')?.errors?.['required']">
+                                            Username is required.
+                                        </span>
+                                        <span *ngIf="updateUserForm.get('inputUserName')?.errors?.['minlength']">
+                                            Username must be at least 4 characters long.
+                                        </span>
+                                        <span *ngIf="updateUserForm.get('inputUserName')?.errors?.['maxlength']">
+                                            Username must be no more than 25 characters long.
+                                        </span>
+                                        <span *ngIf="updateUserForm.get('inputUserName')?.errors?.['pattern']">
+                                            Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                        </span>
+                                    </div>
                                 </div>
-                                <!-- First Name & Last Name -->
+                                <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputFirstName">First name</label>
                                         <input class="form-control" id="inputFirstName" type="text"
-                                            formControlName="inputFirstName" />
+                                            placeholder="Enter your first name" formControlName="inputFirstName"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputFirstName')?.invalid && (updateUserForm.get('inputFirstName')?.dirty || updateUserForm.get('inputFirstName')?.touched)}" />
+                                        <div *ngIf="updateUserForm.get('inputFirstName')?.invalid && (updateUserForm.get('inputFirstName')?.dirty || updateUserForm.get('inputFirstName')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="updateUserForm.get('inputFirstName')?.errors?.['required']">
+                                                First name is required.
+                                            </span>
+                                            <span *ngIf="updateUserForm.get('inputFirstName')?.errors?.['minlength']">
+                                                First name must be at least 3 characters long.
+                                            </span>
+                                            <span *ngIf="updateUserForm.get('inputFirstName')?.errors?.['maxlength']">
+                                                First name must be no more than 25 characters long.
+                                            </span>
+                                            <span *ngIf="updateUserForm.get('inputFirstName')?.errors?.['pattern']">
+                                                Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                            </span>
+                                        </div>
                                     </div>
+                                    <!-- Form Group (last name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Last name</label>
                                         <input class="form-control" id="inputLastName" type="text"
-                                            formControlName="inputLastName" />
+                                            placeholder="Enter your last name" formControlName="inputLastName"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputLastName')?.invalid && (updateUserForm.get('inputLastName')?.dirty || updateUserForm.get('inputLastName')?.touched)}" />
+                                        <div *ngIf="updateUserForm.get('inputLastName')?.invalid && (updateUserForm.get('inputLastName')?.dirty || updateUserForm.get('inputLastName')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="updateUserForm.get('inputLastName')?.errors?.['required']">
+                                                Last name is required.
+                                            </span>
+                                            <span *ngIf="updateUserForm.get('inputLastName')?.errors?.['minlength']">
+                                                Last name must be at least 3 characters long.
+                                            </span>
+                                            <span *ngIf="updateUserForm.get('inputLastName')?.errors?.['maxlength']">
+                                                Last name must be no more than 25 characters long.
+                                            </span>
+                                            <span *ngIf="updateUserForm.get('inputLastName')?.errors?.['pattern']">
+                                                Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Organization & Email -->
+                                <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
+                                    <!-- Form Group (email address)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputOrganizationName">Organization</label>
-                                        <input class="form-control" id="inputOrganizationName" type="text"
-                                            formControlName="inputOrganizationName" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                        <label class="small mb-1" for="inputEmailAddress">Email address</label>
                                         <input class="form-control" id="inputEmailAddress" type="email"
-                                            formControlName="inputEmailAddress" [disabled]="true" />
+                                            placeholder="Enter your email address" formControlName="inputEmailAddress"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputEmailAddress')?.invalid && (updateUserForm.get('inputEmailAddress')?.dirty || updateUserForm.get('inputEmailAddress')?.touched)}" />
+                                        <div *ngIf="updateUserForm.get('inputEmailAddress')?.invalid && (updateUserForm.get('inputEmailAddress')?.dirty || updateUserForm.get('inputEmailAddress')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="updateUserForm.get('inputEmailAddress')?.errors?.['required']">
+                                                Email address is required.
+                                            </span>
+                                            <span *ngIf="updateUserForm.get('inputEmailAddress')?.errors?.['email']">
+                                                Must be a valid email address.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (phone number)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputPhoneNumber">Phone number</label>
+                                        <input class="form-control" id="inputPhoneNumber" type="tel"
+                                            placeholder="Enter your phone number" formControlName="inputPhoneNumber"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputPhoneNumber')?.invalid && (updateUserForm.get('inputPhoneNumber')?.dirty || updateUserForm.get('inputPhoneNumber')?.touched)}" />
+                                        <div *ngIf="updateUserForm.get('inputPhoneNumber')?.invalid && (updateUserForm.get('inputPhoneNumber')?.dirty || updateUserForm.get('inputPhoneNumber')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="updateUserForm.get('inputPhoneNumber')?.errors?.['required']">
+                                                Phone number is required.
+                                            </span>
+                                            <span *ngIf="updateUserForm.get('inputPhoneNumber')?.errors?.['pattern']">
+                                                Must be a valid phone number.
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Country & State -->
+                                <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
+                                    <!-- Form Group (country)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputCountryAddress">Country</label>
                                         <select class="form-control" id="inputCountryAddress"
-                                            formControlName="inputCountryAddress" (change)="onCountryChange($event)">
-                                            <option value="" [disabled]="true"
-                                                [selected]="!updateForm.get('inputCountryAddress')?.value">Select your
+                                            formControlName="inputCountryAddress" (click)="loadCountries()"
+                                            (change)="onCountryChange($event)"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputCountryAddress')?.invalid && (updateUserForm.get('inputCountryAddress')?.dirty || updateUserForm.get('inputCountryAddress')?.touched)}">
+                                            <option value="" disabled
+                                                [selected]="!updateUserForm.get('inputCountryAddress')?.value">Select
+                                                your
                                                 country</option>
-                                            <option *ngFor="let country of countries" [value]="country._id">{{
-                                                country.name }}</option>
+                                            <option *ngFor="let country of countries" [value]="country._id">
+                                                {{ country.name }}
+                                            </option>
                                         </select>
+                                        <div *ngIf="updateUserForm.get('inputCountryAddress')?.invalid && (updateUserForm.get('inputCountryAddress')?.dirty || updateUserForm.get('inputCountryAddress')?.touched)"
+                                            class="invalid-feedback">
+                                            <div
+                                                *ngIf="updateUserForm.get('inputCountryAddress')?.errors?.['required']">
+                                                Country is required.</div>
+                                        </div>
                                     </div>
+                                    <!-- Form Group (state)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputStateAddress">State</label>
                                         <select class="form-control" id="inputStateAddress"
-                                            formControlName="inputStateAddress">
-                                            <option value="" [disabled]="true"
-                                                [selected]="!updateForm.get('inputStateAddress')?.value">Select your
+                                            formControlName="inputStateAddress"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputStateAddress')?.invalid && (updateUserForm.get('inputStateAddress')?.dirty || updateUserForm.get('inputStateAddress')?.touched)}">
+                                            <option value="" disabled
+                                                [selected]="!updateUserForm.get('inputStateAddress')?.value">Select your
                                                 state</option>
-                                            <option *ngFor="let state of filteredStates" [value]="state._id">{{
-                                                state.province_name }}</option>
+                                            <option *ngFor="let state of filteredStates" [value]="state._id">
+                                                {{ state.province_name }}
+                                            </option>
                                         </select>
+                                        <div *ngIf="updateUserForm.get('inputStateAddress')?.invalid && (updateUserForm.get('inputStateAddress')?.dirty || updateUserForm.get('inputStateAddress')?.touched)"
+                                            class="invalid-feedback">
+                                            <div *ngIf="updateUserForm.get('inputStateAddress')?.errors?.['required']">
+                                                State
+                                                is required.</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Phone & Birthday -->
+                                <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputPhoneNumber">Phone</label>
-                                        <input class="form-control" id="inputPhoneNumber" type="tel"
-                                            formControlName="inputPhoneNumber" />
-                                    </div>
+                                    <!-- Form Group (inputBirthday)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputBirthday">Birthday</label>
                                         <input class="form-control" id="inputBirthday" type="date"
-                                            formControlName="inputBirthday" />
+                                            placeholder="Enter your birthday" formControlName="inputBirthday"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputBirthday')?.invalid && (updateUserForm.get('inputBirthday')?.dirty || updateUserForm.get('inputBirthday')?.touched)}" />
+                                        <div *ngIf="updateUserForm.get('inputBirthday')?.invalid && (updateUserForm.get('inputBirthday')?.dirty || updateUserForm.get('inputBirthday')?.touched)"
+                                            class="text-danger">
+                                            <span *ngIf="updateUserForm.get('inputBirthday')?.errors?.['required']">
+                                                Birthday is required.
+                                            </span>
+                                            <span
+                                                *ngIf="updateUserForm.get('inputBirthday')?.errors?.['invalidDateFormat']">
+                                                Must be a valid date.
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Role & Identification -->
-                                <div class="row gx-3 mb-3">
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputRole">Role</label>
-                                        <input class="form-control" id="inputRole" type="text"
-                                            formControlName="inputRole" [disabled]="true" />
-                                    </div>
+                                    <!-- Form Group (inputIdentification)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputIdentification">ID/DNI/NIE</label>
                                         <input class="form-control" id="inputIdentification" type="text"
-                                            formControlName="inputIdentification" />
+                                            placeholder="Enter your identification"
+                                            formControlName="inputIdentification"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputIdentification')?.invalid && (updateUserForm.get('inputIdentification')?.dirty || updateUserForm.get('inputIdentification')?.touched)}" />
+                                        <div *ngIf="updateUserForm.get('inputIdentification')?.invalid && (updateUserForm.get('inputIdentification')?.dirty || updateUserForm.get('inputIdentification')?.touched)"
+                                            class="text-danger">
+                                            <span
+                                                *ngIf="updateUserForm.get('inputIdentification')?.errors?.['required']">
+                                                Identification is required.
+                                            </span>
+                                            <span
+                                                *ngIf="updateUserForm.get('inputIdentification')?.errors?.['pattern']">
+                                                Must be a valid inputIdentification.
+                                            </span>
+                                        </div>
                                     </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (inputBirthday)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputRole">Role</label>
+                                        <select class="form-control" id="inputRole" formControlName="inputRole"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputRole')?.invalid && (updateUserForm.get('inputRole')?.dirty || updateUserForm.get('inputRole')?.touched)}">
+                                            <option value="" disabled
+                                                [selected]="!updateUserForm.get('inputRole')?.value">
+                                                Select a
+                                                role</option>
+                                            <option value="Developer">Developer</option>
+                                            <option value="Registered">Registered</option>
+                                            <option value="Editor">Editor</option>
+                                            <option value="Guest">Guest</option>
+                                        </select>
+                                        <div *ngIf="updateUserForm.get('inputRole')?.invalid && (updateUserForm.get('inputRole')?.dirty || updateUserForm.get('inputRole')?.touched)"
+                                            class="invalid-feedback">
+                                            <span *ngIf="updateUserForm.get('inputRole')?.errors?.['required']">Role is
+                                                required.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputOrganizationName">Organization</label>
+                                        <input class="form-control" id="inputOrganizationName" type="text"
+                                            formControlName="inputOrganizationName"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputOrganizationName')?.invalid && (updateUserForm.get('inputOrganizationName')?.dirty || updateUserForm.get('inputOrganizationName')?.touched)}" />
+                                        <div *ngIf="updateUserForm.get('inputOrganizationName')?.invalid && (updateUserForm.get('inputOrganizationName')?.dirty || updateUserForm.get('inputOrganizationName')?.touched)"
+                                            class="text-danger">
+                                            <span
+                                                *ngIf="updateUserForm.get('inputOrganizationName')?.errors?.['required']">
+                                                Organization name is required.
+                                            </span>
+                                            <span
+                                                *ngIf="updateUserForm.get('inputOrganizationName')?.errors?.['minlength']">
+                                                Organization name must be at least 3 characters long.
+                                            </span>
+                                            <span
+                                                *ngIf="updateUserForm.get('inputOrganizationName')?.errors?.['maxlength']">
+                                                Organization name must be no more than 30 characters long.
+                                            </span>
+                                            <span
+                                                *ngIf="updateUserForm.get('inputOrganizationName')?.errors?.['pattern']">
+                                                Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                            </span>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <!-- Active Status & Additional Info -->
                                 <div class="row gx-3 mb-3">
@@ -127,10 +282,35 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputAdditionalInfo">Additional Info</label>
                                         <input class="form-control" id="inputAdditionalInfo" type="text"
-                                            formControlName="inputAdditionalInfo" />
+                                            formControlName="inputAdditionalInfo"
+                                            [ngClass]="{'is-invalid': updateUserForm.get('inputAdditionalInfo')?.invalid && (updateUserForm.get('inputAdditionalInfo')?.dirty || updateUserForm.get('inputAdditionalInfo')?.touched)}" />
+                                        <div *ngIf="updateUserForm.get('inputAdditionalInfo')?.invalid && (updateUserForm.get('inputAdditionalInfo')?.dirty || updateUserForm.get('inputAdditionalInfo')?.touched)"
+                                            class="text-danger">
+                                            <span
+                                                *ngIf="updateUserForm.get('inputAdditionalInfo')?.errors?.['required']">
+                                                Additional info is required.
+                                            </span>
+                                            <span
+                                                *ngIf="updateUserForm.get('inputAdditionalInfo')?.errors?.['minlength']">
+                                                Additional info must be at least 10 characters long.
+                                            </span>
+                                            <span
+                                                *ngIf="updateUserForm.get('inputAdditionalInfo')?.errors?.['maxlength']">
+                                                Additional info must be no more than 50 characters long.
+                                            </span>
+                                            <span
+                                                *ngIf="updateUserForm.get('inputAdditionalInfo')?.errors?.['pattern']">
+                                                Only letters, numbers, spaces, "ñ" and "Ñ" are allowed.
+                                            </span>
+                                        </div>
                                     </div>
+
                                 </div>
-                                <button class="btn btn-primary" type="submit">Save changes</button>
+                                <!-- Save changes button-->
+                                <button class="btn btn-primary" type="submit">
+                                    Update User
+                                </button>
+
                             </div>
                         </div>
                     </form>

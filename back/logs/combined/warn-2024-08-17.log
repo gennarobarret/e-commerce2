@@ -1,0 +1,17 @@
+{"level":"warn","message":"Failed login attempt for user: masteradmin from IP: ::ffff:127.0.0.1","timestamp":"2024-08-17 12:25:01"}
+{"level":"error","message":"loginUser error: Invalid credentials","method":"POST","path":"loginUser","stack":"Failed login attempt for user: masteradmin from IP: ::ffff:127.0.0.1","status":401,"timestamp":"2024-08-17 12:25:01"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 13:12:02"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 13:12:10"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 13:16:41"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 13:17:31"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 13:17:48"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 13:18:01"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:15:45"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:25:06"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:25:10"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:25:11"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:25:34"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:25:37"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:25:40"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:25:50"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-17 16:25:54"}

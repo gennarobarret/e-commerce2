@@ -52,6 +52,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>Avatar</th>
                                         <th (click)="sortUsers('userName')">Username</th>
                                         <th (click)="sortUsers('firstName')">First Name</th>
                                         <th (click)="sortUsers('lastName')">Last Name</th>
@@ -70,6 +71,15 @@
                                 </thead>
                                 <tbody *ngIf="!load_data && filteredUsers.length > 0">
                                     <tr *ngFor="let user of filteredUsers">
+                                    <td *ngIf="user.profileImage">
+                                        <img [src]="user.profileImage" alt="Avatar" class="img-avatar rounded-circle">
+                                    </td>
+                                    <td *ngIf="!user.profileImage">
+                                        <img src="assets/img/illustrations/profiles/profile-0.png" alt="Avatar" class="img-avatar rounded-circle">
+                                    </td>
+
+
+
                                         <td>{{ user.userName }}</td>
                                         <td>{{ user.firstName }}</td>
                                         <td>{{ user.lastName }}</td>
@@ -118,13 +128,11 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </tr>
                                 </tbody>
                                 <tbody *ngIf="!load_data && filteredUsers.length === 0">
                                     <tr>
-                                        <td class="text-center" colspan="14">No records found</td>
+                                        <td class="text-center" colspan="15">No records found</td>
                                     </tr>
                                 </tbody>
                             </table>

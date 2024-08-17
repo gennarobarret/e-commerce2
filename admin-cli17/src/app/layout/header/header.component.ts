@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
@@ -26,17 +26,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _featherIconsService: FeatherIconsService,
     private _userManagementService: UserManagementService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this._featherIconsService.activateFeatherIcons();
 
-    // Suscribirse al BehaviorSubject user$ para recibir actualizaciones en tiempo real
-    const userSubscription = this._userManagementService.user$.subscribe({
-      next: (user) => {
+    // Cargar los datos del usuario una vez al iniciar la aplicación
+    this._userManagementService.getUser().subscribe({
+      next: (response) => {
+        const user = response.data;
         if (user) {
+          this._userManagementService.setUser(user); // Emitir los datos del usuario
           this.user.data = user;
-          console.log("Datos del usuario actualizados:", this.user.data);
+          this.cdr.detectChanges();
         }
       },
       error: (error) => {
@@ -44,7 +47,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Agregar la suscripción al grupo de suscripciones para su posterior limpieza
+    const userSubscription = this._userManagementService.user$.subscribe({
+      next: (user) => {
+        if (user) {
+          this.user.data = user;
+          this.cdr.detectChanges();
+        }
+      },
+      error: (error) => {
+        console.error('Error al recibir los datos del usuario:', error);
+      }
+    });
+
     this.subscriptions.add(userSubscription);
   }
 
@@ -68,9 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    this._authService.logout();
-    sessionStorage.removeItem('user');
-    this._router.navigate(['/login']);
+    this._authService.logoutAndRedirect();
   }
 
   accountSetting(): void {

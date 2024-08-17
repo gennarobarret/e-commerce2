@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FeatherIconsService } from '../../../core/services';
 import { AuthService } from '../../../core/services';
@@ -22,9 +22,9 @@ import { SpinnerComponent } from '../../../shared/components/spinner/spinner.com
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, UserImageComponent, SpinnerComponent, RouterLink]
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, UserImageComponent, SpinnerComponent]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   updateForm!: FormGroup;
   user: User | null = null;
   countries: Country[] = [];
@@ -49,16 +49,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this._featherIconsService.activateFeatherIcons();
-    const userData = sessionStorage.getItem('userData');
-    if (userData) {
-      this.user = JSON.parse(userData);
-      this.updateFormWithUserData(this.user!);
-      if (this.user?.countryAddress) {
-        this.loadCountriesAndStates(this.user.countryAddress._id);
-      }
-    } else {
-      this.router.navigate(['']);
-    }
     this.fetchUserData();
   }
 
@@ -91,6 +81,7 @@ export class ProfileComponent implements OnInit {
       })
     );
   }
+
 
   private updateFormWithUserData(user: User) {
     const formattedBirthday = user.birthday ? new Date(user.birthday).toISOString().split('T')[0] : '';
@@ -162,10 +153,7 @@ export class ProfileComponent implements OnInit {
     const countryId = selectElement.value;
 
     if (countryId) {
-      // Poner en blanco el campo de estado al cambiar el país
       this.updateForm.get('inputStateAddress')?.setValue('');
-
-      // Filtrar los estados por el país seleccionado y pasar resetState=true
       this.filterStatesByCountry(countryId, true);
     } else {
       console.warn("Country ID is undefined");
@@ -198,9 +186,8 @@ export class ProfileComponent implements OnInit {
 
     const formData = this.createJsonData();
 
-    // Verificar que el ID se está pasando correctamente
     const userId = this.user?._id || '';
-    console.log('User ID:', userId);  // Aquí se imprime el ID del usuario
+    console.log('User ID:', userId);
 
     this.subscriptions.add(
       this.userManagementService.updateUser(formData, userId).subscribe({
@@ -225,14 +212,6 @@ export class ProfileComponent implements OnInit {
       birthday: this.updateForm.get('inputBirthday')?.value,
       identification: this.updateForm.get('inputIdentification')?.value,
       additionalInfo: this.updateForm.get('inputAdditionalInfo')?.value,
-      // emailNotifications: {
-      //   accountChanges: true,
-      //   groupChanges: true,
-      //   productUpdates: true,
-      //   newProducts: true,
-      //   marketingOffers: true,
-      //   securityAlerts: true
-      // }
     };
   }
 

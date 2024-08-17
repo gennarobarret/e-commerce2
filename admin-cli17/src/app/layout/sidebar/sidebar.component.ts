@@ -31,18 +31,22 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this._UIEnhancementService.toggleSideNavigation();
     this._featherIconsService.activateFeatherIcons();
 
-    const userData = sessionStorage.getItem('userData');
-    if (userData) {
-      this.user.data = JSON.parse(userData);
-      const profileImageFileName = this.user.data.profileImage || sessionStorage.getItem('profileImageFileName') || 'default-profile.png';
-
-      if (this.user.data.UserName && profileImageFileName) {
-        this.loadUserImage(this.user.data.UserName);
-      } else {
-        this.setImageAsDefault();
+    const userSubscription = this._userManagementService.user$.subscribe({
+      next: (user) => {
+        if (user) {
+          this.user.data = user;
+          // console.log("Datos del usuario actualizados:", this.user.data);
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar los datos del usuario:', error);
       }
-    }
+    });
+
+    // Agregar la suscripción al grupo de suscripciones para su posterior limpieza
+    this.subscriptions.add(userSubscription);
   }
+
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
@@ -81,8 +85,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     return nameParts.join(' ');
   }
 
+
   logout(): void {
-    this._authService.logout();
-    sessionStorage.removeItem('user'); // Borra los datos del usuario al cerrar sesión
+    this._authService.logoutAndRedirect();
   }
+
 }

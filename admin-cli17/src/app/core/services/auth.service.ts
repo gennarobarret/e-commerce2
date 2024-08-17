@@ -1,4 +1,3 @@
-// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -19,6 +18,7 @@ import { SpinnerService } from './spinner.service';
 import { ResponseHandlingService } from './response-handling.service';
 import { ConfigService } from './config.service';
 import { SocketService } from './socket.service';
+import { UserManagementService } from './user-management.service'; // Importa el servicio de gestión de usuarios
 
 const API_ENDPOINTS = {
   loginUser: 'loginUser',
@@ -45,7 +45,8 @@ export class AuthService {
     private _spinnerService: SpinnerService,
     private _responseHandler: ResponseHandlingService,
     private _configService: ConfigService,
-    private _socketService: SocketService // Inyectar el servicio de Socket
+    private _socketService: SocketService, // Inyectar el servicio de Socket
+    private _userManagementService: UserManagementService // Inyectar el servicio de gestión de usuarios
 
   ) {
     this.url = this._configService.getConfig().url;
@@ -59,13 +60,15 @@ export class AuthService {
   private removeToken(): void {
     this._socketService.disconnect();
     localStorage.removeItem('token');
-    sessionStorage.removeItem('userData');
+  }
+
+
+  public logoutAndRedirect(): void {
+    console.log('Executing logout and redirect');
+    this.removeToken();
     this._router.navigate(['/auth/login']);
   }
 
-  public logoutAndRedirect(): void {
-    this.removeToken();
-  }
 
   getToken(): string | null {
     return localStorage.getItem('token');
@@ -93,8 +96,13 @@ export class AuthService {
     return this.handleApiCall(call, response => {
       if (response.data && response.data.token) {
         this.storeToken(response.data.token);
-        this._router.navigate(['/dashboard']);
-        this.loginSuccessSubject.next(true);
+
+        // Obtener los datos del usuario después del login
+        this._userManagementService.getUser().subscribe(() => {
+          this._router.navigate(['/dashboard']);
+          this.loginSuccessSubject.next(true);
+        });
+
       } else {
         throw new Error('Authentication failed: No token received');
       }
@@ -106,8 +114,13 @@ export class AuthService {
     return this.handleApiCall(call, response => {
       if (response.data && response.data.token) {
         this.storeToken(response.data.token);
-        this._router.navigate(['/dashboard']);
-        this.loginSuccessSubject.next(true);
+
+        // Obtener los datos del usuario después de autenticar con Google
+        this._userManagementService.getUser().subscribe(() => {
+          this._router.navigate(['/dashboard']);
+          this.loginSuccessSubject.next(true);
+        });
+
       } else {
         throw new Error('Authentication failed: No token received');
       }
@@ -181,15 +194,16 @@ export class AuthService {
         return false;
       }
 
-      sessionStorage.setItem('userData', JSON.stringify({
-        id: decodedToken.sub,
-        userName: decodedToken.userName,
-        firstName: decodedToken.firstName,
-        lastName: decodedToken.lastName,
-        emailAddress: decodedToken.emailAddress,
-        profileImage: decodedToken.profileImage,
-        role: decodedToken.role,
-      }));
+      // sessionStorage.setItem('userData', JSON.stringify({
+      //   id: decodedToken.sub,
+      //   userName: decodedToken.userName,
+      //   firstName: decodedToken.firstName,
+      //   lastName: decodedToken.lastName,
+      //   emailAddress: decodedToken.emailAddress,
+      //   profileImage: decodedToken.profileImage,
+      //   role: decodedToken.role,
+      // }));
+      
 
       return allowedRoles.includes(decodedToken.role);
     } catch (error) {
@@ -198,6 +212,4 @@ export class AuthService {
       return false;
     }
   }
-
-
 }

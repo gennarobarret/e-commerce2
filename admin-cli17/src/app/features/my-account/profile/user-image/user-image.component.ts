@@ -45,7 +45,6 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
       if (this.profileImage.startsWith('http')) {
         this.disableUploadButton = true;
         this.imageUrl = this._sanitizer.bypassSecurityTrustUrl(this.profileImage);
-        console.log("🚀 ~ UserImageComponent ~ loadProfileImage ~ this.imageUrl:", this.imageUrl);
       } else {
         this.loadUserImage(this.profileImage);
       }
