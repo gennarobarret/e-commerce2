@@ -97,7 +97,7 @@ const UserSchema = new Schema({
         type: String,
         trim: true
     },
-    profileImage: {
+    imageUrl: {
         type: String,
         trim: true,
         default: null

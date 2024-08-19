@@ -76,6 +76,30 @@ export class UserManagementService {
     this.userSubject.next(user);
   }
 
+  getProfileImage(imageFileName: string): Observable<SafeUrl> {
+    const url = `${this.url}/${API_ENDPOINTS.getProfileImage}/${imageFileName}`;
+    return this.http.get(url, { responseType: 'blob' }).pipe(
+      map(blob => {
+        const objectUrl = URL.createObjectURL(blob);
+        return this.sanitizer.bypassSecurityTrustUrl(objectUrl);
+      }),
+      catchError(error => {
+        this.responseHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+   listAllUsers(filterKey?: string, filterValue?: string): Observable<ApiResponse<User[]>> {
+    let params = new HttpParams();
+    if (filterKey && filterValue) {
+      params = params.append('type', filterKey);
+      params = params.append('filter', filterValue);
+    }
+    const call = this.http.get<ApiResponse<User[]>>(`${this.url}${API_ENDPOINTS.listAllUsers}`, { params });
+    return this.handleApiCall(call, () => { });
+  }
+
   getUser(): Observable<ApiResponse<User>> {
     if (this.redirectToLoginIfNoToken()) return EMPTY;
     const call = this.http.get<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.getUser}`);
@@ -103,7 +127,7 @@ export class UserManagementService {
   updateProfileImage(userName: string, formData: FormData): Observable<any> {
     const url = `${this.url}${API_ENDPOINTS.updateProfileImage}/${userName}`;
     return this.http.put<any>(url, formData).pipe(
-      switchMap(() => this.getUser()),  // Actualizar los datos del usuario
+      switchMap(() => this.getUser()),
       catchError(error => {
         this.responseHandler.handleError(error);
         return throwError(() => error);
@@ -111,21 +135,7 @@ export class UserManagementService {
     );
   }
 
-  getProfileImage(imageFileName: string): Observable<SafeUrl> {
-    const url = `${this.url}${API_ENDPOINTS.getProfileImage}/${imageFileName}`;
-    return this.http.get(url, { responseType: 'blob' }).pipe(
-      map(blob => {
-        const objectUrl = URL.createObjectURL(blob);
-        return this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-      }),
-      catchError(error => {
-        this.responseHandler.handleError(error);
-        return throwError(() => error);
-      })
-    );
-  }
 
-  
   createUser(data: any): Observable<ApiResponse<User>> {
     const call = this.http.post<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.createUser}`, data);
     return this.handleApiCall(call, response => {
@@ -141,15 +151,7 @@ export class UserManagementService {
   }
 
 
-  listAllUsers(filterKey?: string, filterValue?: string): Observable<ApiResponse<User[]>> {
-    let params = new HttpParams();
-    if (filterKey && filterValue) {
-      params = params.append('type', filterKey);
-      params = params.append('filter', filterValue);
-    }
-    const call = this.http.get<ApiResponse<User[]>>(`${this.url}${API_ENDPOINTS.listAllUsers}`, { params });
-    return this.handleApiCall(call, () => { });
-  }
+ 
 
   // Endpoint para restablecer la contraseña
   resetPassword(token: string, newPassword: string): Observable<ApiResponse<any>> {

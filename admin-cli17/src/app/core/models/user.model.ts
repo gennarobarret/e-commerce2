@@ -25,7 +25,8 @@ export interface User {
     updatedAt?: Date;
     twoFactor?: boolean; // Añadir esta propiedad
     privacySetting?: string; // Añadir esta propiedad (puede ser un enum si tiene valores predefinidos)
-    dataSharing?: boolean; // Añadir esta propiedad
+    dataSharing?: boolean;
+     // Añadir esta propiedad
 }
 
 

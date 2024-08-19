@@ -11,15 +11,3 @@ api.delete('/roles/:id', [auth.auth, rbac('delete', 'role')], roleController.del
 api.get('/roles', [auth.auth, rbac('read', 'role')], roleController.listRoles);
 
 module.exports = api;
-
-
-// const express = require('express');
-// const api = express.Router();
-// const roleController = require('../controllers/roleController');
-// const auth = require("../middlewares/authenticate");
-// const rbacMiddleware = require("../middlewares/rbacMiddleware");
-
-// api.post('/createRole', [auth.auth, rbacMiddleware('createRole')], roleController.createRole);
-// api.post('/assignPermissions', [auth.auth, rbacMiddleware('assignPermissions')], roleController.assignPermissionsToRole);
-
-// module.exports = api;

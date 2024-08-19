@@ -40,7 +40,7 @@ function getCleanUser(user) {
         lastName: user.lastName,
         emailAddress: user.emailAddress,
         role: user.role.name,
-        profileImage: user.profileImage,
+        imageUrl: user.imageUrl,
     };
 }
 
@@ -188,7 +188,7 @@ const authenticateWithGoogle = async (req, res) => {
                 userName: generateUserName(userInfo.email),
                 role: role._id,
                 authMethod: 'google',
-                profileImage: userInfo.picture,
+                imageUrl: userInfo.picture,
                 emailVerified: userInfo.email_verified,
                 locale: userInfo.locale,
                 verification: userInfo.email_verified ? 'verified' : 'notVerified',
@@ -228,7 +228,7 @@ const authenticateWithGoogle = async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             emailAddress: user.emailAddress,
-            profileImage: user.profileImage,
+            imageUrl: user.imageUrl,
             role: role.name,
         });
 

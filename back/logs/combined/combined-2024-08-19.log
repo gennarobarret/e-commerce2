@@ -1,0 +1,55 @@
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-19 10:20:21"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-19 10:20:42"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-08-19 10:20:48"}
+{"level":"error","message":"uploadProfileImage/667e79acb5dce5f01d125a71 error: Failed to create or replace the file.","path":"uploadProfileImage/667e79acb5dce5f01d125a71","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:20:58"}
+{"level":"info","message":"API Success: uploadProfileImage/667e79acb5dce5f01d125a71","method":"POST","path":"uploadProfileImage/667e79acb5dce5f01d125a71","status":200,"timestamp":"2024-08-19 10:23:29"}
+{"level":"info","message":"API Success: uploadProfileImage/667e79acb5dce5f01d125a71","method":"POST","path":"uploadProfileImage/667e79acb5dce5f01d125a71","status":200,"timestamp":"2024-08-19 10:23:36"}
+{"level":"info","message":"API Success: uploadProfileImage/667e79acb5dce5f01d125a71","method":"POST","path":"uploadProfileImage/667e79acb5dce5f01d125a71","status":200,"timestamp":"2024-08-19 10:23:38"}
+{"level":"info","message":"API Success: uploadProfileImage/667e79acb5dce5f01d125a71","method":"POST","path":"uploadProfileImage/667e79acb5dce5f01d125a71","status":200,"timestamp":"2024-08-19 10:23:39"}
+{"level":"info","message":"API Success: uploadProfileImage/667e79acb5dce5f01d125a71","method":"POST","path":"uploadProfileImage/667e79acb5dce5f01d125a71","status":200,"timestamp":"2024-08-19 10:23:41"}
+{"level":"info","message":"API Success: uploadProfileImage/667e79acb5dce5f01d125a71","method":"POST","path":"uploadProfileImage/667e79acb5dce5f01d125a71","status":200,"timestamp":"2024-08-19 10:24:43"}
+{"level":"info","message":"API Success: uploadProfileImage/667e79acb5dce5f01d125a71","method":"POST","path":"uploadProfileImage/667e79acb5dce5f01d125a71","status":200,"timestamp":"2024-08-19 10:24:45"}
+{"level":"info","message":"New Google user registered: jfbgennaro","timestamp":"2024-08-19 10:31:01"}
+{"level":"info","message":"API Success: auth/google","method":"POST","path":"auth/google","status":200,"timestamp":"2024-08-19 10:31:01"}
+{"level":"info","message":"User retrieved: jfbgennaro","timestamp":"2024-08-19 10:31:02"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-19 10:31:02"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-19 10:31:02"}
+{"level":"info","message":"User retrieved: jfbgennaro","timestamp":"2024-08-19 10:31:02"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-19 10:31:02"}
+{"level":"info","message":"New Google user registered: jfbgennaro","timestamp":"2024-08-19 10:33:20"}
+{"level":"info","message":"API Success: auth/google","method":"POST","path":"auth/google","status":200,"timestamp":"2024-08-19 10:33:20"}
+{"level":"info","message":"User retrieved: jfbgennaro","timestamp":"2024-08-19 10:33:20"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-19 10:33:20"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-19 10:33:20"}
+{"level":"info","message":"User retrieved: jfbgennaro","timestamp":"2024-08-19 10:33:20"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-19 10:33:20"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:41:06"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:43:11"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:43:13"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:44:04"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:45:41"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-19 10:46:23"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:46:27"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-19 10:46:36"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:46:46"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-19 10:46:53"}
+{"level":"info","message":"API Success: images/upload/products/66c1e29c6fe564a17b3e1ebd","method":"POST","path":"images/upload/products/66c1e29c6fe564a17b3e1ebd","status":200,"timestamp":"2024-08-19 10:46:57"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:47:15"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:47:16"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:51:05"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:51:07"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:56:17"}
+{"level":"info","message":"API Success: images/upload/products/66c1e29c6fe564a17b3e1ebd","method":"POST","path":"images/upload/products/66c1e29c6fe564a17b3e1ebd","status":200,"timestamp":"2024-08-19 10:56:41"}
+{"level":"error","message":"undefined_path error: Identifier is required to generate filename.","path":"undefined_path","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 10:57:00"}
+{"level":"info","message":"API Success: uploadProductImage/66c1e29c6fe564a17b3e1ebd","method":"POST","path":"uploadProductImage/66c1e29c6fe564a17b3e1ebd","status":200,"timestamp":"2024-08-19 11:05:44"}
+{"level":"error","message":"uploadCategoryImage/66c115f200c89f3aa9197f08 error: Failed to create or replace the file.","path":"uploadCategoryImage/66c115f200c89f3aa9197f08","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 11:09:02"}
+{"level":"error","message":"uploadCategoryImage/66c115f200c89f3aa9197f08 error: Failed to create or replace the file.","path":"uploadCategoryImage/66c115f200c89f3aa9197f08","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 11:09:06"}
+{"level":"error","message":"uploadCategoryImage/66c115f200c89f3aa9197f08 error: Failed to create or replace the file.","path":"uploadCategoryImage/66c115f200c89f3aa9197f08","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 11:10:23"}
+{"level":"error","message":"uploadCategoryImage/66c115f200c89f3aa9197f08 error: Failed to create or replace the file.","path":"uploadCategoryImage/66c115f200c89f3aa9197f08","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 11:11:20"}
+{"level":"error","message":"uploadCategoryImage/66c115f200c89f3aa9197f08 error: Failed to create or replace the file.","path":"uploadCategoryImage/66c115f200c89f3aa9197f08","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 11:11:27"}
+{"level":"error","message":"uploadCategoryImage/66c115f200c89f3aa9197f08 error: Failed to create or replace the file.","path":"uploadCategoryImage/66c115f200c89f3aa9197f08","stack":"No additional details provided.","status":500,"timestamp":"2024-08-19 11:12:23"}
+{"level":"info","message":"API Success: uploadCategoryImage/66c115f200c89f3aa9197f08","method":"POST","path":"uploadCategoryImage/66c115f200c89f3aa9197f08","status":200,"timestamp":"2024-08-19 11:15:01"}
+{"level":"info","message":"API Success: uploadProductImage/66c1e29c6fe564a17b3e1ebd","method":"POST","path":"uploadProductImage/66c1e29c6fe564a17b3e1ebd","status":200,"timestamp":"2024-08-19 11:15:47"}
+{"level":"info","message":"API Success: images/upload/products/66c1e29c6fe564a17b3e1ebd","method":"POST","path":"images/upload/products/66c1e29c6fe564a17b3e1ebd","status":200,"timestamp":"2024-08-19 11:16:19"}
+{"level":"info","message":"API Success: images/upload/products/66c1e29c6fe564a17b3e1ebd","method":"POST","path":"images/upload/products/66c1e29c6fe564a17b3e1ebd","status":200,"timestamp":"2024-08-19 11:16:23"}
+{"level":"info","message":"API Success: images/upload/products/66c1e29c6fe564a17b3e1ebd","method":"POST","path":"images/upload/products/66c1e29c6fe564a17b3e1ebd","status":200,"timestamp":"2024-08-19 11:16:24"}

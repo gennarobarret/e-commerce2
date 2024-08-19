@@ -33,6 +33,7 @@ function getClientIp(req) {
     return req.headers['x-forwarded-for']?.split(',').shift() || req.socket.remoteAddress;
 }
 
+
 const getUserIDByUserName = async (userName) => {
     try {
         const user = await User.findOne({ userName }).exec();
@@ -50,6 +51,19 @@ const getUserIDByUserName = async (userName) => {
 const isValidObjectId = (id) => {
     return /^[0-9a-fA-F]{24}$/.test(id);
 };
+
+// Actualizar la URL de la imagen de perfil del usuario después de la carga
+const updateUserProfileImageUrl = async (userId, imageUrl) => {
+    try {
+        // Actualizar el campo `imageUrl` en la base de datos para el usuario dado
+        await User.findByIdAndUpdate(userId, { imageUrl });
+
+    } catch (error) {
+        console.error('Error updating user profile image:', error);
+        throw new ErrorHandler(500, "Failed to update profile image.");
+    }
+};
+
 
 // LIST USER DATA
 const listAllUsers = async (req, res) => {
@@ -369,111 +383,125 @@ const registerUser = async (req, res) => {
 };
 
 // GET USER PROFILE PICTURE
-const getProfileImage = async (req, res) => {
-    try {
-        // 1. Validar y sanitizar la entrada
-        const profileImage = req.params.profileImage;
-        if (!profileImage) {
-            throw new ErrorHandler(400, "Profile image name is required", req.originalUrl, req.method);
-        }
+// const getProfileImage = async (req, res) => {
+//     try {
+//         // 1. Validar y sanitizar la entrada
+//         const { imageUrl } = req.params;
+//         if (!imageUrl) {
+//             throw new ErrorHandler(400, "Profile image name is required", req.originalUrl, req.method);
+//         }
 
-        // 2. Construir el path de la imagen
-        const pathImg = path.resolve("./uploads/users/staffs", profileImage);
+//         // 2. Construir el path de la imagen
+//         const pathImg = path.resolve("./uploads/users", imageUrl); // Cambiado para ser más genérico
 
-        // 3. Verificar si el archivo existe
-        try {
-            await fs.stat(pathImg);
-        } catch (error) {
-            if (error.code === 'ENOENT') {
-                // Archivo no encontrado
-                return handleSuccessfulResponse("Image not found", {})(req, res);
-            }
-            throw error;
-        }
+//         // 3. Verificar si el archivo existe
+//         try {
+//             await fs.stat(pathImg);
+//         } catch (error) {
+//             if (error.code === 'ENOENT') {
+//                 // Archivo no encontrado
+//                 return handleSuccessfulResponse("Image not found", {})(req, res);
+//             }
+//             throw error;
+//         }
 
-        // 4. Enviar el archivo como respuesta
-        res.sendFile(pathImg);
-        logger.info(`User retrieved: ${profileImage}`);
+//         // 4. Enviar el archivo como respuesta
+//         res.sendFile(pathImg);
+//         logger.info(`User retrieved: ${imageUrl}`);
 
-    } catch (error) {
-        // Manejar errores
-        handleErrorResponse(error, req, res);
-    }
-};
+//     } catch (error) {
+//         // Manejar errores
+//         handleErrorResponse(error, req, res);
+//     }
+// };
+
 
 // UPDATE USER PROFILE PICTURE
-const updateProfileImage = async (req, res) => {
-    let file;
-    try {
-        // 1. Validar y sanitizar la entrada
-        const userName = req.params.userName;
+// const updateProfileImage = async (req, res) => {
+//     let file;
+//     try {
+//         console.log('Inicio del proceso de actualización de imagen de perfil');
 
-        // Asegurarse de que userName no sea undefined
-        if (!userName) {
-            throw new ErrorHandler(400, "User name is required to update profile image", req.originalUrl, req.method);
-        }
+//         // 1. Validar y sanitizar la entrada
+//         const userName = req.params.userName;
+//         console.log('userName:', userName);
 
-        const userIdToUpdate = await getUserIDByUserName(userName);
-        if (!userIdToUpdate) {
-            throw new ErrorHandler(404, "User not found", req.originalUrl, req.method);
-        }
+//         if (!userName) {
+//             throw new ErrorHandler(400, "User name is required to update profile image", req.originalUrl, req.method);
+//         }
 
-        if (!isValidObjectId(userIdToUpdate)) {
-            throw new ErrorHandler(400, "Invalid user ID format", req.originalUrl, req.method);
-        }
+//         const userIdToUpdate = await getUserIDByUserName(userName);
+//         console.log('userIdToUpdate:', userIdToUpdate);
 
-        const userToUpdate = await User.findById(userIdToUpdate);
-        if (!userToUpdate) {
-            const ipAddress = getClientIp(req);
-            await logAudit('UPDATE_PROFILE_IMAGE_USER_NOT_FOUND', userIdToUpdate, userIdToUpdate, 'User', 'Medium', 'Attempt to update profile image for non-existing user.', ipAddress);
-            throw new ErrorHandler(404, "User not found", req.originalUrl, req.method);
-        }
+//         if (!userIdToUpdate) {
+//             throw new ErrorHandler(404, "User not found", req.originalUrl, req.method);
+//         }
 
-        // 2. Obtener el archivo de imagen de la solicitud
-        file = req.file;
-        if (!file) {
-            const ipAddress = getClientIp(req);
-            await logAudit('UPDATE_PROFILE_IMAGE_NO_FILE_PROVIDED', userIdToUpdate, userIdToUpdate, 'User', 'Medium', 'No profile image file provided for update attempt.', ipAddress);
-            throw new ErrorHandler(400, "No profile image file provided", req.originalUrl, req.method);
-        }
+//         if (!isValidObjectId(userIdToUpdate)) {
+//             throw new ErrorHandler(400, "Invalid user ID format", req.originalUrl, req.method);
+//         }
 
-        // 3. Verificar si la imagen antigua existe y eliminarla
-        if (userToUpdate.profileImage) {
-            const oldProfileImagePath = path.join('uploads', 'users', 'staffs', userToUpdate.profileImage);
-            try {
-                await fs.access(oldProfileImagePath);
-                await fs.unlink(oldProfileImagePath);
-            } catch (err) {
-                if (err.code !== 'ENOENT') {
-                    throw new ErrorHandler(500, "Failed to delete old profile image", req.originalUrl, req.method, err.message);
-                }
-            }
-        }
+//         const userToUpdate = await User.findById(userIdToUpdate);
+//         console.log('userToUpdate:', userToUpdate);
 
-        // 4. Actualizar la propiedad de imagen de perfil del usuario
-        userToUpdate.profileImage = file.filename;
-        await userToUpdate.save();
+//         if (!userToUpdate) {
+//             const ipAddress = getClientIp(req);
+//             await logAudit('UPDATE_PROFILE_IMAGE_USER_NOT_FOUND', userIdToUpdate, userIdToUpdate, 'User', 'Medium', 'Attempt to update profile image for non-existing user.', ipAddress);
+//             throw new ErrorHandler(404, "User not found", req.originalUrl, req.method);
+//         }
 
-        // 5. Registrar la auditoría
-        const ipAddress = getClientIp(req);
-        await logAudit('UPDATE_PROFILE_IMAGE', userIdToUpdate, userIdToUpdate, 'User', 'Medium', 'Profile image updated.', ipAddress, req.originalUrl);
+//         // 2. Obtener el archivo de imagen de la solicitud
+//         file = req.file;
+//         console.log('file:', file);
 
-        // 6. Responder con éxito
-        handleSuccessfulResponse("Profile image updated successfully", { profileImage: userToUpdate.profileImage })(req, res);
+//         if (!file) {
+//             const ipAddress = getClientIp(req);
+//             await logAudit('UPDATE_PROFILE_IMAGE_NO_FILE_PROVIDED', userIdToUpdate, userIdToUpdate, 'User', 'Medium', 'No profile image file provided for update attempt.', ipAddress);
+//             throw new ErrorHandler(400, "No profile image file provided", req.originalUrl, req.method);
+//         }
 
-    } catch (error) {
-        // Manejar errores y enviar respuesta de error
-        if (file && file.path) {
-            // Eliminar el archivo temporal si existe
-            try {
-                await fs.unlink(file.path);
-            } catch (err) {
-                console.error(`Failed to delete temp file: ${err.message}`);
-            }
-        }
-        handleErrorResponse(error, req, res);
-    }
-};
+//         // 3. Verificar si la imagen antigua existe y eliminarla
+//         if (userToUpdate.imageUrl) {
+//             const oldProfileImagePath = path.join('uploads', 'users', 'staffs', userToUpdate.imageUrl);
+//             try {
+//                 await fs.access(oldProfileImagePath);
+//                 await fs.unlink(oldProfileImagePath);
+//                 console.log('Imagen antigua eliminada:', oldProfileImagePath);
+//             } catch (err) {
+//                 if (err.code !== 'ENOENT') {
+//                     throw new ErrorHandler(500, "Failed to delete old profile image", req.originalUrl, req.method, err.message);
+//                 }
+//             }
+//         }
+
+//         // 4. Actualizar la propiedad de imagen de perfil del usuario
+//         userToUpdate.imageUrl = file.filename;
+//         await userToUpdate.save();
+//         console.log('Imagen de perfil actualizada:', userToUpdate.imageUrl);
+
+//         // 5. Registrar la auditoría
+//         const ipAddress = getClientIp(req);
+//         await logAudit('UPDATE_PROFILE_IMAGE', userIdToUpdate, userIdToUpdate, 'User', 'Medium', 'Profile image updated.', ipAddress, req.originalUrl);
+
+//         // 6. Responder con éxito
+//         handleSuccessfulResponse("Profile image updated successfully", { imageUrl: userToUpdate.imageUrl })(req, res);
+
+//     } catch (error) {
+//         // Manejar errores y enviar respuesta de error
+//         console.error('Error capturado:', error);
+//         if (file && file.path) {
+//             // Eliminar el archivo temporal si existe
+//             try {
+//                 await fs.unlink(file.path);
+//             } catch (err) {
+//                 console.error(`Failed to delete temp file: ${err.message}`);
+//             }
+//         }
+//         handleErrorResponse(error, req, res);
+//     }
+// };
+
+
 
 // GET USER DATA
 const getUser = async (req, res) => {
@@ -488,7 +516,7 @@ const getUser = async (req, res) => {
         // 2. Buscar el usuario por su email
         const user = await User.findOne(
             { emailAddress: email },
-            'userName firstName lastName emailAddress authMethod isActive profileImage emailNotifications role organizationName countryAddress stateAddress phoneNumber birthday identification additionalInfo'
+            'userName firstName lastName emailAddress authMethod isActive imageUrl emailNotifications role organizationName countryAddress stateAddress phoneNumber birthday identification additionalInfo'
         )
             .populate({ path: 'role', select: 'name' })
             .populate({ path: 'countryAddress', select: 'name' })
@@ -538,7 +566,7 @@ const getUserById = async (req, res) => {
 
         // 2. Buscar el usuario por su ID y seleccionar solo los campos necesarios
         const user = await User.findById(userId)
-            .select('userName firstName lastName emailAddress authMethod isActive profileImage emailNotifications role organizationName countryAddress stateAddress phoneNumber birthday identification additionalInfo')
+            .select('userName firstName lastName emailAddress authMethod isActive imageUrl emailNotifications role organizationName countryAddress stateAddress phoneNumber birthday identification additionalInfo')
             .populate({ path: 'role', select: 'name' })
             .populate({ path: 'countryAddress', select: 'name' })
             .populate({ path: 'stateAddress', select: 'province_name' });
@@ -792,9 +820,10 @@ module.exports = {
     registerUser,
     getUser,
     getUserById,
-    getProfileImage,
+    // getProfileImage,
     updateUser,
-    updateProfileImage,
+    // updateProfileImage,
+    updateUserProfileImageUrl,
     listAllUsers,
     deleteUser,
     updateUserActiveStatus,

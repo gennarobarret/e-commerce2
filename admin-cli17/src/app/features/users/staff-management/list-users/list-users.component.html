@@ -71,13 +71,10 @@
                                 </thead>
                                 <tbody *ngIf="!load_data && filteredUsers.length > 0">
                                     <tr *ngFor="let user of filteredUsers">
-                                    <td *ngIf="user.profileImage">
-                                        <img [src]="user.profileImage" alt="Avatar" class="img-avatar rounded-circle">
-                                    </td>
-                                    <td *ngIf="!user.profileImage">
-                                        <img src="assets/img/illustrations/profiles/profile-0.png" alt="Avatar" class="img-avatar rounded-circle">
-                                    </td>
-
+                                        <td>
+                                            <img [src]="user.profileImage" alt="Avatar"
+                                                class="img-avatar rounded-circle" (error)="onImageError(user)">
+                                        </td>
 
 
                                         <td>{{ user.userName }}</td>
@@ -95,7 +92,8 @@
                                         <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
                                         <td class="text-center">
                                             <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                                title="Edit" (click)="editUser(user._id!)">
+                                                title="Edit" (click)="editUser(user._id!)"
+                                                [disabled]="user.role === 'MasterAdministrator'">
                                                 <i data-feather="edit"></i>
                                             </button>
                                             <button class="btn btn-datatable btn-icon btn-transparent-dark"

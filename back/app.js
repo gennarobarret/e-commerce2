@@ -13,7 +13,12 @@ const permissionRoute = require('./routes/permissionRoute');
 const businessRoute = require('./routes/businessRoute');
 const auditLogsRoute = require('./routes/auditLogsRoute');
 const geoRoute = require('./routes/locationRoute');
-const notificationRoute = require('./routes/notificationRoute'); // Importar la ruta de notificaciones
+const notificationRoute = require('./routes/notificationRoute');
+const productRoute = require('./routes/productRoute');
+const categoryRoute = require('./routes/categoryRoute');
+const subcategoryRoute = require('./routes/subcategoryRoute');
+const imageRoute = require('./routes/imageRoute');
+
 
 
 // Configuración de middleware
@@ -30,7 +35,12 @@ app.use('/api', permissionRoute);
 app.use('/api', businessRoute);
 app.use('/api', auditLogsRoute);
 app.use('/api', geoRoute);
-app.use('/api', notificationRoute); // Añadir la ruta de notificaciones
+app.use('/api', notificationRoute);
+app.use('/api', productRoute);
+app.use('/api', categoryRoute);
+app.use('/api', subcategoryRoute);
+app.use('/api/images', imageRoute);
+
 
 
 // Middleware para manejo de errores

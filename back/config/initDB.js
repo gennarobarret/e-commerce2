@@ -37,14 +37,19 @@ mongoose.connect(process.env.MONGODB_URI)
 async function initializeRolesAndPermissions() {
     try {
         const permissions = [
+            // Permisos para roles
             { name: 'create_role', action: 'create', resource: 'role' },
             { name: 'read_roles', action: 'read', resource: 'role' },
             { name: 'update_role', action: 'update', resource: 'role' },
             { name: 'delete_role', action: 'delete', resource: 'role' },
+
+            // Permisos para permisos
             { name: 'create_permission', action: 'create', resource: 'permission' },
             { name: 'read_permissions', action: 'read', resource: 'permission' },
             { name: 'update_permission', action: 'update', resource: 'permission' },
             { name: 'delete_permission', action: 'delete', resource: 'permission' },
+
+            // Permisos para administración de usuarios
             { name: 'create_master_admin', action: 'create', resource: 'masterAdmin' },
             { name: 'create_user', action: 'create', resource: 'user' },
             { name: 'read_user', action: 'read', resource: 'user' },
@@ -53,18 +58,45 @@ async function initializeRolesAndPermissions() {
             { name: 'read_user_image', action: 'read', resource: 'userImage' },
             { name: 'update_user', action: 'update', resource: 'user' },
             { name: 'delete_user', action: 'delete', resource: 'user' },
-            { name: 'read', action: 'read', resource: 'geo' },
+
+            // Permisos para geolocalización
+            { name: 'read_geo', action: 'read', resource: 'geo' },
+
+            // Permisos para alertas
             { name: 'create_alert', action: 'create', resource: 'alert' },
             { name: 'read_alert', action: 'read', resource: 'alert' },
             { name: 'update_alert', action: 'update', resource: 'alert' },
             { name: 'delete_alert', action: 'delete', resource: 'alert' },
+
+            // Permisos para mensajes
             { name: 'create_message', action: 'create', resource: 'message' },
             { name: 'read_message', action: 'read', resource: 'message' },
             { name: 'update_message', action: 'update', resource: 'message' },
             { name: 'delete_message', action: 'delete', resource: 'message' },
+
+            // Permisos para logs de auditoría
             { name: 'read_audit_log', action: 'read', resource: 'auditLog' },
-            { name: 'delete_audit_log', action: 'delete', resource: 'auditLog' }
+            { name: 'delete_audit_log', action: 'delete', resource: 'auditLog' },
+
+            // Permisos para categorías
+            { name: 'create_category', action: 'create', resource: 'category' },
+            { name: 'read_category', action: 'read', resource: 'category' },
+            { name: 'update_category', action: 'update', resource: 'category' },
+            { name: 'delete_category', action: 'delete', resource: 'category' },
+
+            // Permisos para subcategorías
+            { name: 'create_subcategory', action: 'create', resource: 'subcategory' },
+            { name: 'read_subcategory', action: 'read', resource: 'subcategory' },
+            { name: 'update_subcategory', action: 'update', resource: 'subcategory' },
+            { name: 'delete_subcategory', action: 'delete', resource: 'subcategory' },
+
+            // Permisos para productos
+            { name: 'create_product', action: 'create', resource: 'product' },
+            { name: 'read_product', action: 'read', resource: 'product' },
+            { name: 'update_product', action: 'update', resource: 'product' },
+            { name: 'delete_product', action: 'delete', resource: 'product' }
         ];
+
 
         // Crear o actualizar permisos
         for (let permission of permissions) {
