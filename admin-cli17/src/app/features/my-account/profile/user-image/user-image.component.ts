@@ -15,9 +15,9 @@ import { ToastService } from '../../../../core/services';
 export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
   @Input() cssClass: string = '';
   @Input() showButtons: boolean = false;
-  @Input() profileImage: string | null | undefined = null;
+  @Input() imageUrl: string | null | undefined = null;
   @Input() userName!: string;
-  imageUrl!: SafeUrl;
+  sanitizedImageUrl!: SafeUrl;
   private subscriptions = new Subscription();
   selectedFile: File | null = null;
   @Output() imageUpdated = new EventEmitter<void>();
@@ -35,18 +35,18 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['profileImage']) {
+    if (changes['imageUrl']) {
       this.loadProfileImage();
     }
   }
 
   private loadProfileImage(): void {
-    if (this.profileImage) {
-      if (this.profileImage.startsWith('http')) {
+    if (this.imageUrl) {
+      if (this.imageUrl.startsWith('http')) {
         this.disableUploadButton = true;
-        this.imageUrl = this._sanitizer.bypassSecurityTrustUrl(this.profileImage);
+        this.sanitizedImageUrl = this._sanitizer.bypassSecurityTrustUrl(this.imageUrl);
       } else {
-        this.loadUserImage(this.profileImage);
+        this.loadUserImage(this.imageUrl);
       }
     } else {
       this.setImageAsDefault();
@@ -62,7 +62,7 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
     this.subscriptions.add(
       this._userManagementService.getProfileImage(imageFileName).subscribe({
         next: (safeUrl) => {
-          this.imageUrl = safeUrl;
+          this.sanitizedImageUrl = safeUrl;
         },
         error: (error) => {
           console.error('Error loading the user image:', error);
@@ -77,7 +77,7 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private setImageAsDefault(): void {
-    this.imageUrl = this._sanitizer.bypassSecurityTrustUrl('assets/img/illustrations/profiles/profile-0.png');
+    this.sanitizedImageUrl = this._sanitizer.bypassSecurityTrustUrl('assets/img/illustrations/profiles/profile-0.png');
   }
 
   fileChangeEvent(event: Event): void {
@@ -107,32 +107,37 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     const formData = new FormData();
-    formData.append('profileImage', this.selectedFile, this.selectedFile.name);
+    formData.append('imageUrl', this.selectedFile, this.selectedFile.name);
 
-    this._userManagementService.updateProfileImage(this.userName, formData).subscribe({
-      next: response => {
-        this.imageUpdated.emit();
-        this.showSuccessMessage('Image uploaded successfully.');
+    this.subscriptions.add(
+      this._userManagementService.uploadProfileImage(this.userName, formData).subscribe({
+        next: () => {
+          this.imageUpdated.emit();
+          this.showSuccessMessage('Image uploaded successfully.');
+          this.loadUserAfterUpload();
+        },
+        error: (error) => this._toastService.showToast('error', error.message)
+      })
+    );
+  }
 
-        this.subscriptions.add(
-          this._userManagementService.getUser().subscribe({
-            next: (response) => {
-              const updatedUser = response.data;
-              if (updatedUser?.profileImage) {
-                this.loadUserImage(updatedUser.profileImage);
-              } else {
-                this.setImageAsDefault();
-              }
-            },
-            error: (error) => {
-              this.showErrorMessage('Failed to reload user data.');
-              this.setImageAsDefault();
-            }
-          })
-        );
-      },
-      error: error => this._toastService.showToast('error', error.message)
-    });
+  private loadUserAfterUpload(): void {
+    this.subscriptions.add(
+      this._userManagementService.getUser().subscribe({
+        next: (response) => {
+          const updatedUser = response.data;
+          if (updatedUser?.imageUrl) {
+            this.loadUserImage(updatedUser.imageUrl);
+          } else {
+            this.setImageAsDefault();
+          }
+        },
+        error: (error) => {
+          this.showErrorMessage('Failed to reload user data.');
+          this.setImageAsDefault();
+        }
+      })
+    );
   }
 
   private showErrorMessage(message: string): void {

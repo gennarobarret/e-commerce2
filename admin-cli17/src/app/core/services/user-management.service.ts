@@ -11,17 +11,19 @@ import { ConfigService } from './config.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 const API_ENDPOINTS = {
-  updateProfileImage: 'updateProfileImage',
+  uploadProfileImage: 'uploadProfileImage',
   getUser: 'getUser',
-  getProfileImage: 'getProfileImage',
   getUserById: 'getUserById',
+  listAllUsers: 'listAllUsers',
   createUser: 'createUser',
   createMasterAdmin: 'createMasterAdmin',
   updateUser: 'updateUser',
-  listAllUsers: 'listAllUsers',
-  resetPassword: 'resetPassword', 
-  deleteUser: 'deleteUser',  
+  resetPassword: 'resetPassword',
+  deleteUser: 'deleteUser',
   updateUserActiveStatus: 'updateUserActiveStatus',
+  updateMultipleUserActiveStatus: 'updateMultipleUserActiveStatus',
+  getUserProfileImage: 'getUserProfileImage',
+  deleteUserProfileImage: 'deleteUserProfileImage',
 };
 
 @Injectable({
@@ -77,7 +79,8 @@ export class UserManagementService {
   }
 
   getProfileImage(imageFileName: string): Observable<SafeUrl> {
-    const url = `${this.url}/${API_ENDPOINTS.getProfileImage}/${imageFileName}`;
+    const url = `${this.url}${API_ENDPOINTS.getUserProfileImage}/${imageFileName}`;
+    console.log("🚀 ~ UserManagementService ~ getProfileImage ~ url:", url);
     return this.http.get(url, { responseType: 'blob' }).pipe(
       map(blob => {
         const objectUrl = URL.createObjectURL(blob);
@@ -90,7 +93,29 @@ export class UserManagementService {
     );
   }
 
-   listAllUsers(filterKey?: string, filterValue?: string): Observable<ApiResponse<User[]>> {
+  uploadProfileImage(userName: string, formData: FormData): Observable<any> {
+    const url = `${this.url}${API_ENDPOINTS.uploadProfileImage}/${userName}`;
+    return this.http.post<any>(url, formData).pipe(
+      switchMap(() => this.getUser()),
+      catchError(error => {
+        this.responseHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  deleteUserProfileImage(userName: string): Observable<any> {
+    const url = `${this.url}${API_ENDPOINTS.deleteUserProfileImage}/${userName}`;
+    return this.http.delete<any>(url).pipe(
+      switchMap(() => this.getUser()),
+      catchError(error => {
+        this.responseHandler.handleError(error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  listAllUsers(filterKey?: string, filterValue?: string): Observable<ApiResponse<User[]>> {
     let params = new HttpParams();
     if (filterKey && filterValue) {
       params = params.append('type', filterKey);
@@ -116,25 +141,12 @@ export class UserManagementService {
     return this.handleApiCall(call);
   }
 
-
   updateUser(data: any, id: string): Observable<ApiResponse<User>> {
     const call = this.http.put<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.updateUser}/${id}`, data);
     return this.handleApiCall(call, response => {
       this.setUser(response.data);
     });
   }
-
-  updateProfileImage(userName: string, formData: FormData): Observable<any> {
-    const url = `${this.url}${API_ENDPOINTS.updateProfileImage}/${userName}`;
-    return this.http.put<any>(url, formData).pipe(
-      switchMap(() => this.getUser()),
-      catchError(error => {
-        this.responseHandler.handleError(error);
-        return throwError(() => error);
-      })
-    );
-  }
-
 
   createUser(data: any): Observable<ApiResponse<User>> {
     const call = this.http.post<ApiResponse<User>>(`${this.url}${API_ENDPOINTS.createUser}`, data);
@@ -150,10 +162,6 @@ export class UserManagementService {
     });
   }
 
-
- 
-
-  // Endpoint para restablecer la contraseña
   resetPassword(token: string, newPassword: string): Observable<ApiResponse<any>> {
     const url = `${this.url}${API_ENDPOINTS.resetPassword}/${token}`;
     const body = { password: newPassword };
@@ -163,7 +171,6 @@ export class UserManagementService {
     });
   }
 
-  // Endpoint para eliminar usuario
   deleteUser(id: string): Observable<ApiResponse<any>> {
     const url = `${this.url}${API_ENDPOINTS.deleteUser}/${id}`;
     const call = this.http.delete<ApiResponse<any>>(url);
@@ -172,7 +179,6 @@ export class UserManagementService {
     });
   }
 
-  // Endpoint para actualizar el estado de actividad del usuario
   updateUserActiveStatus(id: string, isActive: boolean): Observable<ApiResponse<any>> {
     const url = `${this.url}${API_ENDPOINTS.updateUserActiveStatus}/${id}`;
     const body = { isActive };
@@ -182,14 +188,12 @@ export class UserManagementService {
     });
   }
 
-  // Service: user-management.service.ts
   updateMultipleUserActiveStatus(userIds: string[], isActive: boolean): Observable<ApiResponse<any>> {
-    const url = `${this.url}/updateMultipleUserActiveStatus`;
+    const url = `${this.url}${API_ENDPOINTS.updateMultipleUserActiveStatus}`;
     const body = { userIds, isActive };
     const call = this.http.patch<ApiResponse<any>>(url, body);
     return this.handleApiCall(call, response => {
       this.responseHandler.handleResponse(response);
     });
   }
-
 }

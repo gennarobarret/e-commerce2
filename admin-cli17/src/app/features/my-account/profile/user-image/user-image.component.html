@@ -2,11 +2,17 @@
     <div class="card mb-4 mb-xl-0">
         <div class="card-header">Profile Picture</div>
         <div class="card-body text-center">
-            <img *ngIf="imageUrl" class="img-account-profile rounded-circle mb-2" [ngClass]="combinedClasses"
-                [src]="imageUrl" alt="Profile Image" />
+            <img *ngIf="sanitizedImageUrl; else placeholderTemplate" class="img-account-profile rounded-circle mb-2"
+                [ngClass]="combinedClasses" [src]="sanitizedImageUrl" alt="Profile Image" />
+
+            <ng-template #placeholderTemplate>
+                <div class="img-account-profile rounded-circle mb-2 placeholder-image"></div>
+            </ng-template>
+
             <div class="small font-italic text-muted mb-4">PNG, JPG, JPEG, GIF, WEBP no larger than 5 MB</div>
             <input type="file" #fileInput class="d-none" (change)="fileChangeEvent($event)" title="File Upload" />
-            <button class="btn btn-primary" type="button" (click)="fileInput.click()" [disabled]="disableUploadButton">
+            <button class="btn btn-primary" type="button" (click)="fileInput.click()"
+                [disabled]="disableUploadButton || !fileInput.files?.length">
                 Upload and Save Image
             </button>
         </div>
@@ -14,5 +20,5 @@
 </ng-container>
 
 <ng-template #headerTemplate>
-    <img [ngClass]="combinedClasses" [src]="imageUrl" alt="Profile Image">
+    <img *ngIf="sanitizedImageUrl" [ngClass]="combinedClasses" [src]="sanitizedImageUrl" alt="Profile Image">
 </ng-template>

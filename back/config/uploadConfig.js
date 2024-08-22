@@ -24,7 +24,8 @@ const getStorageConfig = (entityType) => {
         }
     });
 };
-// Función para configurar Multer según el tipo de entidad
+
+
 const getUploadConfig = (entityType) => {
     return multer({
         storage: getStorageConfig(entityType),

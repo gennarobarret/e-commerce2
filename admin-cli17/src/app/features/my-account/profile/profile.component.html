@@ -36,7 +36,7 @@
                     <app-user-image 
                     [cssClass]="'my-custom-class'"
                     [showButtons]="true"
-                    [profileImage]="user?.profileImage ?? null" [userName]="user?.userName ?? ''"
+                    [imageUrl]="user?.imageUrl ?? null" [userName]="user?.userName ?? ''"
                     (imageUpdated)="fetchUserData()"
                     >
                     </app-user-image>

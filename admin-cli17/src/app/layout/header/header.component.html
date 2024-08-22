@@ -111,36 +111,35 @@
             </div>
         </li>
         <!-- User Dropdown-->
-        <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4" *ngIf="user && user.data">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
-                href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <!-- Pasar la imagen de perfil al componente -->
-                <app-user-image [profileImage]="user.data.profileImage" cssClass="img-fluid header-class"
-                    [showButtons]="false"></app-user-image>
+    <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4" *ngIf="user$ | async as user">
+        <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
+            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- Pasar la imagen de perfil al componente -->
+            <app-user-image [imageUrl]="user.imageUrl" cssClass="img-fluid header-class"
+                [showButtons]="false"></app-user-image>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up"
+            aria-labelledby="navbarDropdownUserImage">
+            <h6 class="dropdown-header d-flex align-items-center">
+                <!-- Reutilización del componente para la imagen de perfil -->
+                <app-user-image [imageUrl]="user.imageUrl" cssClass="dropdown-user-img header-class" [showButtons]="false">
+                </app-user-image>
+                <div class="dropdown-user-details">
+                    <div class="dropdown-user-details-name">{{ displayFullName(user) }}</div>
+                    <div class="dropdown-user-details-email">{{ user.userName }}</div>
+                </div>
+            </h6>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="accountSetting(user.userName)">
+                <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
+                Account
             </a>
-            <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up"
-                aria-labelledby="navbarDropdownUserImage">
-                <h6 class="dropdown-header d-flex align-items-center">
-                    <!-- Pasar la imagen de perfil al componente -->
-                    <app-user-image [profileImage]="user.data.profileImage" cssClass="dropdown-user-img header-class"
-                        [showButtons]="false">
-                    </app-user-image>
-                    <div class="dropdown-user-details">
-                        <div class="dropdown-user-details-name">{{ displayFullName() }}</div>
-                        <div class="dropdown-user-details-email">{{ user.data.userName }}</div>
-                    </div>
-                </h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="accountSetting()">
-                    <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                    Account
-                </a>
-                <a class="dropdown-item" (click)="logout()">
-                    <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                    Logout
-                </a>
-            </div>
-        </li>
+            <a class="dropdown-item" (click)="logout()">
+                <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                Logout
+            </a>
+        </div>
+    </li>
+
     </ul>
 </nav>

@@ -20,7 +20,7 @@ export interface User {
     authMethod?: string;
     identification?: string;
     additionalInfo?: string;
-    profileImage?: string;
+    imageUrl?: string;
     createdAt?: Date;
     updatedAt?: Date;
     twoFactor?: boolean; // Añadir esta propiedad

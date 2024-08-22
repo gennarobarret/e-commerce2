@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
@@ -16,9 +16,9 @@ import { UserImageComponent } from '../../features/my-account/profile/user-image
   standalone: true,
   imports: [CommonModule, RouterModule, DropdownNotificationsComponent, UserImageComponent]
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   isCollapsed = true;
-  user: any = { data: {} };
+  user$ = this._userManagementService.user$;  // Usamos AsyncPipe en la plantilla
   private subscriptions = new Subscription();
 
   constructor(
@@ -30,47 +30,39 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.loadUserData();
+  }
+
+  ngAfterViewInit(): void {
     this._featherIconsService.activateFeatherIcons();
+  }
 
-    // Cargar los datos del usuario una vez al iniciar la aplicación
-    this._userManagementService.getUser().subscribe({
-      next: (response) => {
-        const user = response.data;
-        if (user) {
-          this._userManagementService.setUser(user); // Emitir los datos del usuario
-          this.user.data = user;
-          this.cdr.detectChanges();
+  private loadUserData(): void {
+    this.subscriptions.add(
+      this._userManagementService.getUser().subscribe({
+        next: (response) => {
+          const user = response.data;
+          if (user) {
+            this._userManagementService.setUser(user); // Emitir los datos del usuario
+            this.cdr.detectChanges();
+          }
+        },
+        error: (error) => {
+          console.error('Error al cargar los datos del usuario:', error);
         }
-      },
-      error: (error) => {
-        console.error('Error al cargar los datos del usuario:', error);
-      }
-    });
-
-    const userSubscription = this._userManagementService.user$.subscribe({
-      next: (user) => {
-        if (user) {
-          this.user.data = user;
-          this.cdr.detectChanges();
-        }
-      },
-      error: (error) => {
-        console.error('Error al recibir los datos del usuario:', error);
-      }
-    });
-
-    this.subscriptions.add(userSubscription);
+      })
+    );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
-  displayFullName(): string {
-    if (!this.user || !this.user.data) {
+  displayFullName(user: any): string {
+    if (!user || !user.data) {
       return '';
     }
-    const { firstName, lastName } = this.user.data;
+    const { firstName, lastName } = user.data;
     let nameParts = [];
     if (firstName && firstName !== 'notSpecified') {
       nameParts.push(firstName);
@@ -85,7 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this._authService.logoutAndRedirect();
   }
 
-  accountSetting(): void {
-    this._router.navigate([`/my-account/profile/${this.user.data.userName}`]);
+  accountSetting(userName: string): void {
+    this._router.navigate([`/my-account/profile/${userName}`]);
   }
 }

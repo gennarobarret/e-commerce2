@@ -77,15 +77,15 @@ export class ListUsersComponent implements OnInit {
 
   loadUserImages(): void {
     this.users.forEach(user => {
-      if (user.profileImage) {
+      if (user.imageUrl) {
         // Verifica si la imagen es una URL completa
-        if (user.profileImage.startsWith('http')) {
-          user.profileImage = this.sanitizer.bypassSecurityTrustUrl(user.profileImage) as string;
+        if (user.imageUrl.startsWith('http')) {
+          user.imageUrl = this.sanitizer.bypassSecurityTrustUrl(user.imageUrl) as string;
         } else {
           // Si es solo un nombre de archivo, usa el servicio para obtener el blob y transformarlo en una URL segura
-          this.userService.getProfileImage(user.profileImage).subscribe({
+          this.userService.getProfileImage(user.imageUrl).subscribe({
             next: (imageUrl: SafeUrl) => {
-              user.profileImage = imageUrl as string;
+              user.imageUrl = imageUrl as string;
             },
             error: () => {
               this.onImageError(user);
@@ -101,7 +101,7 @@ export class ListUsersComponent implements OnInit {
 
 
   onImageError(user: User): void {
-    user.profileImage = 'assets/img/illustrations/profiles/profile-0.png';
+    user.imageUrl = 'assets/img/illustrations/profiles/profile-0.png';
   }
 
   applyFilter(): void {

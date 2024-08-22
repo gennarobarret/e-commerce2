@@ -10,7 +10,7 @@ function getClientIp(req) {
 
 // Subir una nueva imagen
 const uploadImage = async (req, res) => {
-    console.log("🚀 ~ uploadImage ~ req:", req)
+
     let responseSent = false;
     let newFilePath;
     let file;
@@ -96,8 +96,11 @@ const uploadImage = async (req, res) => {
 const getImage = async (req, res) => {
     try {
         const { fileName, entityType } = req.params;
+        console.log("🚀 ~ getImage ~ entityType:", entityType)
+        console.log("🚀 ~ getImage ~ fileName:", fileName)
         const filePath = path.resolve(`./uploads/${entityType}`, fileName);
 
+        console.log("🚀 ~ getImage ~ filePath:", filePath)
         await fs.stat(filePath); // Verificar si la imagen existe
 
         res.sendFile(filePath);

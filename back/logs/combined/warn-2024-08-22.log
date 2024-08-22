@@ -1,0 +1,5 @@
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-22 09:43:45"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-22 10:12:21"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-22 10:12:44"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-22 10:18:46"}
+{"level":"error","message":"uploadProfileImage/667e79acb5dce5f01d125a71 error: Failed to create or replace the file.","path":"uploadProfileImage/667e79acb5dce5f01d125a71","stack":"No additional details provided.","status":500,"timestamp":"2024-08-22 10:33:22"}
