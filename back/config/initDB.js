@@ -50,33 +50,40 @@ async function initializeRolesAndPermissions() {
             { name: 'delete_permission', action: 'delete', resource: 'permission' },
 
             // Permisos para administración de usuarios
-            { name: 'create_master_admin', action: 'create', resource: 'masterAdmin' },
             { name: 'create_user', action: 'create', resource: 'user' },
             { name: 'read_user', action: 'read', resource: 'user' },
             { name: 'read_user_by_id', action: 'read', resource: 'user' },
             { name: 'read_all_users', action: 'read', resource: 'user' },
-            { name: 'read_user_image', action: 'read', resource: 'userImage' },
             { name: 'update_user', action: 'update', resource: 'user' },
             { name: 'delete_user', action: 'delete', resource: 'user' },
 
-            // Permisos para geolocalización
-            { name: 'read_geo', action: 'read', resource: 'geo' },
+            // Permisos para gestión de productos
+            { name: 'create_product', action: 'create', resource: 'product' },
+            { name: 'read_product', action: 'read', resource: 'product' },
+            { name: 'update_product', action: 'update', resource: 'product' },
+            { name: 'delete_product', action: 'delete', resource: 'product' },
 
-            // Permisos para alertas
-            { name: 'create_alert', action: 'create', resource: 'alert' },
-            { name: 'read_alert', action: 'read', resource: 'alert' },
-            { name: 'update_alert', action: 'update', resource: 'alert' },
-            { name: 'delete_alert', action: 'delete', resource: 'alert' },
+            // Permisos para gestión de inventarios
+            { name: 'read_inventory', action: 'read', resource: 'inventory' },
+            { name: 'update_inventory', action: 'update', resource: 'inventory' },
 
-            // Permisos para mensajes
-            { name: 'create_message', action: 'create', resource: 'message' },
-            { name: 'read_message', action: 'read', resource: 'message' },
-            { name: 'update_message', action: 'update', resource: 'message' },
-            { name: 'delete_message', action: 'delete', resource: 'message' },
+            // Permisos para gestión de pedidos
+            { name: 'create_order', action: 'create', resource: 'order' },
+            { name: 'read_order', action: 'read', resource: 'order' },
+            { name: 'update_order', action: 'update', resource: 'order' },
+            { name: 'delete_order', action: 'delete', resource: 'order' },
 
-            // Permisos para logs de auditoría
-            { name: 'read_audit_log', action: 'read', resource: 'auditLog' },
-            { name: 'delete_audit_log', action: 'delete', resource: 'auditLog' },
+            // Permisos para gestión de pagos
+            { name: 'create_payment', action: 'create', resource: 'payment' },
+            { name: 'read_payment', action: 'read', resource: 'payment' },
+            { name: 'update_payment', action: 'update', resource: 'payment' },
+            { name: 'delete_payment', action: 'delete', resource: 'payment' },
+
+            // Permisos para gestión de envíos
+            { name: 'create_shipping', action: 'create', resource: 'shipping' },
+            { name: 'read_shipping', action: 'read', resource: 'shipping' },
+            { name: 'update_shipping', action: 'update', resource: 'shipping' },
+            { name: 'delete_shipping', action: 'delete', resource: 'shipping' },
 
             // Permisos para categorías
             { name: 'create_category', action: 'create', resource: 'category' },
@@ -90,12 +97,20 @@ async function initializeRolesAndPermissions() {
             { name: 'update_subcategory', action: 'update', resource: 'subcategory' },
             { name: 'delete_subcategory', action: 'delete', resource: 'subcategory' },
 
-            // Permisos para productos
-            { name: 'create_product', action: 'create', resource: 'product' },
-            { name: 'read_product', action: 'read', resource: 'product' },
-            { name: 'update_product', action: 'update', resource: 'product' },
-            { name: 'delete_product', action: 'delete', resource: 'product' }
+            // Permisos para logs de auditoría
+            { name: 'read_audit_log', action: 'read', resource: 'auditLog' },
+            { name: 'delete_audit_log', action: 'delete', resource: 'auditLog' },
+
+            // Permisos para gestión de clientes
+            { name: 'create_customer', action: 'create', resource: 'customer' },
+            { name: 'read_customer', action: 'read', resource: 'customer' },
+            { name: 'update_customer', action: 'update', resource: 'customer' },
+            { name: 'delete_customer', action: 'delete', resource: 'customer' },
+
+            // Permisos para informes y analítica
+            { name: 'read_reports', action: 'read', resource: 'report' },
         ];
+
 
 
         // Crear o actualizar permisos
@@ -113,29 +128,59 @@ async function initializeRolesAndPermissions() {
                 permissions: await Permission.find().select('_id')
             },
             {
-                name: 'Developer',
+                name: 'Admin',
                 permissions: await Permission.find({
                     name: {
                         $in: [
                             'create_role', 'read_roles', 'update_role', 'delete_role',
                             'create_permission', 'read_permissions', 'update_permission', 'delete_permission',
-                            'read_audit_log', 'delete_audit_log' // Añadido para Developer
+                            'create_user', 'read_user', 'update_user', 'delete_user',
+                            'create_product', 'read_product', 'update_product', 'delete_product',
+                            'create_category', 'read_category', 'update_category', 'delete_category',
+                            'create_subcategory', 'read_subcategory', 'update_subcategory', 'delete_subcategory',
+                            'create_order', 'read_order', 'update_order', 'delete_order',
+                            'create_payment', 'read_payment', 'update_payment', 'delete_payment',
+                            'create_shipping', 'read_shipping', 'update_shipping', 'delete_shipping',
+                            'read_inventory', 'update_inventory',
+                            'create_customer', 'read_customer', 'update_customer', 'delete_customer',
+                            'read_reports'
                         ]
                     }
                 }).select('_id')
             },
             {
-                name: 'Registered',
+                name: 'CustomerSupport',
                 permissions: await Permission.find({
-                    name: { $in: ['read_user', 'read_user_by_id', 'read_all_users', 'read_user_image', 'update_user'] }
+                    name: {
+                        $in: [
+                            'read_user', 'read_user_by_id', 'update_user',
+                            'read_order', 'update_order', 'read_payment', 'update_payment',
+                            'read_shipping', 'update_shipping', 'read_customer', 'update_customer'
+                        ]
+                    }
                 }).select('_id')
             },
             {
-                name: 'Editor',
+                name: 'SalesManager',
                 permissions: await Permission.find({
                     name: {
-                        $in: ['create_alert', 'read_alert', 'update_alert', 'delete_alert',
-                            'create_message', 'read_message', 'update_message', 'delete_message']
+                        $in: [
+                            'create_order', 'read_order', 'update_order', 'delete_order',
+                            'create_payment', 'read_payment', 'update_payment', 'delete_payment',
+                            'create_shipping', 'read_shipping', 'update_shipping', 'delete_shipping',
+                            'read_reports'
+                        ]
+                    }
+                }).select('_id')
+            },
+            {
+                name: 'Customer',
+                permissions: await Permission.find({
+                    name: {
+                        $in: [
+                            'read_product', 'create_order', 'read_order', 'read_payment',
+                            'read_shipping', 'read_user', 'update_user', 'read_customer'
+                        ]
                     }
                 }).select('_id')
             },
@@ -143,12 +188,14 @@ async function initializeRolesAndPermissions() {
                 name: 'Guest',
                 permissions: await Permission.find({
                     name: {
-                        $in: ['read_user', 'read_user_by_id', 'read_all_users', 'read_user_image',
-                            'read_alert', 'read_message']
+                        $in: [
+                            'read_product', 'read_category', 'read_subcategory'
+                        ]
                     }
                 }).select('_id')
             }
         ];
+
 
         // Crear o actualizar roles y asignar permisos
         for (let role of roles) {

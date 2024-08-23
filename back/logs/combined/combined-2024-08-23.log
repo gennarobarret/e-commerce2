@@ -539,3 +539,71 @@
 {"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 11:30:11"}
 {"level":"info","message":"API Success: states/country/6652e67371671e2169f4d20f","method":"GET","path":"states/country/6652e67371671e2169f4d20f","status":200,"timestamp":"2024-08-23 11:30:26"}
 {"level":"error","message":"createUser error: notificationService is not defined","method":"POST","path":"createUser","stack":"Contact support.","status":500,"timestamp":"2024-08-23 11:30:42"}
+{"level":"info","message":"API Success: createUser","method":"POST","path":"createUser","status":200,"timestamp":"2024-08-23 11:32:26"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 11:32:26"}
+{"level":"info","message":"API Success: verification-code/645ae7ab442459117ef76596fcd78a5e06afedf201dfbaf898b6c8699104177c","method":"POST","path":"verification-code/645ae7ab442459117ef76596fcd78a5e06afedf201dfbaf898b6c8699104177c","status":200,"timestamp":"2024-08-23 11:32:37"}
+{"level":"info","message":"API Success: resetPassword/cae327cefbc159c7f397335c73fb1d9271df85f014a316515fbebbd7bdb6523f","method":"POST","path":"resetPassword/cae327cefbc159c7f397335c73fb1d9271df85f014a316515fbebbd7bdb6523f","status":200,"timestamp":"2024-08-23 11:32:51"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-23 11:32:51"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 11:32:51"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 11:32:51"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 11:32:59"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-23 11:33:04"}
+{"level":"info","message":"API Success: getUserById/66c857280675e2fe8fe90169","method":"GET","path":"getUserById/66c857280675e2fe8fe90169","status":200,"timestamp":"2024-08-23 11:33:04"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-23 11:33:04"}
+{"level":"info","message":"API Success: states/country/6652e67371671e2169f4d20f","method":"GET","path":"states/country/6652e67371671e2169f4d20f","status":200,"timestamp":"2024-08-23 11:33:04"}
+{"level":"info","message":"API Success: uploadProfileImage/66c857280675e2fe8fe90169","method":"POST","path":"uploadProfileImage/66c857280675e2fe8fe90169","status":200,"timestamp":"2024-08-23 11:33:09"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 11:33:10"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 11:33:10"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 11:33:10"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 11:33:10"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-23 11:33:10"}
+{"level":"info","message":"API Success: getUserById/66c857280675e2fe8fe90169","method":"GET","path":"getUserById/66c857280675e2fe8fe90169","status":200,"timestamp":"2024-08-23 11:33:10"}
+{"level":"info","message":"API Success: states/country/6652e67371671e2169f4d20f","method":"GET","path":"states/country/6652e67371671e2169f4d20f","status":200,"timestamp":"2024-08-23 11:33:10"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 11:33:15"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 11:35:22"}
+{"level":"info","message":"User retrieved: gennarobarret","timestamp":"2024-08-23 11:35:24"}
+{"level":"info","message":"API Success: getUserById/66c833754c317a89807f2ece","method":"GET","path":"getUserById/66c833754c317a89807f2ece","status":200,"timestamp":"2024-08-23 11:35:24"}
+{"level":"warn","message":"Login attempt for not verified account: randomUser1 from IP: ::ffff:127.0.0.1","timestamp":"2024-08-23 11:36:07"}
+{"level":"error","message":"loginUser error: Account not verified. Please check your email for activation link.","method":"POST","path":"loginUser","stack":"Login attempt for not verified account: randomUser1 from IP: ::ffff:127.0.0.1","status":403,"timestamp":"2024-08-23 11:36:07"}
+{"level":"info","message":"API Success: activation/64fa020b1e7e3896200917073386823ae0957491","method":"GET","path":"activation/64fa020b1e7e3896200917073386823ae0957491","status":200,"timestamp":"2024-08-23 11:36:16"}
+{"level":"info","message":"User account activated: randomUser1 from IP: ::ffff:127.0.0.1","timestamp":"2024-08-23 11:36:16"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-08-23 11:36:19"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-23 11:36:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 11:36:19"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-23 11:36:19"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-23 11:36:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 11:36:19"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 11:36:26"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-08-23 12:06:49"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 12:06:49"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 12:06:49"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-23 12:06:49"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 12:06:49"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 12:06:49"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 12:09:00"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 12:09:46"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-23 12:09:49"}
+{"level":"info","message":"API Success: getUserById/66c857280675e2fe8fe90169","method":"GET","path":"getUserById/66c857280675e2fe8fe90169","status":200,"timestamp":"2024-08-23 12:09:49"}
+{"level":"info","message":"API Success: states/country/6652e67371671e2169f4d20f","method":"GET","path":"states/country/6652e67371671e2169f4d20f","status":200,"timestamp":"2024-08-23 12:09:49"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 12:10:06"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 12:10:12"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-23 12:22:39"}
+{"level":"info","message":"API Success: getUserById/66c857280675e2fe8fe90169","method":"GET","path":"getUserById/66c857280675e2fe8fe90169","status":200,"timestamp":"2024-08-23 12:22:39"}
+{"level":"info","message":"API Success: states/country/6652e67371671e2169f4d20f","method":"GET","path":"states/country/6652e67371671e2169f4d20f","status":200,"timestamp":"2024-08-23 12:22:39"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-23 12:24:38"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 12:24:38"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 12:24:38"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-23 12:24:38"}
+{"level":"info","message":"API Success: getUserById/66c857280675e2fe8fe90169","method":"GET","path":"getUserById/66c857280675e2fe8fe90169","status":200,"timestamp":"2024-08-23 12:24:38"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-23 12:24:38"}
+{"level":"info","message":"API Success: states/country/6652e67371671e2169f4d20f","method":"GET","path":"states/country/6652e67371671e2169f4d20f","status":200,"timestamp":"2024-08-23 12:24:38"}
+{"level":"info","message":"API Success: updateUser/66c857280675e2fe8fe90169","method":"PUT","path":"updateUser/66c857280675e2fe8fe90169","status":200,"timestamp":"2024-08-23 12:24:44"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 12:24:44"}
+{"level":"error","message":"undefined_path error: Role not found","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-23 12:26:45"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-23 12:26:45"}
+{"level":"error","message":"undefined_path error: Role not found","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-23 12:26:46"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-23 12:32:30"}
+{"level":"info","message":"Initialization complete.","timestamp":"2024-08-23 12:32:30"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-23 12:43:54"}
+{"level":"info","message":"Countries loaded successfully","timestamp":"2024-08-23 12:43:55"}
+{"level":"info","message":"States loaded successfully","timestamp":"2024-08-23 12:43:55"}
