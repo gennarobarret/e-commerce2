@@ -22,8 +22,8 @@ const API_ENDPOINTS = {
   deleteUser: 'deleteUser',
   updateUserActiveStatus: 'updateUserActiveStatus',
   updateMultipleUserActiveStatus: 'updateMultipleUserActiveStatus',
-  getUserProfileImage: 'getUserProfileImage',
-  deleteUserProfileImage: 'deleteUserProfileImage',
+  getUserProfileImage: 'getUserProfileImage',  // Mantener este
+  deleteUserProfileImage: 'deleteUserProfileImage',  // Mantener este
 };
 
 @Injectable({
@@ -95,6 +95,9 @@ export class UserManagementService {
 
   uploadProfileImage(userId: string, formData: FormData): Observable<any> {
     const url = `${this.url}${API_ENDPOINTS.uploadProfileImage}/${userId}`;
+
+    console.log("🚀 ~ UserManagementService ~ uploadProfileImage ~ url:", url)
+    
     return this.http.post<any>(url, formData).pipe(
       switchMap(() => this.getUser()),  // Refresca los datos del usuario después de la carga
       catchError(error => {
@@ -114,6 +117,7 @@ export class UserManagementService {
       })
     );
   }
+
 
 
   listAllUsers(filterKey?: string, filterValue?: string): Observable<ApiResponse<User[]>> {

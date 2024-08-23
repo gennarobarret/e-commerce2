@@ -53,6 +53,80 @@ const isValidObjectId = (id) => {
     return /^[0-9a-fA-F]{24}$/.test(id);
 };
 
+// UPLOAD PROFILE IMAGE
+const uploadProfileImage = async (req, res, next) => {
+    try {
+        const userId = req.params.identifier;
+        const imageUrl = req.file.filename; // Este campo se llena después de que Multer maneje la carga
+
+        // Actualizar el usuario con la nueva URL de la imagen
+        await User.findByIdAndUpdate(userId, { imageUrl });
+
+        return handleSuccessfulResponse('Profile image uploaded successfully', { imageUrl })(req, res);
+    } catch (error) {
+        return handleErrorResponse(error, req, res);
+    }
+};
+
+// GET PROFILE IMAGE
+const getUserProfileImage = async (req, res, next) => {
+    try {
+        const userId = req.params.identifier;
+        const user = await User.findById(userId);
+
+        if (!user || !user.imageUrl) {
+            return next(new ErrorHandler(404, 'Profile image not found.'));
+        }
+
+        const imagePath = path.join(__dirname, '..', 'uploads', 'users', user.imageUrl);
+
+        res.sendFile(imagePath, (err) => {
+            if (err) {
+                return next(new ErrorHandler(500, 'Failed to send profile image.'));
+            }
+        });
+    } catch (error) {
+        return handleErrorResponse(error, req, res);
+    }
+};
+// DELETE PROFILE IMAGE
+const deleteUserProfileImage = async (req, res, next) => {
+    try {
+        const userId = req.params.identifier;
+        console.log(`Attempting to delete profile image for user ID: ${userId}`);
+
+        const user = await User.findById(userId);
+        console.log(`User found: ${user ? user._id : 'not found'}`);
+
+        if (!user || !user.imageUrl) {
+            console.log('Profile image not found.');
+            return next(new ErrorHandler(404, 'Profile image not found.'));
+        }
+
+        const imagePath = path.join(__dirname, '..', 'uploads', 'users', user.imageUrl);
+        console.log(`Image path resolved: ${imagePath}`);
+
+        // Eliminar la imagen del sistema de archivos
+        try {
+            await fs.unlink(imagePath);
+            console.log(`Successfully deleted file: ${imagePath}`);
+
+            // Eliminar la referencia de la imagen en la base de datos
+            user.imageUrl = null;
+            await user.save();
+            console.log('User image URL reference removed.');
+
+            return handleSuccessfulResponse('Profile image deleted successfully.')(req, res);
+        } catch (err) {
+            console.error(`Failed to delete file: ${imagePath}`, err);
+            return next(new ErrorHandler(500, 'Failed to delete profile image from the server.'));
+        }
+    } catch (error) {
+        console.error('Error in deleteUserProfileImage:', error);
+        return handleErrorResponse(error, req, res);
+    }
+};
+
 // LIST USER DATA
 const listAllUsers = async (req, res) => {
     try {
@@ -679,79 +753,7 @@ const updateMultipleUserActiveStatus = async (req, res) => {
     }
 };
 
-// UPLOAD PROFILE IMAGE
-const uploadProfileImage = async (req, res, next) => {
-    try {
-        const userId = req.params.identifier;
-        const imageUrl = req.file.filename; // Este campo se llena después de que Multer maneje la carga
 
-        // Actualizar el usuario con la nueva URL de la imagen
-        await User.findByIdAndUpdate(userId, { imageUrl });
-
-        return handleSuccessfulResponse('Profile image uploaded successfully', { imageUrl })(req, res);
-    } catch (error) {
-        return handleErrorResponse(error, req, res);
-    }
-};
-
-// GET PROFILE IMAGE
-const getUserProfileImage = async (req, res, next) => {
-    try {
-        const userId = req.params.identifier;
-        const user = await User.findById(userId);
-
-        if (!user || !user.imageUrl) {
-            return next(new ErrorHandler(404, 'Profile image not found.'));
-        }
-
-        const imagePath = path.join(__dirname, '..', 'uploads', 'users', user.imageUrl);
-
-        res.sendFile(imagePath, (err) => {
-            if (err) {
-                return next(new ErrorHandler(500, 'Failed to send profile image.'));
-            }
-        });
-    } catch (error) {
-        return handleErrorResponse(error, req, res);
-    }
-};
-// DELETE PROFILE IMAGE
-const deleteUserProfileImage = async (req, res, next) => {
-    try {
-        const userId = req.params.identifier;
-        console.log(`Attempting to delete profile image for user ID: ${userId}`);
-
-        const user = await User.findById(userId);
-        console.log(`User found: ${user ? user._id : 'not found'}`);
-
-        if (!user || !user.imageUrl) {
-            console.log('Profile image not found.');
-            return next(new ErrorHandler(404, 'Profile image not found.'));
-        }
-
-        const imagePath = path.join(__dirname, '..', 'uploads', 'users', user.imageUrl);
-        console.log(`Image path resolved: ${imagePath}`);
-
-        // Eliminar la imagen del sistema de archivos
-        try {
-            await fs.unlink(imagePath);
-            console.log(`Successfully deleted file: ${imagePath}`);
-
-            // Eliminar la referencia de la imagen en la base de datos
-            user.imageUrl = null;
-            await user.save();
-            console.log('User image URL reference removed.');
-
-            return handleSuccessfulResponse('Profile image deleted successfully.')(req, res);
-        } catch (err) {
-            console.error(`Failed to delete file: ${imagePath}`, err);
-            return next(new ErrorHandler(500, 'Failed to delete profile image from the server.'));
-        }
-    } catch (error) {
-        console.error('Error in deleteUserProfileImage:', error);
-        return handleErrorResponse(error, req, res);
-    }
-};
 
 
 module.exports = {
