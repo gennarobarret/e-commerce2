@@ -77,6 +77,7 @@ export class UserManagementService {
   setUser(user: User): void {
     this.userSubject.next(user);
   }
+
   getProfileImage(userId: string): Observable<SafeUrl> {
     const url = `${this.url}${API_ENDPOINTS.getUserProfileImage}/${userId}`;
     return this.http.get(url, { responseType: 'blob' }).pipe(
@@ -97,7 +98,7 @@ export class UserManagementService {
     const url = `${this.url}${API_ENDPOINTS.uploadProfileImage}/${userId}`;
 
     console.log("🚀 ~ UserManagementService ~ uploadProfileImage ~ url:", url)
-    
+
     return this.http.post<any>(url, formData).pipe(
       switchMap(() => this.getUser()),  // Refresca los datos del usuario después de la carga
       catchError(error => {

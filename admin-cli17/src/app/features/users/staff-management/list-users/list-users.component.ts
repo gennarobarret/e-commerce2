@@ -6,15 +6,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ToastService } from '../../../../core/services';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-
-declare var window: any;
-
+import { DomSanitizer } from '@angular/platform-browser';
+import { UserImageComponent } from '../../../my-account/profile/user-image/user-image.component';
 
 @Component({
   selector: 'app-list-users',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, UserImageComponent],
   templateUrl: './list-users.component.html',
   styleUrls: ['./list-users.component.css']
 })
@@ -53,7 +51,6 @@ export class ListUsersComponent implements OnInit {
     private router: Router,
     private toastService: ToastService,
     private sanitizer: DomSanitizer
-
   ) { }
 
   ngOnInit(): void {
@@ -64,7 +61,6 @@ export class ListUsersComponent implements OnInit {
     this.userService.listAllUsers().subscribe({
       next: (response) => {
         this.users = response.data;
-        this.loadUserImages();  // Carga las imágenes de los usuarios después de obtener la lista
         this.applyFilter();
         this.load_data = false;
       },
@@ -74,31 +70,6 @@ export class ListUsersComponent implements OnInit {
       }
     });
   }
-
-  loadUserImages(): void {
-    this.users.forEach(user => {
-      if (user.imageUrl) {
-        // Verifica si la imagen es una URL completa
-        if (user.imageUrl.startsWith('http')) {
-          user.imageUrl = this.sanitizer.bypassSecurityTrustUrl(user.imageUrl) as string;
-        } else {
-          // Si es solo un nombre de archivo, usa el servicio para obtener el blob y transformarlo en una URL segura
-          this.userService.getProfileImage(user.imageUrl).subscribe({
-            next: (imageUrl: SafeUrl) => {
-              user.imageUrl = imageUrl as string;
-            },
-            error: () => {
-              this.onImageError(user);
-            }
-          });
-        }
-      } else {
-        this.onImageError(user);  // Si no hay imagen, asigna una por defecto
-      }
-    });
-  }
-
-
 
   onImageError(user: User): void {
     user.imageUrl = 'assets/img/illustrations/profiles/profile-0.png';
@@ -180,7 +151,6 @@ export class ListUsersComponent implements OnInit {
         next: (response) => {
           console.log(`User ${this.userIdToDelete} deleted successfully`, response);
 
-
           if (response && response.status === 'success') {
             this.toastService.showToast(response.status, `${response.message}`);
           }
@@ -213,4 +183,11 @@ export class ListUsersComponent implements OnInit {
     }
   }
 
+}
+
+// Declaración global para reconocer window.bootstrap
+declare global {
+  interface Window {
+    bootstrap: any;
+  }
 }

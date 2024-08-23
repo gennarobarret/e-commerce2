@@ -43,7 +43,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
         next: (response) => {
           const user = response.data;
           if (user) {
-            console.log('User ID:', user._id);  // Verifica que el user ID esté disponible
             this._userManagementService.setUser(user);
             this.cdr.detectChanges();
           }

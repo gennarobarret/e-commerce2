@@ -753,9 +753,6 @@ const updateMultipleUserActiveStatus = async (req, res) => {
     }
 };
 
-
-
-
 module.exports = {
     createMasterAdmin,
     createUser,

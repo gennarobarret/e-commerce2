@@ -31,8 +31,17 @@ th.sorted-desc::after {
 th.no-sort::after {
     content: '';
 }
+
 .img-avatar {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.img-thumbnail {
+    width: 50px;
+    /* Ajusta el tamaño según tus necesidades */
+    height: 50px;
+    object-fit: cover;
+    /* Asegura que la imagen se ajuste sin distorsionarse */
 }

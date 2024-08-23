@@ -72,11 +72,10 @@
                                 <tbody *ngIf="!load_data && filteredUsers.length > 0">
                                     <tr *ngFor="let user of filteredUsers">
                                         <td>
-                                            <img [src]="user.imageUrl" alt="Avatar"
-                                                class="img-avatar rounded-circle" (error)="onImageError(user)">
+                                    <app-user-image [userId]="user._id!" [imageUrl]="user.imageUrl ?? ''" cssClass="img-avatar rounded-circle img-thumbnail"
+                                        [showButtons]="false">
+                                    </app-user-image>
                                         </td>
-
-
                                         <td>{{ user.userName }}</td>
                                         <td>{{ user.firstName }}</td>
                                         <td>{{ user.lastName }}</td>

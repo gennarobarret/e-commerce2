@@ -10,15 +10,13 @@
             <ng-template #imageTemplate>
                 <img *ngIf="sanitizedImageUrl; else placeholderTemplate" class="img-account-profile rounded-circle mb-2"
                     [ngClass]="combinedClasses" [src]="sanitizedImageUrl" alt="Profile Image" />
-
                 <ng-template #placeholderTemplate>
                     <div class="img-account-profile rounded-circle mb-2 placeholder-image"></div>
                 </ng-template>
             </ng-template>
-
             <div class="small font-italic text-muted mb-4">PNG, JPG, JPEG, GIF, WEBP no larger than 5 MB</div>
             <input type="file" #fileInput class="d-none" (change)="fileChangeEvent($event)" title="File Upload" />
-            <button class="btn btn-primary" type="button" (click)="fileInput.click()">
+            <button class="btn btn-primary" type="button" (click)="fileInput.click()" [disabled]="disableUploadButton">
                 Upload and Save Image
             </button>
         </div>
