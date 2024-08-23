@@ -82,7 +82,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     );
   }
 
-
   private updateFormWithUserData(user: User) {
     const formattedBirthday = user.birthday ? new Date(user.birthday).toISOString().split('T')[0] : '';
     this.updateForm.patchValue({
@@ -185,9 +184,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     const formData = this.createJsonData();
-
-    const userId = this.user?._id || '';
-    console.log('User ID:', userId);
+    const userId = this.user?._id || '';  // Asegúrate de usar userId
 
     this.subscriptions.add(
       this.userManagementService.updateUser(formData, userId).subscribe({

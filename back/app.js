@@ -17,7 +17,7 @@ const notificationRoute = require('./routes/notificationRoute');
 const productRoute = require('./routes/productRoute');
 const categoryRoute = require('./routes/categoryRoute');
 const subcategoryRoute = require('./routes/subcategoryRoute');
-const imageRoute = require('./routes/imageRoute');
+
 
 
 
@@ -39,7 +39,7 @@ app.use('/api', notificationRoute);
 app.use('/api', productRoute);
 app.use('/api', categoryRoute);
 app.use('/api', subcategoryRoute);
-app.use('/api/images', imageRoute);
+
 
 
 

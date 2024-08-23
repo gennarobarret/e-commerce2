@@ -16,8 +16,9 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
   @Input() cssClass: string = '';
   @Input() showButtons: boolean = false;
   @Input() imageUrl: string | null | undefined = null;
-  @Input() userName!: string;
+  @Input() userId!: string;
   sanitizedImageUrl!: SafeUrl;
+  isLoading: boolean = false;  // Nuevo campo para controlar la carga
   private subscriptions = new Subscription();
   selectedFile: File | null = null;
   @Output() imageUpdated = new EventEmitter<void>();
@@ -40,10 +41,26 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
+  private loadUserImage(imageFileName: string): void {
+    this.isLoading = true;
+    this.subscriptions.add(
+      this._userManagementService.getProfileImage(this.userId).subscribe({
+        next: (safeUrl) => {
+          this.sanitizedImageUrl = safeUrl;
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error loading the user image:', error);
+          this.setImageAsDefault();
+          this.isLoading = false;
+        },
+      })
+    );
+  }
+
   private loadProfileImage(): void {
     if (this.imageUrl) {
       if (this.imageUrl.startsWith('http')) {
-        this.disableUploadButton = true;
         this.sanitizedImageUrl = this._sanitizer.bypassSecurityTrustUrl(this.imageUrl);
       } else {
         this.loadUserImage(this.imageUrl);
@@ -53,24 +70,6 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private loadUserImage(imageFileName: string): void {
-    if (!imageFileName) {
-      this.showErrorMessage('User image file name is required to load the image.');
-      return;
-    }
-
-    this.subscriptions.add(
-      this._userManagementService.getProfileImage(imageFileName).subscribe({
-        next: (safeUrl) => {
-          this.sanitizedImageUrl = safeUrl;
-        },
-        error: (error) => {
-          console.error('Error loading the user image:', error);
-          this.setImageAsDefault();
-        },
-      })
-    );
-  }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
@@ -110,7 +109,7 @@ export class UserImageComponent implements OnInit, OnDestroy, OnChanges {
     formData.append('imageUrl', this.selectedFile, this.selectedFile.name);
 
     this.subscriptions.add(
-      this._userManagementService.uploadProfileImage(this.userName, formData).subscribe({
+      this._userManagementService.uploadProfileImage(this.userId, formData).subscribe({
         next: () => {
           this.imageUpdated.emit();
           this.showSuccessMessage('Image uploaded successfully.');

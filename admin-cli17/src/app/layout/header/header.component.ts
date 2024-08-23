@@ -43,7 +43,8 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
         next: (response) => {
           const user = response.data;
           if (user) {
-            this._userManagementService.setUser(user); // Emitir los datos del usuario
+            console.log('User ID:', user._id);  // Verifica que el user ID esté disponible
+            this._userManagementService.setUser(user);
             this.cdr.detectChanges();
           }
         },
@@ -54,10 +55,11 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
 
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
-
+  
   displayFullName(user: any): string {
     if (!user || !user.data) {
       return '';
@@ -73,11 +75,13 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     return nameParts.join(' ');
   }
 
+
   logout(): void {
     this._authService.logoutAndRedirect();
   }
 
-  accountSetting(userName: string): void {
-    this._router.navigate([`/my-account/profile/${userName}`]);
+  accountSetting(userId: string): void {
+    this._router.navigate([`/my-account/profile/${userId}`]);
   }
+
 }

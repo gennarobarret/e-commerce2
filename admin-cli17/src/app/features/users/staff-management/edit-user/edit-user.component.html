@@ -21,12 +21,10 @@
         <ng-container *ngIf="!loading">
             <div class="row">
                 <div class="col-xl-4">
-                    <app-user-image [cssClass]="'my-custom-class'" [showButtons]="true"
-                        [imageUrl]="user?.imageUrl ?? null" [userName]="user?.userName ?? ''"
-                        (imageUpdated)="fetchUserData(user?._id || '')">
-                    </app-user-image>
+                <app-user-image [cssClass]="'my-custom-class'" [showButtons]="true" [imageUrl]="user?.imageUrl ?? null"
+                    [userId]="user?._id ?? ''" (imageUpdated)="fetchUserData(user?._id ?? '')">
+                </app-user-image>
                 </div>
-
                 <div class="col-xl-8">
                     <form [formGroup]="updateUserForm" (ngSubmit)="update()">
                         <!-- Account details card-->

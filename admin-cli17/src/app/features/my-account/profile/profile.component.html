@@ -33,12 +33,10 @@
             <div class="row">
                 <div class="col-xl-4">
                     <!-- Componente de imagen del usuario -->
-                    <app-user-image 
-                    [cssClass]="'my-custom-class'"
-                    [showButtons]="true"
-                    [imageUrl]="user?.imageUrl ?? null" [userName]="user?.userName ?? ''"
-                    (imageUpdated)="fetchUserData()"
-                    >
+                    <app-user-image [cssClass]="'my-custom-class'" [showButtons]="true" [imageUrl]="user?.imageUrl ?? null"
+                        [userId]="user?._id ?? ''"
+                        (imageUpdated)="fetchUserData()"
+                        >
                     </app-user-image>
                 </div>
 

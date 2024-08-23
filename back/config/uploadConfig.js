@@ -1,8 +1,9 @@
-const multer = require('multer');
+const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
+const mongoose = require('mongoose');
 const { ErrorHandler, handleErrorResponse } = require("../helpers/responseManagerHelper");
 
-// Función para configurar almacenamiento dinámico según el tipo de entidad
 const getStorageConfig = (entityType) => {
     return multer.diskStorage({
         destination: function (req, file, cb) {
@@ -12,7 +13,6 @@ const getStorageConfig = (entityType) => {
         filename: function (req, file, cb) {
             const timestamp = Date.now();
             const extension = path.extname(file.originalname);
-
             const identifier = req.params.identifier;
 
             if (!identifier) {
@@ -25,6 +25,50 @@ const getStorageConfig = (entityType) => {
     });
 };
 
+const removePreviousImage = (entityType, model) => {
+    return async (req, res, next) => {
+        const directoryPath = path.join(__dirname, '..', 'uploads', entityType);
+        const identifier = req.params.identifier;
+
+        if (!identifier) {
+            return next(new ErrorHandler(400, 'Identifier is required to remove previous image.'));
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(identifier)) {
+            return next(new ErrorHandler(400, 'Invalid ID format.'));
+        }
+
+        try {
+            const documentExists = await model.findById(identifier);
+            if (!documentExists) {
+                return next(new ErrorHandler(404, `${model.modelName} not found.`));
+            }
+        } catch (error) {
+            return next(new ErrorHandler(500, 'Internal server error.'));
+        }
+
+        fs.readdir(directoryPath, (err, files) => {
+            if (err) {
+                return next(new ErrorHandler(500, 'Failed to read directory for previous images.'));
+            }
+
+            const matchingFiles = files.filter(file => file.startsWith(identifier));
+
+            matchingFiles.forEach(file => {
+                const filePath = path.join(directoryPath, file);
+                fs.unlink(filePath, (err) => {
+                    if (err) {
+                        console.error(`Failed to delete file: ${filePath}`, err);
+                    } else {
+                        console.log(`Successfully deleted previous file: ${filePath}`);
+                    }
+                });
+            });
+
+            next();
+        });
+    };
+};
 
 const getUploadConfig = (entityType) => {
     return multer({
@@ -41,17 +85,14 @@ const getUploadConfig = (entityType) => {
     });
 };
 
-// Middleware para manejar errores de Multer
 const multerErrorHandler = (entityType) => {
     return (req, res, next) => {
         const uploadSingle = getUploadConfig(entityType).single('image');
         uploadSingle(req, res, (err) => {
             if (err instanceof multer.MulterError) {
-                // Error de Multer
                 const error = new ErrorHandler(400, err.message);
                 return handleErrorResponse(error, req, res);
             } else if (err) {
-                // Otro tipo de error
                 const error = new ErrorHandler(500, err.message);
                 return handleErrorResponse(error, req, res);
             }
@@ -61,5 +102,7 @@ const multerErrorHandler = (entityType) => {
 };
 
 module.exports = {
+    removePreviousImage,
     multerErrorHandler
 };
+    

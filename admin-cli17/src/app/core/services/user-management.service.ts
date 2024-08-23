@@ -77,10 +77,8 @@ export class UserManagementService {
   setUser(user: User): void {
     this.userSubject.next(user);
   }
-
-  getProfileImage(imageFileName: string): Observable<SafeUrl> {
-    const url = `${this.url}${API_ENDPOINTS.getUserProfileImage}/${imageFileName}`;
-    console.log("🚀 ~ UserManagementService ~ getProfileImage ~ url:", url);
+  getProfileImage(userId: string): Observable<SafeUrl> {
+    const url = `${this.url}${API_ENDPOINTS.getUserProfileImage}/${userId}`;
     return this.http.get(url, { responseType: 'blob' }).pipe(
       map(blob => {
         const objectUrl = URL.createObjectURL(blob);
@@ -93,10 +91,12 @@ export class UserManagementService {
     );
   }
 
-  uploadProfileImage(userName: string, formData: FormData): Observable<any> {
-    const url = `${this.url}${API_ENDPOINTS.uploadProfileImage}/${userName}`;
+
+
+  uploadProfileImage(userId: string, formData: FormData): Observable<any> {
+    const url = `${this.url}${API_ENDPOINTS.uploadProfileImage}/${userId}`;
     return this.http.post<any>(url, formData).pipe(
-      switchMap(() => this.getUser()),
+      switchMap(() => this.getUser()),  // Refresca los datos del usuario después de la carga
       catchError(error => {
         this.responseHandler.handleError(error);
         return throwError(() => error);
@@ -104,16 +104,17 @@ export class UserManagementService {
     );
   }
 
-  deleteUserProfileImage(userName: string): Observable<any> {
-    const url = `${this.url}${API_ENDPOINTS.deleteUserProfileImage}/${userName}`;
+  deleteUserProfileImage(userId: string): Observable<any> {
+    const url = `${this.url}${API_ENDPOINTS.deleteUserProfileImage}/${userId}`;
     return this.http.delete<any>(url).pipe(
-      switchMap(() => this.getUser()),
+      switchMap(() => this.getUser()),  // Refresca los datos del usuario después de la eliminación
       catchError(error => {
         this.responseHandler.handleError(error);
         return throwError(() => error);
       })
     );
   }
+
 
   listAllUsers(filterKey?: string, filterValue?: string): Observable<ApiResponse<User[]>> {
     let params = new HttpParams();
