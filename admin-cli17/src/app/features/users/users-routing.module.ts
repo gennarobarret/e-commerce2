@@ -8,16 +8,16 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'staff-list',
-        loadComponent: () => import('./staff-management/list-users/list-users.component').then(c => c.ListUsersComponent)
+        path: 'users-list',
+        loadComponent: () => import('./users-management/list-users/list-users.component').then(c => c.ListUsersComponent)
     },
     {
         path: 'add',
-        loadComponent: () => import('./staff-management/add-user/add-user.component').then(c => c.AddUserComponent)
+        loadComponent: () => import('./users-management/add-user/add-user.component').then(c => c.AddUserComponent)
     },
     {
         path: 'edit/:id',
-        loadComponent: () => import('./staff-management/edit-user/edit-user.component').then(c => c.EditUserComponent)
+        loadComponent: () => import('./users-management/edit-user/edit-user.component').then(c => c.EditUserComponent)
     },
     {
         path: '**',

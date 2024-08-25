@@ -27,6 +27,10 @@ const routes: Routes = [
                 loadChildren: () => import('../features/users/users-routing.module').then(m => m.UserRoutingModule)
             },
             {
+                path: 'role-permission',
+                loadChildren: () => import('../features/role-and-permission/RolePermission-routing.module').then(m => m.RolePermissionRoutingModule)
+            }, 
+            {
                 path: 'all-notifications',
                 loadChildren: () => import('../features/notifications/notifications-routing.module').then(m => m.NotificationsRoutingModule)
             },

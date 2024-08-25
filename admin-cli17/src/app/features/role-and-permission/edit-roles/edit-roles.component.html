@@ -1,0 +1,79 @@
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-xl px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                            Edit Role
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-xl px-4 mt-4">
+        <ng-container *ngIf="loading">
+            <app-spinner></app-spinner>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2">
+                    <form [formGroup]="editRoleForm" (ngSubmit)="updateRole()">
+                        <!-- Role details card -->
+                        <div class="card mb-4">
+                            <div class="card-header">Role Details</div>
+                            <div class="card-body">
+                                <!-- Form Group (role name) -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="roleName">Role Name</label>
+                                    <input class="form-control" id="roleName" type="text" placeholder="Enter role name"
+                                        formControlName="roleName"
+                                        [ngClass]="{'is-invalid': editRoleForm.get('roleName')?.invalid && (editRoleForm.get('roleName')?.dirty || editRoleForm.get('roleName')?.touched)}" />
+                                    <div *ngIf="editRoleForm.get('roleName')?.invalid && (editRoleForm.get('roleName')?.dirty || editRoleForm.get('roleName')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="editRoleForm.get('roleName')?.errors?.['required']">
+                                            Role Name is required.
+                                        </span>
+                                        <span *ngIf="editRoleForm.get('roleName')?.errors?.['minlength']">
+                                            Role Name must be at least 3 characters long.
+                                        </span>
+                                        <span *ngIf="editRoleForm.get('roleName')?.errors?.['maxlength']">
+                                            Role Name must be no more than 25 characters long.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Form Group (permissions) -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="permissions">Permissions</label>
+                                    <select multiple class="form-control" id="permissions" formControlName="permissions"
+                                        [ngClass]="{'is-invalid': editRoleForm.get('permissions')?.invalid && (editRoleForm.get('permissions')?.dirty || editRoleForm.get('permissions')?.touched)}">
+                                        <option *ngFor="let permission of permissions" [value]="permission._id">
+                                            {{ permission.action }} {{ permission.resource }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="editRoleForm.get('permissions')?.invalid && (editRoleForm.get('permissions')?.dirty || editRoleForm.get('permissions')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="editRoleForm.get('permissions')?.errors?.['required']">At least one
+                                            permission is required.</span>
+                                    </div>
+                                </div>
+
+                                <!-- Save changes button -->
+                                <button class="btn btn-primary" type="submit" [disabled]="editRoleForm.disabled">
+                                    Update Role
+                                </button>
+                                <div *ngIf="editRoleForm.disabled" class="alert alert-warning" role="alert">
+                                    This role cannot be modified.
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</main>

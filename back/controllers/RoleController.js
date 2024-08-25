@@ -3,14 +3,41 @@
 const Role = require("../models/roleModel");
 const AuditLog = require('../models/auditLogModel');
 const { validateRole } = require('../helpers/validateHelper');
-const logger = require('../helpers/logHelper');
 const { ErrorHandler, handleErrorResponse, handleSuccessfulResponse } = require("../helpers/responseManagerHelper");
+
+const notificationService = require('../services/notificationService');
+
+const getRoleById = async (req, res) => {
+    try {
+        const roleId = req.params.id;
+        const role = await Role.findById(roleId).populate('permissions');
+
+        if (!role) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'Role not found',
+            });
+        }
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Role retrieved successfully',
+            data: role  // Aquí envolvemos el objeto role dentro de un objeto llamado "role"
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: 'error',
+            message: 'Server error',
+            error: error.message
+        });
+    }
+};
 
 const createRole = async (req, res) => {
     try {
         const userId = req.user.sub;
+        console.log("🚀 ~ createRole ~ userId:", userId)
         if (!userId) {
-            console.log("🚀 ~ createRole ~ req.user:", req.user);
             return res.status(401).send({ message: "Access Denied" });
         }
 
@@ -25,7 +52,31 @@ const createRole = async (req, res) => {
             throw new ErrorHandler(400, `Role ${name} already exists.`);
         }
         role = new Role({ name, permissions });
-        await role.saveWithAudit(userId);
+        await role.save(userId);
+
+        // Registro de auditoría
+        await AuditLog.create({
+            action: 'CREATE',
+            by: userId,
+            targetDoc: role._id,
+            targetType: 'Role',
+            alertLevel: 'Low',
+            apiPath: req.originalUrl,
+            details: {
+                message: `Role ${name} created successfully`,
+            },
+            ipAddress: req.ip
+        });
+
+        // Crear notificación
+        const notification = await notificationService.createNotification({
+            userId,
+            icon: 'plus-circle',
+            message: `Role '${name}' created successfully.`,
+            type: 'success'
+        });
+
+        console.log('Notification created and emitted:', notification);
 
         handleSuccessfulResponse("Role created successfully", { role })(req, res);
     } catch (error) {
@@ -37,7 +88,6 @@ const updateRole = async (req, res) => {
     try {
         const userId = req.user.sub;
         if (!userId) {
-            console.log("🚀 ~ updateRole ~ req.user:", req.user);
             return res.status(401).send({ message: "Access Denied" });
         }
 
@@ -67,6 +117,30 @@ const updateRole = async (req, res) => {
         role.permissions = permissions;
         await role.saveWithAudit(userId);
 
+        // Registro de auditoría
+        await AuditLog.create({
+            action: 'UPDATE',
+            by: userId,
+            targetDoc: role._id,
+            targetType: 'Role',
+            alertLevel: 'Medium',
+            apiPath: req.originalUrl,
+            details: {
+                message: `Role ${name} updated successfully`,
+            },
+            ipAddress: req.ip
+        });
+
+        // Crear notificación
+        const notification = await notificationService.createNotification({
+            userId,
+            icon: 'edit',
+            message: `Role '${name}' updated successfully.`,
+            type: 'info'
+        });
+
+        console.log('Notification created and emitted:', notification);
+
         handleSuccessfulResponse("Role updated successfully", { role })(req, res);
     } catch (error) {
         handleErrorResponse(error, req, res);
@@ -88,10 +162,23 @@ const deleteRole = async (req, res) => {
             by: userId,
             targetDoc: roleToDelete._id,
             targetType: 'Role',
+            alertLevel: 'High',
+            apiPath: req.originalUrl,
             details: {
                 message: "Role deleted successfully"
-            }
+            },
+            ipAddress: req.ip
         });
+
+        // Crear notificación
+        const notification = await notificationService.createNotification({
+            userId,
+            icon: 'trash',
+            message: `Role '${roleToDelete.name}' deleted successfully.`,
+            type: 'warning'
+        });
+
+        console.log('Notification created and emitted:', notification);
 
         handleSuccessfulResponse("Role deleted successfully", { id: roleToDelete._id })(req, res);
     } catch (error) {
@@ -102,7 +189,26 @@ const deleteRole = async (req, res) => {
 const listRoles = async (req, res) => {
     try {
         const roles = await Role.find().populate('permissions');
-        handleSuccessfulResponse("Roles listed successfully", { roles })(req, res);
+        // Responder directamente con el array de roles
+        res.status(200).json({
+            status: "success",
+            message: "Roles listed successfully",
+            data: roles
+        });
+
+        // Registro de auditoría (opcional)
+        await AuditLog.create({
+            action: 'LIST_ROLES',
+            by: req.user ? req.user.sub : 'system',
+            targetType: 'Role',
+            alertLevel: 'Low',
+            apiPath: req.originalUrl,
+            details: {
+                message: "Roles listed successfully"
+            },
+            ipAddress: req.ip
+        });
+
     } catch (error) {
         handleErrorResponse(error, req, res);
     }
@@ -112,5 +218,6 @@ module.exports = {
     createRole,
     updateRole,
     deleteRole,
-    listRoles
+    listRoles,
+    getRoleById
 };

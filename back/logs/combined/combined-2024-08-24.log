@@ -1,0 +1,540 @@
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 00:37:51"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 00:42:56"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 00:43:00"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 00:43:06"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 11:34:56"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 11:34:56"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 11:34:56"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 11:34:59"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 11:34:59"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 12:27:54"}
+{"level":"info","message":"Countries loaded successfully","timestamp":"2024-08-24 12:27:54"}
+{"level":"info","message":"States loaded successfully","timestamp":"2024-08-24 12:27:55"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 12:28:11"}
+{"level":"info","message":"Initialization complete.","timestamp":"2024-08-24 12:28:11"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 12:30:28"}
+{"level":"info","message":"Initialization complete.","timestamp":"2024-08-24 12:30:28"}
+{"level":"info","message":"API Success: createMasterAdmin","method":"POST","path":"createMasterAdmin","status":200,"timestamp":"2024-08-24 12:30:49"}
+{"level":"info","message":"New Google user registered: gennarobarret","timestamp":"2024-08-24 12:42:09"}
+{"level":"info","message":"API Success: auth/google","method":"POST","path":"auth/google","status":200,"timestamp":"2024-08-24 12:42:09"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:42:09"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:44:03"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:44:03"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:44:26"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:44:26"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:44:31"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:44:31"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:47:17"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:47:17"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:48:22"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:52:42"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:55:33"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:55:33"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:55:40"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:55:40"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:20"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:20"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:40"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:40"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:41"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:41"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:41"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:41"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:42"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:42"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:42"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:42"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:43"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:43"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:43"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:43"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:44"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:44"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:44"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:44"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:45"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:45"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:45"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:45"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:46"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:46"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:47"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:47"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:47"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:47"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:48"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:48"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:48"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:48"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:49"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:49"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:49"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:49"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:50"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:50"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:51"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:51"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:51"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:51"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:52"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:52"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:53"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:53"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:54"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:54"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:54"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:55"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:56"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:56"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:57"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:57"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:58"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:58"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:58"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:58"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:56:59"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:56:59"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:57:00"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:57:00"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:57:44"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:57:44"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:57:45"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:57:45"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:57:46"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:57:51"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:58:03"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:58:03"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 12:58:07"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 12:58:07"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 13:00:12"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 13:00:13"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 13:00:22"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 13:00:22"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 13:00:27"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 13:01:02"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 13:01:02"}
+{"level":"info","message":"New Google user registered: gennarobarret","timestamp":"2024-08-24 13:05:59"}
+{"level":"info","message":"API Success: auth/google","method":"POST","path":"auth/google","status":200,"timestamp":"2024-08-24 13:05:59"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 13:05:59"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 13:10:01"}
+{"level":"info","message":"Initialization complete.","timestamp":"2024-08-24 13:10:02"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 13:10:18"}
+{"level":"info","message":"Countries loaded successfully","timestamp":"2024-08-24 13:10:19"}
+{"level":"info","message":"States loaded successfully","timestamp":"2024-08-24 13:10:19"}
+{"level":"info","message":"API Success: createMasterAdmin","method":"POST","path":"createMasterAdmin","status":200,"timestamp":"2024-08-24 13:10:24"}
+{"level":"info","message":"New Google user registered: gennarobarret","timestamp":"2024-08-24 13:10:43"}
+{"level":"info","message":"API Success: auth/google","method":"POST","path":"auth/google","status":200,"timestamp":"2024-08-24 13:10:43"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 13:10:43"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-08-24 13:16:44"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 13:16:44"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 13:16:44"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 13:16:45"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 13:16:45"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 13:16:45"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 13:18:15"}
+{"level":"info","message":"Initialization complete.","timestamp":"2024-08-24 13:18:15"}
+{"level":"info","message":"Existing Google user logged in: gennarobarret","timestamp":"2024-08-24 13:19:28"}
+{"level":"info","message":"API Success: auth/google","method":"POST","path":"auth/google","status":200,"timestamp":"2024-08-24 13:19:28"}
+{"level":"info","message":"User retrieved: gennarobarret","timestamp":"2024-08-24 13:19:29"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 13:19:29"}
+{"level":"info","message":"User retrieved: gennarobarret","timestamp":"2024-08-24 13:19:29"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 13:19:29"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 13:19:29"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 13:19:34"}
+{"level":"info","message":"User retrieved: gennarobarret","timestamp":"2024-08-24 13:19:38"}
+{"level":"info","message":"API Success: getUserById/66c9bfb3b0770880111d309a","method":"GET","path":"getUserById/66c9bfb3b0770880111d309a","status":200,"timestamp":"2024-08-24 13:19:38"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 13:19:38"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 13:53:31"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 13:54:11"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 13:54:11"}
+{"level":"info","message":"User retrieved: gennarobarret","timestamp":"2024-08-24 13:54:11"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 13:54:11"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 14:00:31"}
+{"level":"info","message":"User retrieved: gennarobarret","timestamp":"2024-08-24 14:00:31"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:00:31"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:00:47"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:01:21"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:01:29"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:01:30"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:01:31"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:01:33"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 14:06:39"}
+{"level":"info","message":"Initialization complete.","timestamp":"2024-08-24 14:06:51"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 14:07:24"}
+{"level":"info","message":"Initialization complete.","timestamp":"2024-08-24 14:07:27"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 14:07:52"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:07:52"}
+{"level":"info","message":"User retrieved: gennarobarret","timestamp":"2024-08-24 14:07:53"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:07:53"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:07:57"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:07:57"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-24 14:08:02"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 14:10:55"}
+{"level":"info","message":"Initialization complete.","timestamp":"2024-08-24 14:10:57"}
+{"level":"info","message":"API Success: createMasterAdmin","method":"POST","path":"createMasterAdmin","status":200,"timestamp":"2024-08-24 14:11:42"}
+{"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-24 14:15:35"}
+{"level":"info","message":"Countries loaded successfully","timestamp":"2024-08-24 14:15:35"}
+{"level":"info","message":"States loaded successfully","timestamp":"2024-08-24 14:15:35"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-08-24 14:15:57"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:15:58"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:15:58"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 14:16:01"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:16:01"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:16:01"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:16:22"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-24 14:16:23"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:16:28"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:16:28"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899e","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899e","status":200,"timestamp":"2024-08-24 14:16:32"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-24 14:16:38"}
+{"level":"info","message":"API Success: uploadProfileImage/66c9cdfdc889748c32766848","method":"POST","path":"uploadProfileImage/66c9cdfdc889748c32766848","status":200,"timestamp":"2024-08-24 14:16:51"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:16:52"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:16:52"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:16:52"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:16:52"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:16:58"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:22:35"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:31:31"}
+{"level":"info","message":"API Success: roles","method":"GET","path":"roles","status":200,"timestamp":"2024-08-24 14:43:28"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 14:46:33"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:46:33"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:46:33"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:46:33"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 14:51:07"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:52:55"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:52:55"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:52:55"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 14:52:55"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:52:55"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:52:55"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:52:55"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 14:55:53"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 14:55:54"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 14:55:54"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 14:55:54"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:00:18"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:00:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:00:19"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 15:00:19"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:00:37"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:00:37"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:00:37"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 15:00:37"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:15:13"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:15:13"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:15:13"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 15:15:13"}
+{"level":"error","message":"permissions error: notificationService is not defined","method":"GET","path":"permissions","stack":"Contact support.","status":500,"timestamp":"2024-08-24 15:23:41"}
+{"level":"info","message":"API Success: permissions","method":"GET","path":"permissions","status":200,"timestamp":"2024-08-24 15:24:56"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:25:15"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:25:15"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:25:15"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 15:25:15"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:36:32"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:36:32"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:36:32"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:51:47"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:51:47"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:51:47"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:52:28"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:52:28"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:52:28"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:53:16"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:53:16"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:53:16"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:57:42"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:57:42"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-24 15:57:43"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-24 15:57:44"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:58:55"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:58:55"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:58:55"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 15:59:31"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 15:59:31"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 15:59:31"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:00:08"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:00:08"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:00:08"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:00:23"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:00:23"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:00:24"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:01:58"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:01:58"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:01:58"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:16:47"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:16:47"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:16:47"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:17:04"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:17:04"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:17:04"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:18:12"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:18:12"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:18:12"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:18:18"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:18:18"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:18:18"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:18:23"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:18:24"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:18:24"}
+{"level":"info","message":"API Success: roles/66c9cdd120b67fec9ef3f518","method":"GET","path":"roles/66c9cdd120b67fec9ef3f518","status":200,"timestamp":"2024-08-24 16:39:30"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 16:57:51"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 16:57:51"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 16:57:51"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:19:22"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:19:22"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:19:22"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:20:49"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:20:50"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:20:50"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:22:28"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:22:28"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:22:28"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:27:35"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:27:35"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:27:35"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:32:48"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:32:48"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:32:48"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:35:24"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:35:25"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:35:25"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:36:11"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:36:11"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:36:12"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:36:44"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:36:44"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:36:45"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:36:45"}
+{"level":"info","message":"API Success: roles","method":"GET","path":"roles","status":200,"timestamp":"2024-08-24 19:36:45"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:36:46"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:36:46"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:40:15"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:40:15"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:40:15"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 19:40:15"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:42:50"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:42:50"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:42:50"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:43:02"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:43:02"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:43:02"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:44:10"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:44:10"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:44:10"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:44:24"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:44:25"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:44:25"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 19:44:25"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:45:52"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:45:52"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:45:52"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 19:45:52"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:46:47"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:46:47"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:46:47"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 19:46:47"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:49:31"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 19:49:31"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:49:31"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:49:31"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:56:45"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:56:46"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:56:46"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 19:56:46"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:59:02"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:59:02"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:59:02"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 19:59:03"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 19:59:43"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 19:59:44"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 19:59:44"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 19:59:44"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:06:12"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:06:12"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:06:12"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:06:12"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:06:35"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:06:35"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:06:35"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:06:35"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:08:47"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:08:47"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:08:47"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:08:47"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:08:57"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:08:57"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:08:57"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:08:57"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:09:46"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:09:46"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:09:46"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:09:46"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:22:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:22:19"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:22:19"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:22:19"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:24:31"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:24:31"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:24:40"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:24:40"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:26:57"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:26:57"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:26:57"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:26:57"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:28:46"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:28:46"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:28:46"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:30:03"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:33:59"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:33:59"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:33:59"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:36:54"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:36:54"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:36:54"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:36:54"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:38:06"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:38:06"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:38:06"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:38:06"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:39:38"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:39:38"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:39:39"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:39:39"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:42:54"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:42:54"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:42:54"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:42:54"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:43:13"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:43:13"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:43:13"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:43:13"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:46:41"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:46:42"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:46:42"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:46:42"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:46:54"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:46:54"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:46:54"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:46:54"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:47:31"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:47:31"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:47:31"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:47:31"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:48:09"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:48:09"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:48:09"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:48:09"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:50:27"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:50:27"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:50:27"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:50:27"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:52:53"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:52:53"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:52:53"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:52:53"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:54:10"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:54:10"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:54:10"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:54:10"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:58:19"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:58:19"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:58:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:58:19"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:59:38"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:59:38"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:59:38"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:59:38"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 20:59:56"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 20:59:57"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 20:59:57"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 20:59:57"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:01:40"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:01:40"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:01:40"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:01:40"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:01:47"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:01:48"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:01:48"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:01:48"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:05:29"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:05:29"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:05:29"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:05:29"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:13:25"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:13:25"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:13:26"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:13:26"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:13:49"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:13:50"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:13:50"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:13:50"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:16:20"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:16:20"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:16:20"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:16:20"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:16:46"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:16:47"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:16:47"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:16:47"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:18:29"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:18:29"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:18:29"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:18:29"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:20:41"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:20:41"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:20:41"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:20:41"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:26:34"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:26:34"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:26:34"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:26:35"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:27:06"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:27:06"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:27:06"}
+{"level":"info","message":"API Success: listRoles","method":"GET","path":"listRoles","status":200,"timestamp":"2024-08-24 21:27:06"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:34:37"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:34:38"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:34:38"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:36:59"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:37:00"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:37:00"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:42:09"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:42:10"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:42:10"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:42:12"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:42:12"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:42:12"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:44:25"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:44:26"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:44:26"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:45:09"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:45:10"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:45:10"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:45:58"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:45:58"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:45:58"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:46:04"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:46:05"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:46:05"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:46:09"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:46:09"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:46:10"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:46:25"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:46:25"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:46:25"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:52:14"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:52:14"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:52:15"}
+{"level":"info","message":"API Success: permissions","method":"GET","path":"permissions","status":200,"timestamp":"2024-08-24 21:52:15"}
+{"level":"info","message":"API Success: permissions","method":"GET","path":"permissions","status":200,"timestamp":"2024-08-24 21:53:05"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 21:55:46"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 21:55:47"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 21:55:47"}
+{"level":"error","message":"createRole error: role.saveWithAudit is not a function","method":"POST","path":"createRole","stack":"Contact support.","status":500,"timestamp":"2024-08-24 21:59:56"}
+{"level":"info","message":"API Success: createRole","method":"POST","path":"createRole","status":200,"timestamp":"2024-08-24 22:02:01"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 22:03:55"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 22:03:56"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 22:03:56"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-24 22:16:01"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-24 22:16:01"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-24 22:16:01"}

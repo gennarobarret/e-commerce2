@@ -86,3 +86,5 @@
 {"level":"error","message":"loginUser error: Account not verified. Please check your email for activation link.","method":"POST","path":"loginUser","stack":"Login attempt for not verified account: randomUser1 from IP: ::ffff:127.0.0.1","status":403,"timestamp":"2024-08-23 11:36:07"}
 {"level":"error","message":"undefined_path error: Role not found","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-23 12:26:45"}
 {"level":"error","message":"undefined_path error: Role not found","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-23 12:26:46"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-23 12:45:33"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-23 12:45:44"}

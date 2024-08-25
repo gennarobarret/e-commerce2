@@ -10,25 +10,25 @@ const PermissionSchema = new Schema({
 });
 
 
-PermissionSchema.methods.saveWithAudit = async function (userId) {
-    const AuditLog = mongoose.model('AuditLog');
-    const action = this.isNew ? 'CREATE' : 'UPDATE';
-    try {
-        const savedUser = await this.save();
-        await AuditLog.create({
-            action: action,
-            by: userId,
-            targetDoc: this._id,
-            targetType: 'Permission',
-            alertLevel: 'Critical',
-            details: {},
-        });
+// PermissionSchema.methods.saveWithAudit = async function (userId) {
+//     const AuditLog = mongoose.model('AuditLog');
+//     const action = this.isNew ? 'CREATE' : 'UPDATE';
+//     try {
+//         const savedUser = await this.save();
+//         await AuditLog.create({
+//             action: action,
+//             by: userId,
+//             targetDoc: this._id,
+//             targetType: 'Permission',
+//             alertLevel: 'Critical',
+//             details: {},
+//         });
 
-        return savedUser;
-    } catch (error) {
-        throw error;
-    }
-};
+//         return savedUser;
+//     } catch (error) {
+//         throw error;
+//     }
+// };
 
 
 module.exports = mongoose.model('Permission', PermissionSchema);

@@ -1,0 +1,87 @@
+<main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-xl px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="lock"></i></div>
+                            Add New Role
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-xl px-4 mt-4">
+        <ng-container *ngIf="loading">
+            <app-spinner></app-spinner>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2">
+                    <form [formGroup]="addRoleForm" (ngSubmit)="addRole()">
+                        <div class="card mb-4">
+                            <div class="card-header">Role Details</div>
+                            <div class="card-body">
+
+                                <!-- Role Name Field -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="roleName">Role Name</label>
+                                    <input class="form-control" id="roleName" type="text" placeholder="Enter role name"
+                                        formControlName="roleName" [ngClass]="{
+                    'is-invalid': addRoleForm.get('roleName')?.invalid && 
+                    (addRoleForm.get('roleName')?.dirty || addRoleForm.get('roleName')?.touched)
+                  }" />
+                                    <div *ngIf="addRoleForm.get('roleName')?.invalid && 
+                            (addRoleForm.get('roleName')?.dirty || addRoleForm.get('roleName')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="addRoleForm.get('roleName')?.errors?.['required']">
+                                            Role Name is required.
+                                        </span>
+                                        <span *ngIf="addRoleForm.get('roleName')?.errors?.['minlength']">
+                                            Role Name must be at least 3 characters long.
+                                        </span>
+                                        <span *ngIf="addRoleForm.get('roleName')?.errors?.['maxlength']">
+                                            Role Name must be no more than 25 characters long.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Permissions Field -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="permissions">Permissions</label>
+                                    <select multiple class="form-control" id="permissions" formControlName="permissions"
+                                        [ngClass]="{
+                      'is-invalid': addRoleForm.get('permissions')?.invalid && 
+                      (addRoleForm.get('permissions')?.dirty || addRoleForm.get('permissions')?.touched)
+                    }">
+                                        <option *ngFor="let permission of permissions" [value]="permission._id">
+                                            {{ permission.action }} {{ permission.resource }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="addRoleForm.get('permissions')?.invalid && 
+                              (addRoleForm.get('permissions')?.dirty || addRoleForm.get('permissions')?.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="addRoleForm.get('permissions')?.errors?.['required']">
+                                            At least one permission is required.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button class="btn btn-primary" type="submit" [disabled]="loading">
+                                    Add Role
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</main>

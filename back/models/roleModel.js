@@ -9,25 +9,25 @@ const RoleSchema = new Schema({
     permissions: [{ type: Schema.Types.ObjectId, ref: 'Permission' }]
 });
 
-RoleSchema.methods.saveWithAudit = async function (userId) {
-    const AuditLog = mongoose.model('AuditLog');
-    const action = this.isNew ? 'CREATE' : 'UPDATE';
-    try {
-        const savedUser = await this.save();
+// RoleSchema.methods.saveWithAudit = async function (userId) {
+//     const AuditLog = mongoose.model('AuditLog');
+//     const action = this.isNew ? 'CREATE' : 'UPDATE';
+//     try {
+//         const savedUser = await this.save();
 
-        await AuditLog.create({
-            action: action,
-            by: userId,
-            targetDoc: this._id,
-            targetType: 'Role',
-            alertLevel: 'Critical',
-            details: {}
-        });
+//         await AuditLog.create({
+//             action: action,
+//             by: userId,
+//             targetDoc: this._id,
+//             targetType: 'Role',
+//             alertLevel: 'Critical',
+//             details: {}
+//         });
 
-        return savedUser;
-    } catch (error) {
-        throw error;
-    }
-};
+//         return savedUser;
+//     } catch (error) {
+//         throw error;
+//     }
+// };
 
 module.exports = mongoose.model("Role", RoleSchema);

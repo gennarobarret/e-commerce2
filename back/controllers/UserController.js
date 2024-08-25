@@ -132,6 +132,13 @@ const deleteUserProfileImage = async (req, res, next) => {
 // LIST USER DATA
 const listAllUsers = async (req, res) => {
     try {
+        // Verifica si req.user está definido y muestra su contenido
+        console.log("🚀 ~ listAllUsers ~ req.user:", req.user);
+
+        // Asegúrate de utilizar el campo correcto para obtener el ID del usuario
+        const userId = req.user && req.user.sub ? req.user.sub : 'UnknownUser';
+        console.log("🚀 ~ listAllUsers ~ userId:", userId);
+
         // 1. Construir la consulta de búsqueda basada en los parámetros de filtro
         let query = {};
         if (req.query.type && req.query.filter) {
@@ -186,7 +193,7 @@ const listAllUsers = async (req, res) => {
         handleSuccessfulResponse("Users listed successfully", sanitizedUsers)(req, res);
 
         // Registrar en el log de auditoría la operación de listar usuarios
-        await logAudit('LIST_USERS', req.user ? req.user._id : 'system', null, 'User', 'Low', 'Listed all users with filters', getClientIp(req), req.originalUrl || '');
+        await logAudit('LIST_USERS', userId, null, 'User', 'Low', 'Listed all users with filters', getClientIp(req), req.originalUrl || '');
 
     } catch (error) {
         // Manejar errores

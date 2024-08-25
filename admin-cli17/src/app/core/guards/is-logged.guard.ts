@@ -14,7 +14,7 @@ export class isLoggedInGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree {
-    const allowedRoles = ['MasterAdministrator', 'Developer', 'Registered', 'Editor', 'Guest'];
+    const allowedRoles = ['MasterAdministrator', 'Developer', 'Customer', 'Editor', 'Guest'];
     if (this.authService.isAuthenticated(allowedRoles)) {
       return true;
     } else {

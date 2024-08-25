@@ -1,7 +1,7 @@
-// src/app/models/user.model.ts
 import { UserRole } from '../types/roles.type';
 import { Country } from '../interfaces';
 import { State } from '../interfaces';
+import { Role } from './role.model';
 
 // Interfaz base para el usuario
 export interface User {
@@ -15,7 +15,7 @@ export interface User {
     emailAddress: string;
     phoneNumber?: string;
     birthday?: Date;
-    role: UserRole;
+    role: UserRole | Role; // Permitir tanto el tipo como el objeto completo de rol
     isActive: boolean;
     authMethod?: string;
     identification?: string;
@@ -25,8 +25,7 @@ export interface User {
     updatedAt?: Date;
     twoFactor?: boolean; // Añadir esta propiedad
     privacySetting?: string; // Añadir esta propiedad (puede ser un enum si tiene valores predefinidos)
-    dataSharing?: boolean;
-     // Añadir esta propiedad
+    dataSharing?: boolean; // Añadir esta propiedad
 }
 
 

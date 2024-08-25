@@ -607,3 +607,18 @@
 {"level":"info","message":"Connected to the MongoDB database.","timestamp":"2024-08-23 12:43:54"}
 {"level":"info","message":"Countries loaded successfully","timestamp":"2024-08-23 12:43:55"}
 {"level":"info","message":"States loaded successfully","timestamp":"2024-08-23 12:43:55"}
+{"level":"info","message":"API Success: InitialCheck","method":"GET","path":"InitialCheck","status":200,"timestamp":"2024-08-23 12:44:55"}
+{"level":"info","message":"API Success: createMasterAdmin","method":"POST","path":"createMasterAdmin","status":200,"timestamp":"2024-08-23 12:45:04"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-23 12:45:19"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 12:45:19"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 12:45:19"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-23 12:45:19"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 12:45:33"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 12:45:33"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-23 12:45:33"}
+{"level":"info","message":"API Success: uploadProfileImage/66c86830cd72e0d1084fd2cc","method":"POST","path":"uploadProfileImage/66c86830cd72e0d1084fd2cc","status":200,"timestamp":"2024-08-23 12:45:43"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 12:45:43"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 12:45:43"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-23 12:45:44"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-23 12:45:44"}
+{"level":"error","message":"undefined_path error: Unauthorized access","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-08-23 12:45:44"}

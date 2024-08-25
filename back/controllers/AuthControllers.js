@@ -170,7 +170,7 @@ const authenticateWithGoogle = async (req, res) => {
         }
 
         const existsMasterAdmin = await User.findOne({ role: masterAdminRole._id });
-        const roleName = (isAdminEmail && !existsMasterAdmin) ? 'MasterAdministrator' : 'Registered';
+        const roleName = (isAdminEmail && !existsMasterAdmin) ? 'MasterAdministrator' : 'Editor';
         let role = await Role.findOne({ name: roleName });
         if (!role) {
             logger.error('Role ' + roleName + ' not found.', ipAddress);

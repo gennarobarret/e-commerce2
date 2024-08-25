@@ -109,6 +109,9 @@ async function initializeRolesAndPermissions() {
 
             // Permisos para informes y analítica
             { name: 'read_reports', action: 'read', resource: 'report' },
+
+            // Permisos para locations
+            { name: 'read_locations', action: 'read', resource: 'location' },
         ];
 
 
@@ -128,7 +131,7 @@ async function initializeRolesAndPermissions() {
                 permissions: await Permission.find().select('_id')
             },
             {
-                name: 'Admin',
+                name: 'Developer',
                 permissions: await Permission.find({
                     name: {
                         $in: [
@@ -136,39 +139,20 @@ async function initializeRolesAndPermissions() {
                             'create_permission', 'read_permissions', 'update_permission', 'delete_permission',
                             'create_user', 'read_user', 'update_user', 'delete_user',
                             'create_product', 'read_product', 'update_product', 'delete_product',
+                        ]
+                    }
+                }).select('_id')
+            },
+            {
+                name: 'Editor',
+                permissions: await Permission.find({
+                    name: {
+                        $in: [
+                            'create_user', 'read_user', 'update_user', 'delete_user',
+                            'create_product', 'read_product', 'update_product', 'delete_product',
                             'create_category', 'read_category', 'update_category', 'delete_category',
                             'create_subcategory', 'read_subcategory', 'update_subcategory', 'delete_subcategory',
-                            'create_order', 'read_order', 'update_order', 'delete_order',
-                            'create_payment', 'read_payment', 'update_payment', 'delete_payment',
-                            'create_shipping', 'read_shipping', 'update_shipping', 'delete_shipping',
-                            'read_inventory', 'update_inventory',
-                            'create_customer', 'read_customer', 'update_customer', 'delete_customer',
-                            'read_reports'
-                        ]
-                    }
-                }).select('_id')
-            },
-            {
-                name: 'CustomerSupport',
-                permissions: await Permission.find({
-                    name: {
-                        $in: [
-                            'read_user', 'read_user_by_id', 'update_user',
-                            'read_order', 'update_order', 'read_payment', 'update_payment',
-                            'read_shipping', 'update_shipping', 'read_customer', 'update_customer'
-                        ]
-                    }
-                }).select('_id')
-            },
-            {
-                name: 'SalesManager',
-                permissions: await Permission.find({
-                    name: {
-                        $in: [
-                            'create_order', 'read_order', 'update_order', 'delete_order',
-                            'create_payment', 'read_payment', 'update_payment', 'delete_payment',
-                            'create_shipping', 'read_shipping', 'update_shipping', 'delete_shipping',
-                            'read_reports'
+                            'read_reports', 'read_locations'
                         ]
                     }
                 }).select('_id')
@@ -195,6 +179,7 @@ async function initializeRolesAndPermissions() {
                 }).select('_id')
             }
         ];
+
 
 
         // Crear o actualizar roles y asignar permisos

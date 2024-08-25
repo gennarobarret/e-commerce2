@@ -1,0 +1,92 @@
+  <main>
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+      <div class="container-xl px-4">
+        <div class="page-header-content">
+          <div class="row align-items-center justify-content-between pt-3">
+            <div class="col-auto mb-3">
+              <h1 class="page-header-title">
+                <div class="page-header-icon"><i data-feather="lock"></i></div>
+                Edit Permission
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-xl px-4 mt-4">
+      <ng-container *ngIf="loading">
+        <app-spinner></app-spinner>
+      </ng-container>
+      <ng-container *ngIf="!loading">
+        <div class="row">
+          <div class="col-xl-8 offset-xl-2">
+            <form [formGroup]="editPermissionForm" (ngSubmit)="updatePermission()">
+              <!-- Permission details card -->
+              <div class="card mb-4">
+                <div class="card-header">Permission Details</div>
+                <div class="card-body">
+                  <!-- Form Group (permission name) -->
+                  <div class="mb-3">
+                    <label class="small mb-1" for="name">Permission Name</label>
+                    <input class="form-control" id="name" type="text" placeholder="Enter permission name"
+                      formControlName="name"
+                      [ngClass]="{'is-invalid': editPermissionForm.get('name')?.invalid && (editPermissionForm.get('name')?.dirty || editPermissionForm.get('name')?.touched)}" />
+                    <div
+                      *ngIf="editPermissionForm.get('name')?.invalid && (editPermissionForm.get('name')?.dirty || editPermissionForm.get('name')?.touched)"
+                      class="text-danger">
+                      <span *ngIf="editPermissionForm.get('name')?.errors?.['required']">Permission Name is
+                        required.</span>
+                      <span *ngIf="editPermissionForm.get('name')?.errors?.['minlength']">Permission Name must be at least
+                        3 characters long.</span>
+                      <span *ngIf="editPermissionForm.get('name')?.errors?.['maxlength']">Permission Name must be no more
+                        than 50 characters long.</span>
+                    </div>
+                  </div>
+
+                  <!-- Form Group (action as select) -->
+                  <div class="mb-3">
+                    <label class="small mb-1" for="action">Action</label>
+                    <select class="form-control" id="action" formControlName="action"
+                      [ngClass]="{'is-invalid': editPermissionForm.get('action')?.invalid && (editPermissionForm.get('action')?.dirty || editPermissionForm.get('action')?.touched)}">
+                      <option value="read">Read</option>
+                      <option value="update">Update</option>
+                      <option value="delete">Delete</option>
+                      <option value="create">Create</option>
+                    </select>
+                    <div
+                      *ngIf="editPermissionForm.get('action')?.invalid && (editPermissionForm.get('action')?.dirty || editPermissionForm.get('action')?.touched)"
+                      class="text-danger">
+                      <span *ngIf="editPermissionForm.get('action')?.errors?.['required']">Action is required.</span>
+                    </div>
+                  </div>
+
+                  <!-- Form Group (resource) -->
+                  <div class="mb-3">
+                    <label class="small mb-1" for="resource">Resource</label>
+                    <input class="form-control" id="resource" type="text" placeholder="Enter resource"
+                      formControlName="resource"
+                      [ngClass]="{'is-invalid': editPermissionForm.get('resource')?.invalid && (editPermissionForm.get('resource')?.dirty || editPermissionForm.get('resource')?.touched)}" />
+                    <div
+                      *ngIf="editPermissionForm.get('resource')?.invalid && (editPermissionForm.get('resource')?.dirty || editPermissionForm.get('resource')?.touched)"
+                      class="text-danger">
+                      <span *ngIf="editPermissionForm.get('resource')?.errors?.['required']">Resource is required.</span>
+                      <span *ngIf="editPermissionForm.get('resource')?.errors?.['minlength']">Resource must be at least 3
+                        characters long.</span>
+                      <span *ngIf="editPermissionForm.get('resource')?.errors?.['maxlength']">Resource must be no more
+                        than 50 characters long.</span>
+                    </div>
+                  </div>
+
+                  <!-- Save changes button -->
+                  <button class="btn btn-primary" type="submit">
+                    Update Permission
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </main>
