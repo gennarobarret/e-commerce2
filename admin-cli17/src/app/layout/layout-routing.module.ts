@@ -35,14 +35,6 @@ const routes: Routes = [
                 loadChildren: () => import('../features/notifications/notifications-routing.module').then(m => m.NotificationsRoutingModule)
             },
             {
-                path: 'categories',
-                loadChildren: () => import('../features/categories/categories-routing.module').then(m => m.CategoriesRoutingModule)
-            },
-            {
-                path: 'subcategories',
-                loadChildren: () => import('../features/subcategories/subcategories-routing.module').then(m => m.SubcategoriesRoutingModule)
-            },
-            {
                 path: 'products',
                 loadChildren: () => import('../features/products/products-routing.module').then(m => m.ProductsRoutingModule)
             },

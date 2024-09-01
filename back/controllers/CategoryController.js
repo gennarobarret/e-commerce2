@@ -1,12 +1,25 @@
 "use strict";
-const Category = require('../models/categoryModel');
-const { ErrorHandler, handleErrorResponse, handleSuccessfulResponse } = require('../helpers/responseManagerHelper');
-const { logAudit } = require('../helpers/logAuditHelper');
-const logger = require('../helpers/logHelper');
+
+// Native Node.js modules
+const fs = require('fs').promises;
+const path = require("path");
+
 // External modules (npm)
 const mongoose = require('mongoose');
 
-// Crear una nueva categoría
+// Models (Internal modules)
+const Category = require('../models/categoryModel');
+
+// Response and Error Handling (Internal modules)
+const { ErrorHandler, handleErrorResponse, handleSuccessfulResponse } = require('../helpers/responseManagerHelper');
+const { logAudit } = require('../helpers/logAuditHelper');
+const logger = require('../helpers/logHelper');
+
+// Services
+const uploadConfig = require('../config/uploadConfig');
+const notificationService = require('../services/notificationService');
+
+
 const createCategory = async (req, res) => {
     console.log("🚀 ~ createCategory ~ req:", req.body)
     try {
@@ -24,7 +37,6 @@ const createCategory = async (req, res) => {
     }
 };
 
-// Listar todas las categorías
 const listAllCategories = async (req, res) => {
     try {
         const categories = await Category.find();
@@ -61,9 +73,6 @@ const getCategoryById = async (req, res) => {
     }
 };
 
-
-
-// Actualizar una categoría
 const updateCategory = async (req, res) => {
     try {
         const { id } = req.params;
@@ -83,7 +92,6 @@ const updateCategory = async (req, res) => {
     }
 };
 
-// Eliminar una categoría
 const deleteCategory = async (req, res) => {
     try {
         const { id } = req.params;
@@ -102,17 +110,78 @@ const deleteCategory = async (req, res) => {
     }
 };
 
-const updateCategoryImageUrl = async (categoryId, imageUrl) => {
+const updateCategoryImageUrl = async (req, res, next) => {
     try {
-        // Actualizar el campo `imageUrl` en la base de datos para el usuario dado
-        await User.findByIdAndUpdate(categoryId, { imageUrl });
+        const categoryId = req.params.identifier;
+        const imageUrl = req.file.filename; // Este campo se llena después de que Multer maneje la carga
 
+        // Actualizar el usuario con la nueva URL de la imagen
+        await Category.findByIdAndUpdate(categoryId, { imageUrl });
+
+        return handleSuccessfulResponse('Category image uploaded successfully', { imageUrl })(req, res);
     } catch (error) {
-        console.error('Error updating category image:', error);
-        throw new ErrorHandler(500, "Failed to update category image.");
+        return handleErrorResponse(error, req, res);
     }
+};
 
-}
+const getCategoryImage = async (req, res, next) => {
+    try {
+        const categoryId = req.params.identifier;
+        const category = await Category.findById(categoryId);
+
+        if (!category || !category.imageUrl) {
+            return next(new ErrorHandler(404, 'Category image not found.'));
+        }
+
+        const imagePath = path.join(__dirname, '..', 'uploads', 'categories', category.imageUrl);
+        console.log(`Image path resolved: ${imagePath}`);
+
+        res.sendFile(imagePath, (err) => {
+            if (err) {
+                return next(new ErrorHandler(500, 'Failed to send profile image.'));
+            }
+        });
+    } catch (error) {
+        return handleErrorResponse(error, req, res);
+    }
+};
+
+const deleteCategoryImage = async (req, res, next) => {
+    try {
+        const categoryId = req.params.identifier;
+        console.log(`Attempting to delete profile image for category ID: ${categoryId}`);
+
+        const category = await Category.findById(categoryId);
+        console.log(`Category found: ${category ? category._id : 'not found'}`);
+
+        if (!category || !category.imageUrl) {
+            console.log('Category image not found.');
+            return next(new ErrorHandler(404, 'Category image not found.'));
+        }
+
+        const imagePath = path.join(__dirname, '..', 'uploads', 'categories', category.imageUrl);
+        console.log(`Image path resolved: ${imagePath}`);
+
+        // Eliminar la imagen del sistema de archivos
+        try {
+            await fs.unlink(imagePath);
+            console.log(`Successfully deleted file: ${imagePath}`);
+
+            // Eliminar la referencia de la imagen en la base de datos
+            category.imageUrl = null;
+            await category.save();
+            console.log('Category image URL reference removed.');
+
+            return handleSuccessfulResponse('Category image deleted successfully.')(req, res);
+        } catch (err) {
+            console.error(`Failed to delete file: ${imagePath}`, err);
+            return next(new ErrorHandler(500, 'Failed to delete profile image from the server.'));
+        }
+    } catch (error) {
+        console.error('Error in deleteUserProfileImage:', error);
+        return handleErrorResponse(error, req, res);
+    }
+};
 
 module.exports = {
     createCategory,
@@ -120,5 +189,7 @@ module.exports = {
     getCategoryById,
     updateCategory,
     deleteCategory,
-    updateCategoryImageUrl
+    updateCategoryImageUrl,
+    getCategoryImage,
+    deleteCategoryImage
 };

@@ -39,7 +39,7 @@ export class AddRolesComponent implements OnInit {
   private createForm() {
     this.addRoleForm = this.formBuilder.group({
       roleName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
-      permissions: [[], Validators.required]  // Cambiar a un array para múltiples permisos
+      permissions: [[], Validators.required] 
     });
   }
 

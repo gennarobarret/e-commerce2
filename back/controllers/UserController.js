@@ -31,29 +31,9 @@ const uploadConfig = require('../config/uploadConfig');
 const notificationService = require('../services/notificationService');
 
 
-
 function getClientIp(req) {
     return req.headers['x-forwarded-for']?.split(',').shift() || req.socket.remoteAddress;
 }
-
-
-const getUserIDByUserName = async (userName) => {
-    try {
-        const user = await User.findOne({ userName }).exec();
-        if (!user) {
-            console.log("User not found");
-            return null;
-        }
-        return user._id.toString();  // Devuelve el ID como string
-    } catch (error) {
-        console.error("Error fetching user by userName:", error);
-        throw error;
-    }
-};
-
-const isValidObjectId = (id) => {
-    return /^[0-9a-fA-F]{24}$/.test(id);
-};
 
 // UPLOAD PROFILE IMAGE
 const uploadProfileImage = async (req, res, next) => {
@@ -91,6 +71,7 @@ const getUserProfileImage = async (req, res, next) => {
         return handleErrorResponse(error, req, res);
     }
 };
+
 // DELETE PROFILE IMAGE
 const deleteUserProfileImage = async (req, res, next) => {
     try {

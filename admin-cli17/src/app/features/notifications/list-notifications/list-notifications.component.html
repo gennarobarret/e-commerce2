@@ -1,176 +1,176 @@
-<main>
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-        <div class="container-xl px-4">
-            <div class="page-header-content pt-4">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mt-4">
-                        <h1 class="page-header-title">
-                            <div class="page-header-icon"><i data-feather="filter"></i></div>
-                            Notifications
-                        </h1>
-                        <div class="page-header-subtitle">List of notifications</div>
+    <main>
+        <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+            <div class="container-xl px-4">
+                <div class="page-header-content pt-4">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mt-4">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="filter"></i></div>
+                                Notifications
+                            </h1>
+                            <div class="page-header-subtitle">List of notifications</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <div class="container-xl px-4 mt-n10">
-        <div class="card mb-4">
-            <div class="card-header">Notifications</div>
-            <div class="card-body">
-                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-                    <div class="datatable-top row mb-3">
-                        <div class="datatable-dropdown col-4">
-                            <label>
-                                <select class="datatable-selector form-select" name="per-page"
-                                    (change)="onPageSizeChange($event)">
-                                    <option *ngFor="let size of pageSizeOptions" [value]="size"
-                                        [selected]="size === pageSize">
-                                        {{size}}
-                                    </option>
-                                </select>
-                                entries per page
-                            </label>
-                        </div>
-                        <div class="datatable-search col-8">
-                            <div class="input-group">
-                                <select class="form-select" [(ngModel)]="selectedFilterKey" (change)="reset()"
-                                    aria-label="Filter selection">
-                                    <option *ngFor="let key of filterKeys" [value]="key">{{ key }}</option>
-                                </select>
-
-                                <ng-container [ngSwitch]="selectedFilterKey">
-                                    <input *ngSwitchCase="'message'" type="text" class="form-control"
-                                        [(ngModel)]="searchText" (keyup)="applyFilter()"
-                                        placeholder="Search by message..." />
-
-                                    <select *ngSwitchCase="'isViewed'" class="form-control" [(ngModel)]="searchText"
-                                        (change)="applyFilter()">
-                                        <option value="">All</option>
-                                        <option value="true">Viewed</option>
-                                        <option value="false">Not viewed</option>
+        </header>
+        <div class="container-xl px-4 mt-n10">
+            <div class="card mb-4">
+                <div class="card-header">Notifications</div>
+                <div class="card-body">
+                    <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                        <div class="datatable-top row mb-3">
+                            <div class="datatable-dropdown col-4">
+                                <label>
+                                    <select class="datatable-selector form-select" name="per-page"
+                                        (change)="onPageSizeChange($event)">
+                                        <option *ngFor="let size of pageSizeOptions" [value]="size"
+                                            [selected]="size === pageSize">
+                                            {{size}}
+                                        </option>
+                                    </select>
+                                    entries per page
+                                </label>
+                            </div>
+                            <div class="datatable-search col-8">
+                                <div class="input-group">
+                                    <select class="form-select" [(ngModel)]="selectedFilterKey" (change)="reset()"
+                                        aria-label="Filter selection">
+                                        <option *ngFor="let key of filterKeys" [value]="key">{{ key }}</option>
                                     </select>
 
-                                    <select *ngSwitchCase="'type'" class="form-control" [(ngModel)]="searchText"
-                                        (change)="applyFilter()">
-                                        <option value="">All</option>
-                                        <option value="success">Success</option>
-                                        <option value="info">Info</option>
-                                        <option value="warning">Warning</option>
-                                        <option value="danger">Danger</option>
-                                    </select>
+                                    <ng-container [ngSwitch]="selectedFilterKey">
+                                        <input *ngSwitchCase="'message'" type="text" class="form-control"
+                                            [(ngModel)]="searchText" (keyup)="applyFilter()"
+                                            placeholder="Search by message..." />
 
-                                    <input *ngSwitchCase="'date'" type="date" class="form-control"
-                                        [(ngModel)]="startDate" (change)="applyFilter()" placeholder="Start date" />
-                                    <input *ngSwitchCase="'date'" type="date" class="form-control" [(ngModel)]="endDate"
-                                        (change)="applyFilter()" placeholder="End date" />
-                                </ng-container>
+                                        <select *ngSwitchCase="'isViewed'" class="form-control" [(ngModel)]="searchText"
+                                            (change)="applyFilter()">
+                                            <option value="">All</option>
+                                            <option value="true">Viewed</option>
+                                            <option value="false">Not viewed</option>
+                                        </select>
+
+                                        <select *ngSwitchCase="'type'" class="form-control" [(ngModel)]="searchText"
+                                            (change)="applyFilter()">
+                                            <option value="">All</option>
+                                            <option value="success">Success</option>
+                                            <option value="info">Info</option>
+                                            <option value="warning">Warning</option>
+                                            <option value="danger">Danger</option>
+                                        </select>
+
+                                        <input *ngSwitchCase="'date'" type="date" class="form-control"
+                                            [(ngModel)]="startDate" (change)="applyFilter()" placeholder="Start date" />
+                                        <input *ngSwitchCase="'date'" type="date" class="form-control" [(ngModel)]="endDate"
+                                            (change)="applyFilter()" placeholder="End date" />
+                                    </ng-container>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <button *ngFor="let notification of filteredNotifications" class="btn btn-datatable btn-icon btn-transparent-dark" (click)="onDeleteAllViewed()">
-                        <i *ngIf="notification.isViewed" data-feather="eye"></i>
-                        <i *ngIf="!notification.isViewed" data-feather="eye-off"></i>
-                        Delete All Viewed Notifications
-                    </button>
-                    <div class="datatable-container">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th (click)="sort('message')"
-                                            [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'message', 'sorted-desc': sortOrder === 'desc' && sortKey === 'message'}">
-                                            Message
-                                        </th>
-                                        <th (click)="sort('date')"
-                                            [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'date', 'sorted-desc': sortOrder === 'desc' && sortKey === 'date'}">
-                                            Date
-                                        </th>
-                                        <th (click)="sort('type')"
-                                            [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'type', 'sorted-desc': sortOrder === 'desc' && sortKey === 'type'}">
-                                            Type
-                                        </th>
-                                        <th (click)="sort('isViewed')"
-                                            [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'isViewed', 'sorted-desc': sortOrder === 'desc' && sortKey === 'isViewed'}">
-                                            Viewed
-                                        </th>
-                                        <th class="no-sort">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody *ngIf="load_data">
-                                    <tr>
-                                        <td class="text-center" colspan="5">
-                                            <div class="spinner-border" role="status">
-                                                <span class="sr-only">Loading...</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tbody *ngIf="!load_data && filteredNotifications.length > 0">
-                                    <tr *ngFor="let notification of filteredNotifications">
-                                        <td [ngClass]="getRowClass(notification.type)">
-                                            <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
-                                                class="mb-0">
-                                                {{ notification.message }}
-                                            </h6>
-                                        </td>
-                                        <td [ngClass]="getRowClass(notification.type)">
-                                            <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
-                                                class="mb-0">
-                                                {{ notification.date | date: "short" }}
-                                            </h6>
-                                        </td>
-                                        <td [ngClass]="getRowClass(notification.type)">
-                                            <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
-                                                class="mb-0">
-                                                {{ notification.type }}
-                                            </h6>
-                                        </td>
-                                        <td class="text-center" [ngClass]="getRowClass(notification.type)">
-                                            <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
-                                                class="mb-0">
-                                                {{ notification.isViewed ? "Viewed" : "Not viewed" }}
-                                            </h6>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                                title="Mark as viewed" (click)="markAsViewed(notification)">
-                                                <i *ngIf="notification.isViewed" data-feather="eye"></i>
-                                                <i *ngIf="!notification.isViewed" data-feather="eye-off"></i>
-                                            </button>
-                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"
-                                                title="Delete" (click)="deleteNotification(notification._id)">
-                                                <i data-feather="trash-2"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tbody *ngIf="!load_data && filteredNotifications.length === 0">
-                                    <tr>
-                                        <td class="text-center" colspan="5">No record found</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <!-- <button *ngFor="let notification of filteredNotifications" class="btn btn-datatable btn-icon btn-transparent-dark" (click)="onDeleteAllViewed()">
+                            <i *ngIf="notification.isViewed" data-feather="eye"></i>
+                            <i *ngIf="!notification.isViewed" data-feather="eye-off"></i>
+                            Delete All Viewed Notifications
+                        </button> -->
+                        <div class="datatable-container">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th (click)="sort('message')"
+                                                [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'message', 'sorted-desc': sortOrder === 'desc' && sortKey === 'message'}">
+                                                Message
+                                            </th>
+                                            <th (click)="sort('date')"
+                                                [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'date', 'sorted-desc': sortOrder === 'desc' && sortKey === 'date'}">
+                                                Date
+                                            </th>
+                                            <th (click)="sort('type')"
+                                                [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'type', 'sorted-desc': sortOrder === 'desc' && sortKey === 'type'}">
+                                                Type
+                                            </th>
+                                            <th (click)="sort('isViewed')"
+                                                [ngClass]="{'sorted-asc': sortOrder === 'asc' && sortKey === 'isViewed', 'sorted-desc': sortOrder === 'desc' && sortKey === 'isViewed'}">
+                                                Viewed
+                                            </th>
+                                            <th class="no-sort">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="load_data">
+                                        <tr>
+                                            <td class="text-center" colspan="5">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody *ngIf="!load_data && filteredNotifications.length > 0">
+                                        <tr *ngFor="let notification of filteredNotifications">
+                                            <td [ngClass]="getRowClass(notification.type)">
+                                                <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
+                                                    class="mb-0">
+                                                    {{ notification.message }}
+                                                </h6>
+                                            </td>
+                                            <td [ngClass]="getRowClass(notification.type)">
+                                                <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
+                                                    class="mb-0">
+                                                    {{ notification.date | date: "short" }}
+                                                </h6>
+                                            </td>
+                                            <td [ngClass]="getRowClass(notification.type)">
+                                                <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
+                                                    class="mb-0">
+                                                    {{ notification.type }}
+                                                </h6>
+                                            </td>
+                                            <td class="text-center" [ngClass]="getRowClass(notification.type)">
+                                                <h6 [ngClass]="{ 'fw-500': !notification.isViewed, 'fw-100': notification.isViewed }"
+                                                    class="mb-0">
+                                                    {{ notification.isViewed ? "Viewed" : "Not viewed" }}
+                                                </h6>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                                    title="Mark as viewed" (click)="markAsViewed(notification)">
+                                                    <i *ngIf="notification.isViewed" data-feather="eye"></i>
+                                                    <i *ngIf="!notification.isViewed" data-feather="eye-off"></i>
+                                                </button>
+                                                <button class="btn btn-datatable btn-icon btn-transparent-dark"
+                                                    title="Delete" (click)="deleteNotification(notification._id)">
+                                                    <i data-feather="trash-2"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody *ngIf="!load_data && filteredNotifications.length === 0">
+                                        <tr>
+                                            <td class="text-center" colspan="5">No record found</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <nav>
-                            <ul class="pagination justify-content-end">
-                                <li class="page-item" [ngClass]="{ disabled: page === 1 }">
-                                    <a class="page-link" (click)="previousPage()">Previous</a>
-                                </li>
-                                <li class="page-item" *ngFor="let p of [].constructor(getTotalPages()); let i = index"
-                                    [ngClass]="{ active: page === i + 1 }">
-                                    <a class="page-link" (click)="setPage(i + 1)">{{ i + 1 }}</a>
-                                </li>
-                                <li class="page-item" [ngClass]="{ disabled: page === getTotalPages() }">
-                                    <a class="page-link" (click)="nextPage()">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div>
+                            <nav>
+                                <ul class="pagination justify-content-end">
+                                    <li class="page-item" [ngClass]="{ disabled: page === 1 }">
+                                        <a class="page-link" (click)="previousPage()">Previous</a>
+                                    </li>
+                                    <li class="page-item" *ngFor="let p of [].constructor(getTotalPages()); let i = index"
+                                        [ngClass]="{ active: page === i + 1 }">
+                                        <a class="page-link" (click)="setPage(i + 1)">{{ i + 1 }}</a>
+                                    </li>
+                                    <li class="page-item" [ngClass]="{ disabled: page === getTotalPages() }">
+                                        <a class="page-link" (click)="nextPage()">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>

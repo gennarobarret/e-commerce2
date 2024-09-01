@@ -1,0 +1,195 @@
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-08-26 14:46:25"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 14:46:25"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 14:46:25"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 14:46:26"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 14:46:26"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 14:46:26"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 14:46:32"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-26 14:46:36"}
+{"level":"info","message":"API Success: getUserById/66cb8ca13d3405fe222457e9","method":"GET","path":"getUserById/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 14:46:36"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 14:46:36"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-26 14:46:36"}
+{"level":"info","message":"API Success: updateUser/66cb8ca13d3405fe222457e9","method":"PUT","path":"updateUser/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 14:46:40"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 14:46:52"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 14:46:53"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 14:46:53"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 14:50:11"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-26 14:50:15"}
+{"level":"info","message":"API Success: getUserById/66cb8ca13d3405fe222457e9","method":"GET","path":"getUserById/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 14:50:15"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 14:50:15"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-26 14:50:15"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 14:59:38"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 14:59:38"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 14:59:38"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-26 14:59:38"}
+{"level":"info","message":"API Success: getUserById/66cb8ca13d3405fe222457e9","method":"GET","path":"getUserById/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 14:59:38"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 14:59:40"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-26 14:59:40"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 15:48:45"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 15:48:45"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 15:48:45"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-26 15:48:45"}
+{"level":"info","message":"API Success: getUserById/66cb8ca13d3405fe222457e9","method":"GET","path":"getUserById/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 15:48:45"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 15:48:45"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-26 15:48:45"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:00:15"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 16:00:15"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 16:00:15"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-26 16:00:15"}
+{"level":"info","message":"API Success: getUserById/66cb8ca13d3405fe222457e9","method":"GET","path":"getUserById/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 16:00:15"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 16:00:16"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-26 16:00:16"}
+{"level":"info","message":"API Success: updateUser/66cb8ca13d3405fe222457e9","method":"PUT","path":"updateUser/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 16:00:17"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:01:49"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 16:01:49"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 16:01:49"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:01:53"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 16:01:53"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 16:01:53"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:02:31"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-26 16:02:35"}
+{"level":"info","message":"API Success: getUserById/66cb8ca13d3405fe222457e9","method":"GET","path":"getUserById/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 16:02:35"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 16:02:35"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-26 16:02:35"}
+{"level":"info","message":"API Success: updateUser/66cb8ca13d3405fe222457e9","method":"PUT","path":"updateUser/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 16:02:38"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:02:38"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 16:02:46"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 16:02:46"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899f","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899f","status":200,"timestamp":"2024-08-26 16:02:49"}
+{"level":"info","message":"API Success: updateUser/66c9cdfdc889748c32766848","method":"PUT","path":"updateUser/66c9cdfdc889748c32766848","status":200,"timestamp":"2024-08-26 16:03:04"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:03:10"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 16:17:41"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 16:17:41"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:17:41"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:17:41"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:17:58"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:14"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:14"}
+{"level":"info","message":"API Success: notifications/66cb8c773d3405fe222457cd","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","status":200,"timestamp":"2024-08-26 16:19:14"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:14"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:14"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:14"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:14"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:14"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:14"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:14"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:14"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb8c773d3405fe222457cd error: Notification not found","method":"DELETE","path":"notifications/66cb8c773d3405fe222457cd","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb815d68e9f9e68dd27f82 error: Notification not found","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb815d68e9f9e68dd27f82 error: Notification not found","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"info","message":"API Success: notifications/66cb815d68e9f9e68dd27f82","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","status":200,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb815d68e9f9e68dd27f82 error: Notification not found","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:15"}
+{"details":"No additional details provided.","level":"error","message":"deleteNotification error: Notification not found","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","stack":"Error: Notification not found\n    at deleteNotification (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\notificationController.js:66:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"error","message":"notifications/66cb815d68e9f9e68dd27f82 error: Notification not found","method":"DELETE","path":"notifications/66cb815d68e9f9e68dd27f82","stack":"No additional details provided.","status":404,"timestamp":"2024-08-26 16:19:15"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:16"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:16"}
+{"level":"info","message":"API Success: notifications/66cb814b68e9f9e68dd27f70","method":"DELETE","path":"notifications/66cb814b68e9f9e68dd27f70","status":200,"timestamp":"2024-08-26 16:19:18"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:18"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:18"}
+{"level":"info","message":"API Success: notifications/66cb804268e9f9e68dd27f58","method":"DELETE","path":"notifications/66cb804268e9f9e68dd27f58","status":200,"timestamp":"2024-08-26 16:19:18"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:18"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:18"}
+{"level":"info","message":"API Success: notifications/66cb7ffb68e9f9e68dd27f2a","method":"DELETE","path":"notifications/66cb7ffb68e9f9e68dd27f2a","status":200,"timestamp":"2024-08-26 16:19:19"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:19"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:19"}
+{"level":"info","message":"API Success: notifications/66cb7ff968e9f9e68dd27f18","method":"DELETE","path":"notifications/66cb7ff968e9f9e68dd27f18","status":200,"timestamp":"2024-08-26 16:19:20"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:20"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:20"}
+{"level":"info","message":"API Success: notifications/66cb7ff568e9f9e68dd27ef5","method":"DELETE","path":"notifications/66cb7ff568e9f9e68dd27ef5","status":200,"timestamp":"2024-08-26 16:19:21"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:21"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:19:21"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:21:28"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:21:28"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 16:21:29"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 16:21:29"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:22:14"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 16:22:14"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 16:22:14"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:22:15"}
+{"level":"info","message":"API Success: notifications/66cb8ca13d3405fe222457ed/view","method":"PATCH","path":"notifications/66cb8ca13d3405fe222457ed/view","status":200,"timestamp":"2024-08-26 16:22:24"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:22:24"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 16:22:24"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:22:28"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:22:50"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 16:24:22"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 16:24:22"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 16:24:22"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899f","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899f","status":200,"timestamp":"2024-08-26 16:24:22"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:24:28"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:25:10"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-26 16:25:15"}
+{"level":"info","message":"API Success: getUserById/66cb8ca13d3405fe222457e9","method":"GET","path":"getUserById/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 16:25:15"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-26 16:25:15"}
+{"level":"info","message":"API Success: updateUser/66cb8ca13d3405fe222457e9","method":"PUT","path":"updateUser/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 16:25:17"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 16:25:17"}
+{"level":"info","message":"User retrieved: randomUser1","timestamp":"2024-08-26 16:25:25"}
+{"level":"info","message":"API Success: getUserById/66cb8ca13d3405fe222457e9","method":"GET","path":"getUserById/66cb8ca13d3405fe222457e9","status":200,"timestamp":"2024-08-26 16:25:25"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899d","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899d","status":200,"timestamp":"2024-08-26 16:25:25"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 17:10:31"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 17:10:31"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 17:10:31"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 17:10:48"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 17:11:05"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 17:11:05"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 17:11:05"}
+{"level":"info","message":"API Success: states/country/66c9cee7a802fab4c6a2899f","method":"GET","path":"states/country/66c9cee7a802fab4c6a2899f","status":200,"timestamp":"2024-08-26 17:11:05"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 17:11:28"}
+{"level":"info","message":"API Success: getPermissionById/66c9cdd020b67fec9ef3f4e3","method":"GET","path":"getPermissionById/66c9cdd020b67fec9ef3f4e3","status":200,"timestamp":"2024-08-26 17:15:26"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 17:15:33"}
+{"level":"info","message":"API Success: getPermissionById/66c9cdd020b67fec9ef3f4e3","method":"GET","path":"getPermissionById/66c9cdd020b67fec9ef3f4e3","status":200,"timestamp":"2024-08-26 17:15:39"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 17:15:45"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 18:08:44"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 18:08:44"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 18:08:45"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 19:07:11"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 19:07:11"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 19:07:11"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 20:34:04"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 20:34:04"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 20:34:04"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 20:36:39"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 20:36:39"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 20:36:39"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 20:42:53"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 20:42:53"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 20:42:53"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 20:43:43"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 20:43:43"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 20:43:43"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 20:43:56"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 20:43:56"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 20:43:56"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 20:45:51"}
+{"level":"info","message":"API Success: listAllUsers","method":"GET","path":"listAllUsers","status":200,"timestamp":"2024-08-26 20:46:01"}
+{"level":"info","message":"API Success: countries","method":"GET","path":"countries","status":200,"timestamp":"2024-08-26 20:53:56"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-26 21:33:52"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-26 21:33:52"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-26 21:33:52"}

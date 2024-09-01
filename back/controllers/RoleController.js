@@ -197,17 +197,17 @@ const listRoles = async (req, res) => {
         });
 
         // Registro de auditoría (opcional)
-        await AuditLog.create({
-            action: 'LIST_ROLES',
-            by: req.user ? req.user.sub : 'system',
-            targetType: 'Role',
-            alertLevel: 'Low',
-            apiPath: req.originalUrl,
-            details: {
-                message: "Roles listed successfully"
-            },
-            ipAddress: req.ip
-        });
+        // await AuditLog.create({
+        //     action: 'LIST_ROLES',
+        //     by: req.user ? req.user.sub : 'system',
+        //     targetType: 'Role',
+        //     alertLevel: 'Low',
+        //     apiPath: req.originalUrl,
+        //     details: {
+        //         message: "Roles listed successfully"
+        //     },
+        //     ipAddress: req.ip
+        // });
 
     } catch (error) {
         handleErrorResponse(error, req, res);

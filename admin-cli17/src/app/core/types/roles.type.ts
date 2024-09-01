@@ -1,2 +1,2 @@
 // roles.type.ts
-export type UserRole = 'MasterAdministrator' | 'Administrator' | 'Customer' | 'Editor' | 'Guest';
+export type UserRole = 'MasterAdministrator' | 'Developer' | 'Customer' | 'Editor' | 'Guest';

@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const api = express.Router();
 const productController = require('../controllers/ProductController');
 const uploadConfig = require('../config/uploadConfig');
@@ -12,62 +11,33 @@ api.get('/listAllProducts', [auth.auth, rbac('read', 'product')], productControl
 api.get('/getProductById/:id', [auth.auth, rbac('read', 'product')], productController.getProductById);
 api.put('/updateProduct/:id', [auth.auth, rbac('update', 'product')], productController.updateProduct);
 api.delete('/deleteProduct/:id', [auth.auth, rbac('delete', 'product')], productController.deleteProduct);
-
-const validateProductExists = async (req, res, next) => {
-    const productId = req.params.identifier;
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-        return res.status(400).json({ message: 'Invalid product ID format.' });
-    }
-    try {
-        const productExists = await Product.findById(productId);
-        if (!productExists) {
-            return res.status(404).json({ message: 'Product not found.' });
+api.post('/uploadProductImage/:identifier/:type',
+    (req, res, next) => {
+        const { type } = req.params;
+        if (type === 'cover') {
+            uploadConfig.removePreviousImage('products', Product)(req, res, (err) => {
+                if (err) return next(err);
+                return uploadConfig.multerErrorHandler('products')(req, res, next);
+            });
+        } else if (type === 'gallery') {
+            // Eliminar todas las imágenes de la galería antes de subir las nuevas
+            uploadConfig.removeAllGalleryImages('products', Product)(req, res, (err) => {
+                if (err) return next(err);
+                return uploadConfig.multerMultipleErrorHandler('products', 10)(req, res, next);
+            });
+        } else {
+            next(new ErrorHandler(400, 'Invalid upload type specified.'));
         }
-        next();
-    } catch (error) {
-        return res.status(500).json({ message: 'Internal server error.', error: error.message });
-    }
-};
-
-api.post('/uploadProductImage/:identifier',
-    [auth.auth, rbac('update', 'product'), validateProductExists],
-    uploadConfig.multerErrorHandler('products'),
-    async (req, res, next) => {
-        try {
-            const imageUrl = req.file.filename;
-            await Product.findByIdAndUpdate(req.params.identifier, { imageUrl });
-            res.status(200).json({ message: 'Product image updated successfully', fileName: imageUrl });
-        } catch (error) {
-            next(error);
-        }
-    }
+    },
+    productController.uploadProductImage
 );
-
-api.get('/getProductImage/:identifier',
+api.get('/getProductImage/:identifier/:type/:imageId?',
     [auth.auth, rbac('read', 'product')],
-    async (req, res) => {
-        try {
-            const product = await Product.findById(req.params.identifier);
-            if (!product || !product.imageUrl) {
-                return res.status(404).json({ message: 'Product image not found.' });
-            }
-            res.status(200).json({ imageUrl: product.imageUrl });
-        } catch (error) {
-            res.status(500).json({ message: 'Internal server error.', error: error.message });
-        }
-    }
+    productController.getProductImage
 );
-
 api.delete('/deleteProductImage/:identifier',
-    [auth.auth, rbac('delete', 'product'), validateProductExists],
-    async (req, res) => {
-        try {
-            await Product.findByIdAndUpdate(req.params.identifier, { imageUrl: null });
-            res.status(200).json({ message: 'Product image deleted successfully' });
-        } catch (error) {
-            res.status(500).json({ message: 'Internal server error.', error: error.message });
-        }
-    }
+    [auth.auth, rbac('delete', 'product')],
+    productController.deleteProductImage
 );
 
 module.exports = api;

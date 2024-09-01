@@ -218,20 +218,15 @@
                                         <select class="form-control" id="role" formControlName="role"
                                             [ngClass]="{'is-invalid': addUserForm.get('role')?.invalid && (addUserForm.get('role')?.dirty || addUserForm.get('role')?.touched)}">
                                             <option value="" disabled [selected]="!addUserForm.get('role')?.value">
-                                                Select a
-                                                role</option>
-                                            <option value="Developer">Developer</option>
-                                            <option value="Registered">Registered</option>
-                                            <option value="Editor">Editor</option>
-                                            <option value="Guest">Guest</option>
+                                                Select a role
+                                            </option>
+                                            <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
                                         </select>
                                         <div *ngIf="addUserForm.get('role')?.invalid && (addUserForm.get('role')?.dirty || addUserForm.get('role')?.touched)"
                                             class="invalid-feedback">
-                                            <span *ngIf="addUserForm.get('role')?.errors?.['required']">Role is
-                                                required.</span>
+                                            <span *ngIf="addUserForm.get('role')?.errors?.['required']">Role is required.</span>
                                         </div>
                                     </div>
-
                                     <!-- Form Group (identification)-->
                                     <div class="col-md-6">
 

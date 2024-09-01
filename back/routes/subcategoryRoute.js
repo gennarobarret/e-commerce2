@@ -10,4 +10,7 @@ api.get('/getSubcategoryById/:id', [auth.auth, rbac('read', 'subcategory')], sub
 api.put('/updateSubcategory/:id', [auth.auth, rbac('update', 'subcategory')], subcategoryController.updateSubcategory);
 api.delete('/deleteSubcategory/:id', [auth.auth, rbac('delete', 'subcategory')], subcategoryController.deleteSubcategory);
 
+// Nueva ruta para listar subcategorías por categoría
+api.get('/listSubcategoriesByCategory/:categoryId', [auth.auth, rbac('read', 'subcategory')], subcategoryController.listSubcategoriesByCategory);
+
 module.exports = api;

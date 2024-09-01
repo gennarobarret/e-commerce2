@@ -88,7 +88,7 @@ export class EditPermissionComponent implements OnInit {
       action: permission.action,
       resource: permission.resource,
     });
-    console.log('Estado del formulario:', this.editPermissionForm);
+      console.log('Estado del formulario:', this.editPermissionForm);
     this.cdr.detectChanges();
   }
 

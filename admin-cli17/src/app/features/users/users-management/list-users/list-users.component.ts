@@ -45,6 +45,7 @@ export class ListUsersComponent implements OnInit {
   ];
 
   userIdToDelete: string | null = null;
+  authenticatedUserId: string | null | undefined = null;
 
   constructor(
     private userService: UserManagementService,
@@ -55,6 +56,18 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
+
+    // Subscribe to the authenticated user
+    this.userService.user$.subscribe({
+      next: (user: User | null) => {
+        if (user) {
+          this.authenticatedUserId = user._id; // Store the authenticated user's ID
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching the authenticated user', error);
+      }
+    });
   }
 
   loadUsers(): void {
@@ -65,7 +78,7 @@ export class ListUsersComponent implements OnInit {
         this.load_data = false;
       },
       error: (error) => {
-        console.error('Error al cargar usuarios', error);
+        console.error('Error loading users', error);
         this.load_data = false;
       }
     });
@@ -138,7 +151,11 @@ export class ListUsersComponent implements OnInit {
   }
 
   editUser(userId: string): void {
-    this.router.navigate([`/users/edit/${userId}`]);
+    if (userId === this.authenticatedUserId) {
+      this.toastService.showToast('warning', 'You cannot edit your own account.');
+    } else {
+      this.router.navigate([`/users/edit/${userId}`]);
+    }
   }
 
   prepareDeleteUser(userId: string): void {
@@ -154,10 +171,10 @@ export class ListUsersComponent implements OnInit {
           if (response && response.status === 'success') {
             this.toastService.showToast(response.status, `${response.message}`);
           }
-          this.loadUsers(); // Recargar la lista de usuarios después de eliminar
-          this.userIdToDelete = null; // Reinicia la variable
+          this.loadUsers(); // Reload the list of users after deletion
+          this.userIdToDelete = null; // Reset the variable
 
-          // Cerrar el modal manualmente
+          // Manually close the modal
           const deleteModal = document.getElementById('deleteUserModal');
           if (deleteModal) {
             const modalInstance = window.bootstrap.Modal.getInstance(deleteModal);
@@ -167,12 +184,12 @@ export class ListUsersComponent implements OnInit {
         },
         error: (error) => {
           console.error(`Error deleting user ${this.userIdToDelete}`, error);
-          this.userIdToDelete = null; // Reinicia la variable
-          // Mostrar el mensaje de error proveniente del backend
+          this.userIdToDelete = null; // Reset the variable
+          // Show the error message from the backend
           if (error.error && error.error.status && error.error.message) {
             this.toastService.showToast(error.error.status, `${error.error.message}`);
           }
-          // Cerrar el modal manualmente si hay un error
+          // Manually close the modal if there is an error
           const deleteModal = document.getElementById('deleteUserModal');
           if (deleteModal) {
             const modalInstance = window.bootstrap.Modal.getInstance(deleteModal);
@@ -185,7 +202,7 @@ export class ListUsersComponent implements OnInit {
 
 }
 
-// Declaración global para reconocer window.bootstrap
+// Global declaration to recognize window.bootstrap
 declare global {
   interface Window {
     bootstrap: any;

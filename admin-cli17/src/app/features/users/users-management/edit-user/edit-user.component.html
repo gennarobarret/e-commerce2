@@ -226,19 +226,14 @@
                                         <label class="small mb-1" for="inputRole">Role</label>
                                         <select class="form-control" id="inputRole" formControlName="inputRole"
                                             [ngClass]="{'is-invalid': updateUserForm.get('inputRole')?.invalid && (updateUserForm.get('inputRole')?.dirty || updateUserForm.get('inputRole')?.touched)}">
-                                            <option value="" disabled
-                                                [selected]="!updateUserForm.get('inputRole')?.value">
-                                                Select a
-                                                role</option>
-                                            <option value="Developer">Developer</option>
-                                            <option value="Customer">Customer</option>
-                                            <option value="Editor">Editor</option>
-                                            <option value="Guest">Guest</option>
+                                            <option value="" disabled [selected]="!updateUserForm.get('inputRole')?.value">
+                                                Select a role
+                                            </option>
+                                            <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
                                         </select>
                                         <div *ngIf="updateUserForm.get('inputRole')?.invalid && (updateUserForm.get('inputRole')?.dirty || updateUserForm.get('inputRole')?.touched)"
                                             class="invalid-feedback">
-                                            <span *ngIf="updateUserForm.get('inputRole')?.errors?.['required']">Role is
-                                                required.</span>
+                                            <span *ngIf="updateUserForm.get('inputRole')?.errors?.['required']">Role is required.</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

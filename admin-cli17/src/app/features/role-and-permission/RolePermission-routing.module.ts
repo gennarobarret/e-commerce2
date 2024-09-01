@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from '../../core/guards/admin-guard.guard';
 
 const routes: Routes = [
     {
@@ -13,7 +14,8 @@ const routes: Routes = [
     },
     {
         path: 'roles/add',
-        loadComponent: () => import('../role-and-permission/add-roles/add-roles.component').then(c => c.AddRolesComponent)
+        loadComponent: () => import('../role-and-permission/add-roles/add-roles.component').then(c => c.AddRolesComponent),
+        canActivate: [AdminGuard]
     },
     {
         path: 'roles/edit/:id',
@@ -21,7 +23,8 @@ const routes: Routes = [
     },
     {
         path: 'permissions',
-        loadComponent: () => import('../role-and-permission/list-permission/list-permission.component').then(c => c.ListPermissionComponent)
+        loadComponent: () => import('../role-and-permission/list-permission/list-permission.component').then(c => c.ListPermissionComponent),
+        canActivate: [AdminGuard]
     },
     {
         path: 'permissions/add',

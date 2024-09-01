@@ -232,14 +232,14 @@ const listPermissions = async (req, res) => {
         }
 
         // Crear notificación opcional
-        const notification = await notificationService.createNotification({
-            userId: req.user.sub,
-            icon: 'list',
-            message: `Permissions list viewed successfully.`,
-            type: 'info'
-        });
+        // const notification = await notificationService.createNotification({
+        //     userId: req.user.sub,
+        //     icon: 'list',
+        //     message: `Permissions list viewed successfully.`,
+        //     type: 'info'
+        // });
 
-        console.log('Notification created and emitted:', notification);
+        // console.log('Notification created and emitted:', notification);
 
         // Estructurar y enviar la respuesta
         res.status(200).json({

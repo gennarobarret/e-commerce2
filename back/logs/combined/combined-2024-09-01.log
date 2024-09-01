@@ -1,0 +1,67 @@
+{"level":"info","message":"API Success: uploadCategoryImage/66d3792c612f21f699ca9dbd","method":"POST","path":"uploadCategoryImage/66d3792c612f21f699ca9dbd","status":200,"timestamp":"2024-09-01 00:03:45"}
+{"level":"info","message":"API Success: uploadCategoryImage/66d3792c612f21f699ca9dbd","method":"POST","path":"uploadCategoryImage/66d3792c612f21f699ca9dbd","status":200,"timestamp":"2024-09-01 00:03:55"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-09-01 00:34:53"}
+{"level":"info","message":"API Success: loginUser","method":"POST","path":"loginUser","status":200,"timestamp":"2024-09-01 00:35:07"}
+{"details":"No additional details provided.","level":"error","message":"updateProduct error: Category not found","method":"PUT","path":"updateProduct/66c1b949265de04dfe6b05be","stack":"Error: Category not found\n    at updateProduct (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\ProductController.js:130:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-09-01 00:35:15"}
+{"level":"error","message":"updateProduct/66c1b949265de04dfe6b05be error: Category not found","method":"PUT","path":"updateProduct/66c1b949265de04dfe6b05be","stack":"No additional details provided.","status":404,"timestamp":"2024-09-01 00:35:15"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-09-01 00:36:03"}
+{"level":"info","message":"API Success: createSubcategory","method":"POST","path":"createSubcategory","status":200,"timestamp":"2024-09-01 00:36:16"}
+{"details":"No additional details provided.","level":"error","message":"updateProduct error: Product not found","method":"PUT","path":"updateProduct/66c1b949265de04dfe6b05be","stack":"Error: Product not found\n    at updateProduct (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\controllers\\ProductController.js:156:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":404,"timestamp":"2024-09-01 00:36:25"}
+{"level":"error","message":"updateProduct/66c1b949265de04dfe6b05be error: Product not found","method":"PUT","path":"updateProduct/66c1b949265de04dfe6b05be","stack":"No additional details provided.","status":404,"timestamp":"2024-09-01 00:36:25"}
+{"_message":"Product validation failed","errors":{"productType":{"kind":"required","message":"Path `productType` is required.","name":"ValidatorError","path":"productType","properties":{"message":"Path `productType` is required.","path":"productType","type":"required"}}},"level":"error","message":"createProduct error: Product validation failed: productType: Path `productType` is required.","stack":"ValidationError: Product validation failed: productType: Path `productType` is required.\n    at Document.invalidate (C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\mongoose\\lib\\document.js:3200:32)\n    at C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\mongoose\\lib\\document.js:2993:17\n    at C:\\Users\\Javier\\Documents\\proyectos\\ecommerce\\back\\node_modules\\mongoose\\lib\\schemaType.js:1370:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)","timestamp":"2024-09-01 00:36:51"}
+{"level":"error","message":"createProduct error: Product validation failed: productType: Path `productType` is required.","method":"POST","path":"createProduct","stack":"Contact support.","status":500,"timestamp":"2024-09-01 00:36:51"}
+{"level":"info","message":"API Success: createProduct","method":"POST","path":"createProduct","status":200,"timestamp":"2024-09-01 00:38:19"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af","status":200,"timestamp":"2024-09-01 00:46:09"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af","status":200,"timestamp":"2024-09-01 00:46:15"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/cover","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/cover","status":200,"timestamp":"2024-09-01 01:11:47"}
+{"level":"error","message":"undefined_path error: Unexpected field","path":"undefined_path","stack":"No additional details provided.","status":400,"timestamp":"2024-09-01 01:15:10"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:16:09"}
+{"level":"error","message":"undefined_path error: Unexpected field","path":"undefined_path","stack":"No additional details provided.","status":400,"timestamp":"2024-09-01 01:16:20"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/cover","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/cover","status":200,"timestamp":"2024-09-01 01:16:23"}
+{"level":"error","message":"undefined_path error: Unexpected field","path":"undefined_path","stack":"No additional details provided.","status":400,"timestamp":"2024-09-01 01:16:26"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:16:35"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/cover","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/cover","status":200,"timestamp":"2024-09-01 01:18:09"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:18:22"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:18:27"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:21:26"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:21:31"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:21:35"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:21:42"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:21:46"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-09-01 01:34:53"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-09-01 01:34:53"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-09-01 01:34:54"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-09-01 01:34:54"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-09-01 01:34:54"}
+{"level":"info","message":"API Success: /listAllCategories","method":"GET","path":"/listAllCategories","status":200,"timestamp":"2024-09-01 01:34:54"}
+{"level":"info","message":"API Success: /listAllProducts","method":"GET","path":"/listAllProducts","status":200,"timestamp":"2024-09-01 01:35:02"}
+{"level":"info","message":"API Success: /listAllCategories","method":"GET","path":"/listAllCategories","status":200,"timestamp":"2024-09-01 01:35:22"}
+{"level":"info","message":"API Success: /listAllSubcategories","method":"GET","path":"/listAllSubcategories","status":200,"timestamp":"2024-09-01 01:35:24"}
+{"level":"info","message":"API Success: /listAllProducts","method":"GET","path":"/listAllProducts","status":200,"timestamp":"2024-09-01 01:35:26"}
+{"level":"info","message":"API Success: /listAllCategories","method":"GET","path":"/listAllCategories","status":200,"timestamp":"2024-09-01 01:35:30"}
+{"level":"info","message":"API Success: /listAllProducts","method":"GET","path":"/listAllProducts","status":200,"timestamp":"2024-09-01 01:35:40"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-09-01 01:46:43"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-09-01 01:46:43"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-09-01 01:46:43"}
+{"level":"info","message":"API Success: /listAllProducts","method":"GET","path":"/listAllProducts","status":200,"timestamp":"2024-09-01 01:46:43"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/cover","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/cover","status":200,"timestamp":"2024-09-01 01:47:32"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-09-01 01:47:43"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-09-01 01:47:43"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-09-01 01:47:43"}
+{"level":"info","message":"API Success: /listAllProducts","method":"GET","path":"/listAllProducts","status":200,"timestamp":"2024-09-01 01:47:43"}
+{"level":"info","message":"API Success: uploadProductImage/66d39b5bacfee5a6910851af/gallery","method":"POST","path":"uploadProductImage/66d39b5bacfee5a6910851af/gallery","status":200,"timestamp":"2024-09-01 01:48:05"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-09-01 01:48:12"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-09-01 01:48:12"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-09-01 01:48:12"}
+{"level":"info","message":"API Success: /listAllProducts","method":"GET","path":"/listAllProducts","status":200,"timestamp":"2024-09-01 01:48:12"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-09-01 01:48:40"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-09-01 01:48:40"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-09-01 01:48:40"}
+{"level":"info","message":"API Success: /listAllProducts","method":"GET","path":"/listAllProducts","status":200,"timestamp":"2024-09-01 01:48:40"}
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-09-01 01:53:35"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-09-01 01:53:35"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-09-01 01:53:35"}
+{"level":"info","message":"API Success: /listAllProducts","method":"GET","path":"/listAllProducts","status":200,"timestamp":"2024-09-01 01:53:35"}
+{"level":"error","message":"undefined_path error: The token is invalid: jwt expired","path":"undefined_path","stack":"No additional details provided.","status":403,"timestamp":"2024-09-01 01:54:01"}
+{"level":"info","message":"API Success: listAllProducts","method":"GET","path":"listAllProducts","status":200,"timestamp":"2024-09-01 01:54:24"}
+{"level":"info","message":"API Success: listAllProducts","method":"GET","path":"listAllProducts","status":200,"timestamp":"2024-09-01 01:55:20"}

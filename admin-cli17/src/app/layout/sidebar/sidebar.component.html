@@ -49,10 +49,24 @@
             <div class="collapse" id="appsCollapsePeople" data-bs-parent="#accordionSidenavAppsMenu">
                 <nav class="sidenav-menu-nested nav">
                     <a class="nav-link" [routerLink]="['/users/users-list']">Users Management</a>
-                <a class="nav-link" [routerLink]="['/role-permission/roles']">Role Management</a>
-                <a class="nav-link" [routerLink]="['/role-permission/permissions']">Permission Management</a>
+                    <a class="nav-link" [routerLink]="['/role-permission/roles']">Role Management</a>
+                    <a class="nav-link" [routerLink]="['/role-permission/permissions']">Permission Management</a>
                 </nav>
             </div>
+            <!-- Nested Sidenav Accordion (Products -> Categories, Subcategories, Products)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                data-bs-target="#appsCollapseProducts" aria-expanded="false" aria-controls="appsCollapseProducts">
+                <div class="nav-link-icon"><i class="fa-solid fa-box"></i></div>Products
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="appsCollapseProducts" data-bs-parent="#accordionSidenavAppsMenu">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" [routerLink]="['/products/categories']">Categories</a>
+                    <a class="nav-link" [routerLink]="['/products/subcategories']">Subcategories</a>
+                    <a class="nav-link" [routerLink]="['/products/list']">Products</a>
+                </nav>
+            </div>
+
             <!-- Nested Sidenav Accordion (Apps -> Settings)-->
             <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                 data-bs-target="#appsCollapseSettings" aria-expanded="false" aria-controls="appsCollapseSettings">

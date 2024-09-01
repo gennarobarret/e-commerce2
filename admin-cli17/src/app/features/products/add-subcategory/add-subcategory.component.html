@@ -1,0 +1,51 @@
+<main>
+    <div class="container-xl px-4 mt-n10">
+        <div class="card mb-4">
+            <div class="card-header">Add Subcategory</div>
+            <div class="card-body">
+                <form [formGroup]="addSubcategoryForm" (ngSubmit)="saveSubcategory()">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" formControlName="title"
+                            [ngClass]="{'is-invalid': addSubcategoryForm.get('title')?.invalid && (addSubcategoryForm.get('title')?.dirty || addSubcategoryForm.get('title')?.touched)}" />
+                        <div *ngIf="addSubcategoryForm.get('title')?.invalid && (addSubcategoryForm.get('title')?.dirty || addSubcategoryForm.get('title')?.touched)"
+                            class="text-danger">
+                            <span *ngIf="addSubcategoryForm.get('title')?.errors?.['required']">Title is
+                                required.</span>
+                            <span *ngIf="addSubcategoryForm.get('title')?.errors?.['minlength']">Title must be at least
+                                3 characters long.</span>
+                            <span *ngIf="addSubcategoryForm.get('title')?.errors?.['maxlength']">Title must be no more
+                                than 50 characters long.</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-control" id="category" formControlName="category"
+                            [ngClass]="{'is-invalid': addSubcategoryForm.get('category')?.invalid && (addSubcategoryForm.get('category')?.dirty || addSubcategoryForm.get('category')?.touched)}">
+                            <option value="" disabled [selected]="true">Select a category</option>
+                            <option *ngFor="let category of categories" [value]="category._id">{{ category.title }}
+                            </option>
+                        </select>
+                        <div *ngIf="addSubcategoryForm.get('category')?.invalid && (addSubcategoryForm.get('category')?.dirty || addSubcategoryForm.get('category')?.touched)"
+                            class="text-danger">
+                            <span *ngIf="addSubcategoryForm.get('category')?.errors?.['required']">Category is
+                                required.</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" formControlName="description"
+                            [ngClass]="{'is-invalid': addSubcategoryForm.get('description')?.invalid && (addSubcategoryForm.get('description')?.dirty || addSubcategoryForm.get('description')?.touched)}"></textarea>
+                        <div *ngIf="addSubcategoryForm.get('description')?.invalid && (addSubcategoryForm.get('description')?.dirty || addSubcategoryForm.get('description')?.touched)"
+                            class="text-danger">
+                            <span *ngIf="addSubcategoryForm.get('description')?.errors?.['maxlength']">Description must
+                                be no more than 200 characters long.</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="addSubcategoryForm.invalid">Save</button>
+                    <a [routerLink]="['/products/subcategories']" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

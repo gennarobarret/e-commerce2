@@ -18,7 +18,7 @@ import { SpinnerService } from './spinner.service';
 import { ResponseHandlingService } from './response-handling.service';
 import { ConfigService } from './config.service';
 import { SocketService } from './socket.service';
-import { UserManagementService } from './user-management.service'; // Importa el servicio de gestión de usuarios
+import { UserManagementService } from './user-management.service';
 
 const API_ENDPOINTS = {
   loginUser: 'loginUser',
@@ -62,13 +62,11 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
-
   public logoutAndRedirect(): void {
     console.log('Executing logout and redirect');
     this.removeToken();
     this._router.navigate(['/auth/login']);
   }
-
 
   getToken(): string | null {
     return localStorage.getItem('token');
@@ -212,4 +210,5 @@ export class AuthService {
       return false;
     }
   }
+
 }

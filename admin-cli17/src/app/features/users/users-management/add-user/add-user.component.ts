@@ -5,10 +5,11 @@ import { Subscription } from 'rxjs';
 import { UserManagementService } from '../../../../core/services';
 import { LocationDataService } from '../../../../core/services';
 import { ToastService } from '../../../../core/services';
-import { Country } from '../../../../core/interfaces';
-import { State } from '../../../../core/interfaces';
-import { CommonModule } from '@angular/common';
+import { RoleManagementService } from '../../../../core/services/role-management.service'; // Importa el servicio de roles
+import { Country, State } from '../../../../core/interfaces';
+import { Role } from '../../../../core/models/role.model'; // Importa el modelo Role
 import { SpinnerComponent } from '../../../../shared/components/spinner/spinner.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-user',
@@ -21,6 +22,7 @@ export class AddUserComponent implements OnInit {
   addUserForm!: FormGroup;
   countries: Country[] = [];
   filteredStates: State[] = [];
+  roles: Role[] = []; // Array para almacenar los roles obtenidos
   loading: boolean = false;
   private subscriptions = new Subscription();
 
@@ -29,6 +31,7 @@ export class AddUserComponent implements OnInit {
     private userManagementService: UserManagementService,
     private locationDataService: LocationDataService,
     private toastService: ToastService,
+    private roleManagementService: RoleManagementService, // Inyecta el servicio de roles
     private router: Router
   ) {
     this.createForm();
@@ -36,6 +39,7 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCountries();
+    this.loadRoles(); // Cargar los roles cuando el componente se inicialice
   }
 
   ngOnDestroy(): void {
@@ -70,6 +74,24 @@ export class AddUserComponent implements OnInit {
       })
     );
   }
+
+  loadRoles() {
+    this.subscriptions.add(
+      this.roleManagementService.listRoles().subscribe({
+        next: (response) => {
+          if (response.status === 'success') {
+            this.roles = response.data.filter(role => role.name !== 'MasterAdministrator'); // Excluye MasterAdministrator
+          } else {
+            console.error('Error loading roles:', response.message);
+          }
+        },
+        error: (error) => {
+          console.error('Error loading roles', error);
+        }
+      })
+    );
+  }
+
 
   onCountryChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
@@ -125,7 +147,6 @@ export class AddUserComponent implements OnInit {
       })
     );
   }
-
 
   private markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {

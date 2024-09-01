@@ -1,5 +1,7 @@
 "use strict";
+const mongoose = require('mongoose');
 const Subcategory = require('../models/subcategoryModel');
+
 const Category = require('../models/categoryModel');
 const { logAudit } = require('../helpers/logAuditHelper');
 const logger = require('../helpers/logHelper');
@@ -45,8 +47,6 @@ const createSubcategory = async (req, res) => {
         handleErrorResponse(error, req, res);
     }
 };
-
-
 
 // Listar todas las subcategorías
 const listAllSubcategories = async (req, res) => {
@@ -122,10 +122,37 @@ const deleteSubcategory = async (req, res) => {
     }
 };
 
+const listSubcategoriesByCategory = async (req, res) => {
+    try {
+        const { categoryId } = req.params;
+
+        // Verificar que el ID de categoría sea válido
+        if (!mongoose.Types.ObjectId.isValid(categoryId)) {
+            throw new ErrorHandler(400, "Invalid Category ID", req.originalUrl, req.method);
+        }
+
+        // Verificar si la categoría existe
+        const category = await Category.findById(categoryId);
+        if (!category) {
+            throw new ErrorHandler(404, "Category not found", req.originalUrl, req.method);
+        }
+
+        // Buscar subcategorías asociadas a la categoría
+        const subcategories = await Subcategory.find({ category: categoryId }).populate('category', 'title');
+        handleSuccessfulResponse("Subcategories listed successfully", subcategories)(req, res);
+
+        await logAudit('LIST_SUBCATEGORIES_BY_CATEGORY', req.user ? req.user._id : 'system', categoryId, 'Subcategory', 'Low', 'Listed subcategories by category', req.ip, req.originalUrl);
+    } catch (error) {
+        logger.error('listSubcategoriesByCategory error:', error);
+        handleErrorResponse(error, req, res);
+    }
+};
+
 module.exports = {
     createSubcategory,
     listAllSubcategories,
     getSubcategoryById,
     updateSubcategory,
-    deleteSubcategory
+    deleteSubcategory,
+    listSubcategoriesByCategory
 };

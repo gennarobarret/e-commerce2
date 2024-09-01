@@ -23774,3 +23774,108 @@ pre[class*=language-] {
   /* Agrega un fondo semi-transparente si lo deseas */
   /* Añade cualquier otro estilo que desees para el contenedor */
 }
+
+th {
+    position: relative;
+    white-space: nowrap;
+    padding-right: 30px;
+    /* Aumentar el espacio adicional para los iconos */
+}
+
+th::after {
+    content: ' ▲▼';
+    color: lightgray;
+    font-size: 0.8em;
+    position: absolute;
+    right: 5px;
+    /* Espacio entre el icono y la línea de división */
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 5px;
+    /* Espacio entre el texto y los iconos */
+}
+
+th.sorted-asc::after {
+    content: ' ▲';
+    color: black;
+}
+
+th.sorted-desc::after {
+    content: ' ▼';
+    color: black;
+}
+
+th.no-sort::after {
+    content: '';
+}
+
+.img-avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.img-thumbnail {
+  width: 80px;
+  /* Ajusta el tamaño según tus necesidades */
+  height: 80px;
+  object-fit: cover;
+  /* Asegura que la imagen se ajuste sin distorsionarse */
+}
+
+/* General styles for table cells */
+td {
+  vertical-align: middle; /* For older browser compatibility */
+  padding: 8px; /* Optional: Adds some padding for spacing */
+}
+
+/* Align content vertically in the middle for all table cells */
+.cell-content {
+  display: flex;
+  justify-content: center; /* Optional: Center horizontally as well */
+  align-items: center;
+  height: 100%;
+}
+
+/* Specific styles for the image container to match other cells */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px; /* Ensure this matches the size defined earlier */
+}
+
+.category-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+}
+
+.image-preview-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-preview-container .btn-delete-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.image-preview-container .btn-delete-image svg {
+  width: 24px;
+  height: 24px;
+}

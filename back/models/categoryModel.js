@@ -1,6 +1,6 @@
-"use strict";
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Subcategory = require('./subcategoryModel');
 
 const CategorySchema = new Schema({
     title: {
@@ -33,4 +33,13 @@ const CategorySchema = new Schema({
     }]
 }, { timestamps: true });
 
-module.exports = mongoose.model("Category", CategorySchema);
+CategorySchema.pre('remove', async function (next) {
+    try {
+        await Subcategory.deleteMany({ category: this._id });
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
+
+module.exports = mongoose.model('Category', CategorySchema);

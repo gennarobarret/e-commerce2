@@ -6,7 +6,6 @@ const auth = require('../middlewares/authenticate');
 const rbac = require('../middlewares/rbacMiddleware');
 const User = require('../models/userModel');
 
-
 api.post('/createMasterAdmin', userManagement.createMasterAdmin);
 api.post('/createUser', [auth.auth, rbac('create', 'user')], userManagement.createUser);
 api.get('/getUser', [auth.auth, rbac('read', 'user')], userManagement.getUser);
@@ -17,12 +16,17 @@ api.delete('/deleteUser/:id', [auth.auth, rbac('delete', 'user')], userManagemen
 api.post('/uploadProfileImage/:identifier',
     uploadConfig.removePreviousImage('users', User),
     uploadConfig.multerErrorHandler('users'),
+    [auth.auth, rbac('update', 'user')],
     userManagement.uploadProfileImage
 );
+
 api.get('/getUserProfileImage/:identifier',
+    [auth.auth, rbac('read', 'user')],
     userManagement.getUserProfileImage
 );
+
 api.delete('/deleteUserProfileImage/:identifier',
+    [auth.auth, rbac('delete', 'user')],
     userManagement.deleteUserProfileImage
 );
 

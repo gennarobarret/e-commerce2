@@ -1,0 +1,3 @@
+{"level":"info","message":"API Success: notifications","method":"GET","path":"notifications","status":200,"timestamp":"2024-08-29 11:43:15"}
+{"level":"info","message":"User retrieved: masteradmin","timestamp":"2024-08-29 11:43:16"}
+{"level":"info","message":"API Success: getUser","method":"GET","path":"getUser","status":200,"timestamp":"2024-08-29 11:43:16"}

@@ -28,20 +28,16 @@
                             <div class="card-body">
                                 <!-- Form Group (role name) -->
                                 <div class="mb-3">
-                                    <label class="small mb-1" for="roleName">Role Name</label>
-                                    <input class="form-control" id="roleName" type="text" placeholder="Enter role name"
-                                        formControlName="roleName"
-                                        [ngClass]="{'is-invalid': editRoleForm.get('roleName')?.invalid && (editRoleForm.get('roleName')?.dirty || editRoleForm.get('roleName')?.touched)}" />
+                                    <label class="small mb-1" for="roleName">Select Role</label>
+                                    <select class="form-control" id="roleName" formControlName="roleName"
+                                        [ngClass]="{'is-invalid': editRoleForm.get('roleName')?.invalid && (editRoleForm.get('roleName')?.dirty || editRoleForm.get('roleName')?.touched)}">
+                                        <option value="" disabled selected>Select a role</option>
+                                        <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
+                                    </select>
                                     <div *ngIf="editRoleForm.get('roleName')?.invalid && (editRoleForm.get('roleName')?.dirty || editRoleForm.get('roleName')?.touched)"
                                         class="text-danger">
                                         <span *ngIf="editRoleForm.get('roleName')?.errors?.['required']">
-                                            Role Name is required.
-                                        </span>
-                                        <span *ngIf="editRoleForm.get('roleName')?.errors?.['minlength']">
-                                            Role Name must be at least 3 characters long.
-                                        </span>
-                                        <span *ngIf="editRoleForm.get('roleName')?.errors?.['maxlength']">
-                                            Role Name must be no more than 25 characters long.
+                                            A role must be selected.
                                         </span>
                                     </div>
                                 </div>
@@ -57,13 +53,15 @@
                                     </select>
                                     <div *ngIf="editRoleForm.get('permissions')?.invalid && (editRoleForm.get('permissions')?.dirty || editRoleForm.get('permissions')?.touched)"
                                         class="text-danger">
-                                        <span *ngIf="editRoleForm.get('permissions')?.errors?.['required']">At least one
-                                            permission is required.</span>
+                                        <span *ngIf="editRoleForm.get('permissions')?.errors?.['required']">
+                                            At least one permission is required.
+                                        </span>
                                     </div>
                                 </div>
 
                                 <!-- Save changes button -->
-                                <button class="btn btn-primary" type="submit" [disabled]="editRoleForm.disabled">
+                                <button class="btn btn-primary" type="submit"
+                                    [disabled]="editRoleForm.disabled || loading">
                                     Update Role
                                 </button>
                                 <div *ngIf="editRoleForm.disabled" class="alert alert-warning" role="alert">

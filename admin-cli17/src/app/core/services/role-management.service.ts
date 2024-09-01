@@ -17,8 +17,6 @@ const API_ENDPOINTS = {
   getRoleById: 'getRoleById'
 };
 
-
-
 @Injectable({
   providedIn: 'root'
 })
